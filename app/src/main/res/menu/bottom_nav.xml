@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Routine"
+        android:id="@+id/routine_fragment"
+        android:icon="@drawable/baseline_home_24" />
+    <item android:title="Profile"
+        android:id="@+id/profile_fragment"
+        android:icon="@drawable/baseline_person_24" />
+    <item android:title="Exercices"
+        android:id="@+id/exercices_fragment"
+        android:icon="@drawable/baseline_fitness_center_24" />
+</menu>
