@@ -13,8 +13,12 @@ public class Rutina {
     Set<String> musculos;
     String descripcion;
     boolean subida;
+    String color;
 
-
+    public Rutina(String color,String nombre){
+        this.nombre = nombre;
+        this.color = color;
+    }
     public Rutina(String nombre, ArrayList<Ejercicio> ejercicios, String descripcion, boolean subida) {
         this.nombre = nombre;
         this.ejercicios = ejercicios;
@@ -22,6 +26,14 @@ public class Rutina {
         this.musculos = new HashSet<String>();
         this.descripcion = descripcion;
         this.subida = subida;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public String getNombre() {

@@ -18,14 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
+public class ExerciceListAdapter extends RecyclerView.Adapter<ExerciceListAdapter.ViewHolder> {
     private List<ListExercice> data;
     private LayoutInflater mInflater;
     private Context context;
     private List<ListExercice> originalExercices;
 
 
-    public ListAdapter(List<ListExercice> itemList, Context context) {
+    public ExerciceListAdapter(List<ListExercice> itemList, Context context) {
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.data = itemList;

@@ -16,10 +16,10 @@ import com.example.chymv2.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link RoutineFragment#newInstance} factory method to
+ * Use the {@link RoutineMenuFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RoutineFragment extends Fragment {
+public class RoutineMenuFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +34,7 @@ public class RoutineFragment extends Fragment {
 
     private static MisRutinasFragment misRutinasFragment = new MisRutinasFragment();
 
-    public RoutineFragment() {
+    public RoutineMenuFragment() {
         // Required empty public constructor
     }
 
@@ -47,8 +47,8 @@ public class RoutineFragment extends Fragment {
      * @return A new instance of fragment routineFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static RoutineFragment newInstance(String param1, String param2) {
-        RoutineFragment fragment = new RoutineFragment();
+    public static RoutineMenuFragment newInstance(String param1, String param2) {
+        RoutineMenuFragment fragment = new RoutineMenuFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

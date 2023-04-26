@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chymv2.R;
-import com.example.chymv2.adapters.ListAdapter;
+import com.example.chymv2.adapters.ExerciceListAdapter;
 import com.example.chymv2.sources.EjerciciosDBtemporal;
 import com.example.chymv2.viewmodel.ExercicesViewModel;
 
@@ -32,10 +32,8 @@ public class ExerciceFragment extends Fragment implements SearchView.OnQueryText
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-    private EjerciciosDBtemporal DB;
     private RecyclerView recyclerView;
-    private ListAdapter listAdapter;
+    private ExerciceListAdapter exerciceListAdapter;
     private ExercicesViewModel exercicesViewModel;
     private androidx.appcompat.widget.SearchView svSearch;
 
@@ -90,26 +88,17 @@ public class ExerciceFragment extends Fragment implements SearchView.OnQueryText
         exercicesViewModel.init(getContext());
         initlistaEjercicios(view);
         initListenerExercices();
-
-
-
-
-
     }
 
     private void initlistaEjercicios(View view) {
-        listAdapter = new ListAdapter(exercicesViewModel.getExercices().getValue(),getContext());
-        listAdapter.notifyDataSetChanged();
+        exerciceListAdapter = new ExerciceListAdapter(exercicesViewModel.getExercices().getValue(),getContext());
+        exerciceListAdapter.notifyDataSetChanged();
         svSearch = view.findViewById(R.id.svSearch);
 
         recyclerView = view.findViewById(R.id.listRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(listAdapter);
-
-
-
-
+        recyclerView.setAdapter(exerciceListAdapter);
     }
 
     private void initListenerExercices(){
@@ -123,8 +112,8 @@ public class ExerciceFragment extends Fragment implements SearchView.OnQueryText
 
     @Override
     public boolean onQueryTextChange(String s) {
-        listAdapter.filter(s);
-        listAdapter.notifyDataSetChanged();
+        exerciceListAdapter.filter(s);
+        exerciceListAdapter.notifyDataSetChanged();
         return false;
     }
 }

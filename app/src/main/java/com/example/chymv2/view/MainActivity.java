@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     ExerciceFragment exerciceFragment = new ExerciceFragment();
     ProfileFragment profileFragment = new ProfileFragment();
-    RoutineFragment routineFragment = new RoutineFragment();
+    RoutineMenuFragment routineMenuFragment = new RoutineMenuFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationBarView navigation = findViewById(R.id.bottom_navigation);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
-        loadFragment(routineFragment);
+        loadFragment(routineMenuFragment);
     }
 
     private final NavigationBarView.OnItemSelectedListener mOnNavigationItemSelectedListener = new NavigationBarView.OnItemSelectedListener() {
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                     loadFragment(profileFragment);
                     return true;
                 case R.id.routine_fragment:
-                    loadFragment(routineFragment);
+                    loadFragment(routineMenuFragment);
                     return true;
             }
             return false;

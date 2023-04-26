@@ -6,20 +6,20 @@ import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.chymv2.model.ListExercice;
+import com.example.chymv2.model.Rutina;
 import com.example.chymv2.sources.DatabaseHelper;
 import com.example.chymv2.sources.EjerciciosDBtemporal;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExercicesViewModel extends ViewModel {
-    private MutableLiveData<List<ListExercice>> mExercices;
-    private List<ListExercice> elements;
+public class RoutineViewModel {
+    private MutableLiveData<List<Rutina>> mRoutines;
+    private List<Rutina> elements;
     private MutableLiveData<Boolean> isUpdating = new MutableLiveData<>();
-    private EjerciciosDBtemporal DB;
+
     private DatabaseHelper databaseHelper;
 
 
@@ -27,40 +27,36 @@ public class ExercicesViewModel extends ViewModel {
         elements = new ArrayList<>();
         databaseHelper = new DatabaseHelper(context);
         displayData(context);
-        mExercices = new MutableLiveData<>();
-        mExercices.setValue(elements);
+        mRoutines = new MutableLiveData<>();
+        mRoutines.setValue(elements);
 
     }
 
-    public LiveData<List<ListExercice>> getExercices() {
-        return mExercices;
+    public LiveData<List<Rutina>> getRoutines() {
+        return mRoutines;
     }
 
-    public void addNewValue(final ListExercice listElement) {
+    public void addNewValue(final Rutina listElement) {
 
-        List<ListExercice> currentElement = mExercices.getValue();
+        List<Rutina> currentElement = mRoutines.getValue();
         currentElement.add(listElement);
 
     }
 
 
     private void displayData(Context context) {
-        Cursor cursor = databaseHelper.getDataExercices();
+        Cursor cursor = databaseHelper.getDataRoutine();
         if (cursor.getCount() == 0) {
             Toast.makeText(context, "No Entry Exists", Toast.LENGTH_SHORT).show();
             return;
         } else {
             while (cursor.moveToNext()) {
+
                 String color = cursor.getString(1);
-                String exercice = cursor.getString(2);
-                String group = cursor.getString(3);
-                String type = cursor.getString(4);
-                elements.add(new ListExercice(color, exercice, group, type));
+                String routine = cursor.getString(2);
+                elements.add(new Rutina(color, routine));
 
             }
         }
-
     }
-
 }
-
