@@ -1,6 +1,8 @@
 package com.example.chymv2.model;
 
-public class ListExercice {
+import java.io.Serializable;
+
+public class ListExercice implements Serializable {
     String color;
     String ejercicio;
     String grupoMuscular;

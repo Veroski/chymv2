@@ -1,5 +1,6 @@
 package com.example.chymv2.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chymv2.R;
 import com.example.chymv2.adapters.ExerciceListAdapter;
-import com.example.chymv2.sources.EjerciciosDBtemporal;
+import com.example.chymv2.model.ListExercice;
 import com.example.chymv2.viewmodel.ExercicesViewModel;
 
 /**
@@ -91,7 +92,12 @@ public class ExerciceFragment extends Fragment implements SearchView.OnQueryText
     }
 
     private void initlistaEjercicios(View view) {
-        exerciceListAdapter = new ExerciceListAdapter(exercicesViewModel.getExercices().getValue(),getContext());
+        exerciceListAdapter = new ExerciceListAdapter(exercicesViewModel.getExercices().getValue(), getContext(), new ExerciceListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(ListExercice item) {
+                moveToDescription(item);
+            }
+        });
         exerciceListAdapter.notifyDataSetChanged();
         svSearch = view.findViewById(R.id.svSearch);
 
@@ -115,5 +121,10 @@ public class ExerciceFragment extends Fragment implements SearchView.OnQueryText
         exerciceListAdapter.filter(s);
         exerciceListAdapter.notifyDataSetChanged();
         return false;
+    }
+    public void moveToDescription(ListExercice item){
+        Intent intent = new Intent(getContext(), ExerciceDescriptionActivity.class);
+        intent.putExtra("ListExercice", item);
+        startActivity(intent);
     }
 }

@@ -24,15 +24,18 @@ public class ExerciceListAdapter extends RecyclerView.Adapter<ExerciceListAdapte
     private Context context;
     private List<ListExercice> originalExercices;
 
-
-    public ExerciceListAdapter(List<ListExercice> itemList, Context context) {
+    final ExerciceListAdapter.OnItemClickListener listener;
+    public ExerciceListAdapter(List<ListExercice> itemList, Context context, ExerciceListAdapter.OnItemClickListener listener) {
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.data = itemList;
         this.originalExercices = new ArrayList<>();
         originalExercices.addAll(itemList);
+        this.listener = listener;
     }
-
+    public interface OnItemClickListener{
+        void onItemClick(ListExercice item);
+    }
     @Override
     public int getItemCount() {
         return data.size();
@@ -81,6 +84,12 @@ public class ExerciceListAdapter extends RecyclerView.Adapter<ExerciceListAdapte
             ejercicio.setText(item.getEjercicio());
             grupoMuscular.setText(item.getGrupoMuscular());
             tipoEjercicio.setText(item.getTipoEjercicio());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(item);
+                }
+            });
 
         }
 
