@@ -63,6 +63,7 @@ public class SignUPActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(SignUPActivity.this, SignInActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -121,6 +122,7 @@ public class SignUPActivity extends AppCompatActivity {
                         Toast.makeText(SignUPActivity.this, "You have sing up successfully", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(SignUPActivity.this, SignInActivity.class);
                         startActivity(intent);
+                        finish();
                     }
                 }
                 else{

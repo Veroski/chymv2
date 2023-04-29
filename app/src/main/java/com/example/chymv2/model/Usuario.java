@@ -7,6 +7,7 @@ public class Usuario {
     String correo;
     String contraseña;
     String nombre;
+    String imagen;
     float peso;
     float altura;
     float IMC;
@@ -15,7 +16,8 @@ public class Usuario {
     boolean premium;
 
     public Usuario(String username, String correo, String contraseña, float peso, float altura,
-                   ArrayList<Rutina> rutinas, ArrayList<String> materiales, boolean premium, String nombre) {
+                   ArrayList<Rutina> rutinas, ArrayList<String> materiales, boolean premium,
+                   String nombre, String imagen) {
         this.nombre = nombre;
         this.username = username;
         this.correo = correo;
@@ -26,6 +28,7 @@ public class Usuario {
         this.rutinas = rutinas;
         this.materiales = materiales;
         this.premium = premium;
+        this.imagen = imagen;
     }
 
     public Usuario(String username, String correo, String contraseña, String nombre) {

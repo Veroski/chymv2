@@ -81,20 +81,6 @@
         app:layout_constraintVertical_bias="0.164">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/facebookRedirectBtn"
-            style="@android:style/Widget.Button"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="8dp"
-            android:layout_weight="0.5"
-            android:background="@drawable/button_rounded"
-            android:drawableEnd="@drawable/facebook"
-            android:padding="16sp"
-            android:text="Facebook"
-            android:textSize="16dp"
-            android:textStyle="bold" />
-
-        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/googleRedirectBtn"
             style="@android:style/Widget.Button"
             android:layout_width="50dp"

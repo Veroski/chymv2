@@ -4,12 +4,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.chymv2.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +31,10 @@ public class ProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private ImageView ProfileImageView;
+
+    private TextView pesoNumPerfilTxt, alturaNumPerfilTxt, imcNumPerfilTxt, usernameProfileTextView,nameProfileTextView;
+    private FirebaseAuth firebaseAuth;
     public ProfileFragment() {
         // Required empty public constructor
     }
