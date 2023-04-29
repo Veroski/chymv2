@@ -26,13 +26,18 @@ public class RoutineListAdapter extends RecyclerView.Adapter<RoutineListAdapter.
     private Context context;
     private List<Rutina> originalRoutines;
 
-
-    public RoutineListAdapter(List<Rutina> itemList, Context context) {
+    final RoutineListAdapter.OnItemClickListener listener;
+    public RoutineListAdapter(List<Rutina> itemList, Context context,RoutineListAdapter.OnItemClickListener listener) {
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.data = itemList;
         this.originalRoutines = new ArrayList<>();
         originalRoutines.addAll(itemList);
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(Rutina item);
     }
 
     @Override
@@ -80,6 +85,13 @@ public class RoutineListAdapter extends RecyclerView.Adapter<RoutineListAdapter.
         public void bindData(final Rutina item) {
             iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
             nombreRutina.setText(item.getNombre());
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(item);
+                }
+            });
 
         }
 
