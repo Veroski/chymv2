@@ -1,10 +1,11 @@
 package com.example.chymv2.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Rutina {
+public class Rutina implements Serializable {
     String nombre;
     ArrayList<Ejercicio> ejercicios;
 

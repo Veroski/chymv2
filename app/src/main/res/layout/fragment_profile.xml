@@ -180,7 +180,7 @@
                                         android:id="@+id/materialImg"
                                         android:layout_width="44dp"
                                         android:layout_height="45dp"
-                                        android:src="@drawable/baseline_history_24"
+                                        android:src="@drawable/puzzle"
                                         app:layout_constraintBottom_toBottomOf="parent"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
@@ -220,9 +220,9 @@
 
                                     <ImageView
                                         android:id="@+id/premiumImg"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:src="@drawable/baseline_history_24"
+                                        android:layout_width="57dp"
+                                        android:layout_height="49dp"
+                                        android:src="@drawable/baseline_star_outline_24"
                                         app:layout_constraintBottom_toBottomOf="parent"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
@@ -345,7 +345,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="86dp"
                             android:layout_marginTop="5dp"
-                            android:src="@drawable/puzzle" />
+                            android:src="@drawable/circles" />
 
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>

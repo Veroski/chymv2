@@ -30,6 +30,9 @@
         <activity
             android:name=".view.ExerciceDescriptionActivity"
             android:exported="false" />
+        <activity
+            android:name=".view.RoutineDescriptionActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

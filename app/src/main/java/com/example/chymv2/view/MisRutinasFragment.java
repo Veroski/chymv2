@@ -1,5 +1,6 @@
 package com.example.chymv2.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.chymv2.R;
 import com.example.chymv2.adapters.ExerciceListAdapter;
 import com.example.chymv2.adapters.RoutineListAdapter;
+import com.example.chymv2.model.ListExercice;
+import com.example.chymv2.model.Rutina;
 import com.example.chymv2.viewmodel.ExercicesViewModel;
 import com.example.chymv2.viewmodel.RoutineViewModel;
 
@@ -89,7 +92,12 @@ public class MisRutinasFragment extends Fragment implements SearchView.OnQueryTe
         initListenerRoutines();
     }
     private void initlistaRutinas(View view) {
-        routineListAdapter = new RoutineListAdapter(routineViewModel.getRoutines().getValue(),getContext());
+        routineListAdapter = new RoutineListAdapter(routineViewModel.getRoutines().getValue(),getContext(), new RoutineListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Rutina item) {
+                moveToRoutine(item);
+            }
+        });
         routineListAdapter.notifyDataSetChanged();
         routineSearch = view.findViewById(R.id.routineSearch);
 
@@ -112,5 +120,10 @@ public class MisRutinasFragment extends Fragment implements SearchView.OnQueryTe
         routineListAdapter.filter(s);
         routineListAdapter.notifyDataSetChanged();
         return false;
+    }
+    public void moveToRoutine(Rutina item){
+        Intent intent = new Intent(getContext(), RoutineDescriptionActivity.class);
+        intent.putExtra("Rutina", item);
+        startActivity(intent);
     }
 }
