@@ -43,25 +43,6 @@ public class RoutineViewModel {
         currentElement.add(listElement);
 
     }
-    public ArrayList<ListExercice>conversorStringToExercice(String lista){
-        String id = "";
-        ArrayList<ListExercice> listExercices = new ArrayList<>();
-        int j = 0;
-        for(int i = 0; i<lista.length();i++){
-            if(lista.charAt(i) == ',' || i == lista.length()-1){
-
-                int traductor = Integer.parseInt(id);
-                listExercices.add(findExerciceById(traductor));
-                id = "";
-                j++;
-            }
-            else{
-                id += lista.charAt(i);
-            }
-        }
-        return listExercices;
-
-    }
 
     public ListExercice findExerciceById(int id){
         return data.findExerciceById(id);

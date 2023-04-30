@@ -1,10 +1,13 @@
 package com.example.chymv2.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,6 +45,9 @@ public class ProfileFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
     private DatabaseReference BASE_DE_DATOS;
+    private LinearLayout history;
+    private LinearLayout premium;
+    private LinearLayout material;
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -113,7 +119,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         pesoNumPerfilTxt = (TextView) view.findViewById(R.id.pesoNumPerfilTxt);
         alturaNumPerfilTxt = (TextView) view.findViewById(R.id.alturaNumPerfilTxt);
@@ -121,8 +127,32 @@ public class ProfileFragment extends Fragment {
         usernameProfileTextView = (TextView) view.findViewById(R.id.mailProfileTxt);
         nameProfileTextView = (TextView) view.findViewById(R.id.nameProfileTextView);
         ProfileImageView = (ImageView) view.findViewById(R.id.profileImageView);
+        history = (LinearLayout) view.findViewById(R.id.historyLinearLayout);
+        premium = (LinearLayout) view.findViewById(R.id.premiumLinearLayout);
+        material = (LinearLayout) view.findViewById(R.id.materialLinearLayout);
+        //ClickListener del history
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), SignInActivity.class);
+                startActivity(intent);
+            }
+        });
+        premium.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), SignInActivity.class);
+                startActivity(intent);
+            }
+        });
+        material.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), SignInActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        // Inflate the layout for this fragment
         return view;
     }
     @Override

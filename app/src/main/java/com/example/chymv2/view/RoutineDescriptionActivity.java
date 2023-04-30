@@ -31,4 +31,5 @@ public class RoutineDescriptionActivity extends AppCompatActivity {
         tvRoutineStatus.setText(element.getNombre());// Ejamplo 2- Cambiar
         tvRoutineStatus.setTextColor(Color.RED);
     }
+
 }

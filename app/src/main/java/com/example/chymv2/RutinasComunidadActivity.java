@@ -27,8 +27,8 @@ public class RutinasComunidadActivity extends AppCompatActivity {
         NavigationBarView navigation = findViewById(R.id.bottom_navigation_rutinasComunidad);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        //assert getSupportActionBar() != null;
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        assert getSupportActionBar() != null;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
