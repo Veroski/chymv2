@@ -13,7 +13,13 @@ import androidx.fragment.app.Fragment;
 
 import com.example.chymv2.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,9 +38,10 @@ public class ProfileFragment extends Fragment {
     private String mParam2;
 
     private ImageView ProfileImageView;
-
     private TextView pesoNumPerfilTxt, alturaNumPerfilTxt, imcNumPerfilTxt, usernameProfileTextView,nameProfileTextView;
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser user;
+    private DatabaseReference BASE_DE_DATOS;
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -64,16 +71,73 @@ public class ProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+
+        BASE_DE_DATOS = FirebaseDatabase.getInstance().getReference("users");
+        BASE_DE_DATOS.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    String username = ""+snapshot.child("username").getValue();
+                    String nombre = ""+snapshot.child("nombre").getValue();
+                    String altura = ""+snapshot.child("altura").getValue();
+                    String email = ""+snapshot.child("correo").getValue();
+                    String pes = ""+snapshot.child("peso").getValue();
+                    String imc = ""+snapshot.child("imc").getValue();
+                    String imagen = ""+snapshot.child("imagen").getValue();
+
+                    pesoNumPerfilTxt.setText(pes);
+                    alturaNumPerfilTxt.setText(altura);
+                    imcNumPerfilTxt.setText(calcularIMC(Float.parseFloat(pes),Float.parseFloat(altura)));
+                    usernameProfileTextView.setText(username);
+                    nameProfileTextView.setText(nombre);
+
+                    try {
+                        Picasso.get().load(imagen).placeholder(R.drawable.img_perfil).into(ProfileImageView);
+                    }
+                    catch (Exception e){
+                        Picasso.get().load(R.drawable.img_perfil).into(ProfileImageView);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        pesoNumPerfilTxt = (TextView) view.findViewById(R.id.pesoNumPerfilTxt);
+        alturaNumPerfilTxt = (TextView) view.findViewById(R.id.alturaNumPerfilTxt);
+        imcNumPerfilTxt = (TextView) view.findViewById(R.id.imcNumPerfilTxt);
+        usernameProfileTextView = (TextView) view.findViewById(R.id.usernameProfileTextView);
+        nameProfileTextView = (TextView) view.findViewById(R.id.nameProfileTextView);
+        ProfileImageView = (ImageView) view.findViewById(R.id.ProfileImageView);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        return view;
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
     }
+
+    public String calcularIMC(float peso, float altura){
+        double imc = (Float) peso / Math.pow(altura/100, 2);
+        return  quitarDecimales(imc+"",2);
+    }
+    private String quitarDecimales(String num, int n_decimales) {
+        int indice = num.indexOf(".");
+        return indice + n_decimales < num.length() ? num.substring(0, indice + n_decimales+1)
+                :num.substring(0, num.length());
+    }
+
 }

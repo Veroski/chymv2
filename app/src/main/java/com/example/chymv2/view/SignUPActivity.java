@@ -1,7 +1,10 @@
 package com.example.chymv2.view;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PatternMatcher;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +16,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.chymv2.R;
 import com.example.chymv2.model.Usuario;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,13 +30,15 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class SignUPActivity extends AppCompatActivity {
-    Boolean existEmail = false;
-    Boolean existUsername = false;
-    EditText signUpName, signUpEmail, signUpPassword, signUpUsername;
-    TextView loginRedirectText;
-    Button signUpButton;
-    FirebaseDatabase database;
-    DatabaseReference reference;
+    private Boolean existEmail = false;
+    private Boolean existUsername = false;
+    private EditText signUpName, signUpEmail, signUpPassword, signUpUsername;
+    private TextView loginRedirectText;
+    private Button signUpButton;
+    private FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
+    private FirebaseDatabase database;
+    private DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,20 +52,33 @@ public class SignUPActivity extends AppCompatActivity {
         signUpButton = findViewById(R.id.singInRedirectBtn);
         loginRedirectText = findViewById(R.id.signInRedirectText);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                database = FirebaseDatabase.getInstance();
-                reference = database.getReference("users");
+                //database = FirebaseDatabase.getInstance();
+                //reference = database.getReference("users");
 
-                String name = signUpName.getText().toString();
-                String email = signUpEmail.getText().toString();
+                //String name = signUpName.getText().toString();
+                //String email = signUpEmail.getText().toString();
                 String password = signUpPassword.getText().toString();
-                String username = signUpUsername.getText().toString();
+                //String username = signUpUsername.getText().toString();
                 String userEmail = signUpEmail.getText().toString().trim();
-                String userUsername = signUpUsername.getText().toString().trim();
+                //String userUsername = signUpUsername.getText().toString().trim();
+                //createUser(userUsername,userEmail,username,name,email,password,reference);
 
-                createUser(userUsername,userEmail,username,name,email,password,reference);
+                if(!Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()){
+                    signUpEmail.setError("Inavlid email");
+                    signUpEmail.setFocusable(true);
+                }
+                else if(password.length()<6){
+                    signUpPassword.setError("Min lenght is 6 characters");
+                    signUpPassword.setFocusable(true);
+                }
+                else{
+                    REGISTRAR(userEmail,password);
+                }
             }
         });
 
@@ -67,93 +91,39 @@ public class SignUPActivity extends AppCompatActivity {
             }
         });
     }
-    public Boolean validateName(String name){
-        if(name.isEmpty()){
-            signUpName.setError("Can't be empty");
-            return false;
-        }
-        return true;
-    }
-    public Boolean validateEmail(String email){
-        if(email.isEmpty()){
-            signUpEmail.setError("Can't be empty");
-            return false;
-        }
-        return true;
-    }
-    public Boolean validateUsername(String username){
-        if(username.isEmpty()){
-            signUpUsername.setError("Can't be empty");
-            return false;
-        }
-        return true;
-    }
-    public Boolean validatePassword(String password){
-        if(password.isEmpty()){
-            signUpPassword.setError("Can't be empty");
-            return false;
-        }
-        else if(password.length() < 6){
-            signUpPassword.setError("Min lenght is 6 characters");
-            return false;
-        }
-        return true;
-    }
 
-    public void createUser(String userUsername, String userEmail, String username, String name, String email,
-                           String password, DatabaseReference reference){
+    private void REGISTRAR(String userEmail, String password) {
 
-        checkEmailDB(userEmail, reference);
-        Usuario user = new Usuario(username,email,password,name);
-        checkUsernameDB(user,userUsername,username,name,email, password,reference);
-    }
-
-    public void checkUsernameDB(Usuario user, String userUsername, String username, String name, String email,
-                                String password, DatabaseReference reference){
-        Query checkUserDatabase2 = reference.orderByChild("username").equalTo(userUsername);
-        checkUserDatabase2.addListenerForSingleValueEvent(new ValueEventListener() {
+        firebaseAuth.createUserWithEmailAndPassword(userEmail,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(!snapshot.exists()){
-                    existUsername = false;
-                    if(!existEmail && validateUsername(username) && validateEmail(email) && validatePassword(password) && validateName(name)){
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                        reference.child(username).setValue(user);
-                        Toast.makeText(SignUPActivity.this, "You have sing up successfully", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(SignUPActivity.this, SignInActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
+                    assert user != null;
+                    String name = signUpName.getText().toString();
+                    String email = signUpEmail.getText().toString();
+                    String username = signUpUsername.getText().toString();
+
+                    Usuario usuario = new Usuario(username,email,name);
+
+                    database = FirebaseDatabase.getInstance();
+                    reference = database.getReference("users");
+                    reference.child(user.getUid()).setValue(usuario);
+
+                    startActivity(new Intent(SignUPActivity.this, SignInActivity.class));
+                    finish();
                 }
                 else{
-                    signUpUsername.setError("Username alredy exist");
-                    signUpUsername.requestFocus();
-                    existUsername = true;
-
+                    progressDialog.dismiss();
+                    Toast.makeText(SignUPActivity.this, "Error", Toast.LENGTH_SHORT).show();
                 }
             }
+        }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-    }
-
-    public void checkEmailDB(String userEmail, DatabaseReference reference){
-        Query checkUserDatabase = reference.orderByChild("correo").equalTo(userEmail);
-        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(!snapshot.exists()){
-                    existEmail = false;
-                }
-                else{
-                    signUpEmail.setError("Email used to another account");
-                    signUpEmail.requestFocus();
-                    existEmail = true;
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(SignUPActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

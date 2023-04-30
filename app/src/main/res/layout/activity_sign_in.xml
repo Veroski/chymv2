@@ -7,16 +7,17 @@
     tools:context=".view.SignInActivity">
 
     <EditText
-        android:id="@+id/signInUsername"
+        android:id="@+id/signInEmail"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="192dp"
         android:layout_marginEnd="32dp"
-        android:drawableStart="@drawable/name"
+        android:drawableStart="@drawable/email"
         android:ems="10"
-        android:hint="Username"
+        android:hint="  Gmail"
         android:inputType="textPersonName"
+        android:text="peter@gmail.com"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,12 +32,13 @@
         android:layout_marginEnd="32dp"
         android:drawableStart="@drawable/password"
         android:ems="10"
-        android:hint="Password"
+        android:hint="   Password"
+        android:text="testing"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signInUsername"
+        app:layout_constraintTop_toBottomOf="@+id/signInEmail"
         tools:ignore="UnknownId" />
 
     <androidx.appcompat.widget.AppCompatButton
