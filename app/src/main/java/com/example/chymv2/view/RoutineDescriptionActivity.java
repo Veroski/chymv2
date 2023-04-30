@@ -26,7 +26,7 @@ public class RoutineDescriptionActivity extends AppCompatActivity {
         tvRoutineTitle.setText(element.getNombre());
         tvRoutineTitle.setTextColor(Color.parseColor(element.getColor()));
 
-        tvRoutineDescription.setText(element.getNombre());// Ejamplo 1- Cambiar
+        tvRoutineDescription.setText(element.getEjercicios().get(1).getEjercicio());// Ejamplo 1- Cambiar
 
         tvRoutineStatus.setText(element.getNombre());// Ejamplo 2- Cambiar
         tvRoutineStatus.setTextColor(Color.RED);

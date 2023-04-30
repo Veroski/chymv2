@@ -18,6 +18,7 @@ import com.example.chymv2.adapters.ExerciceListAdapter;
 import com.example.chymv2.adapters.RoutineListAdapter;
 import com.example.chymv2.model.ListExercice;
 import com.example.chymv2.model.Rutina;
+import com.example.chymv2.sources.InitializeData;
 import com.example.chymv2.viewmodel.ExercicesViewModel;
 import com.example.chymv2.viewmodel.RoutineViewModel;
 
@@ -40,6 +41,7 @@ public class MisRutinasFragment extends Fragment implements SearchView.OnQueryTe
     private RoutineListAdapter routineListAdapter;
     private RoutineViewModel routineViewModel;
     private androidx.appcompat.widget.SearchView routineSearch;
+    private static InitializeData data;
 
     public MisRutinasFragment() {
         // Required empty public constructor
@@ -84,10 +86,8 @@ public class MisRutinasFragment extends Fragment implements SearchView.OnQueryTe
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        routineViewModel = new RoutineViewModel();
-
-        routineViewModel.init(getContext());
+        data = new InitializeData(getContext());
+        routineViewModel = new RoutineViewModel(getContext());
         initlistaRutinas(view);
         initListenerRoutines();
     }

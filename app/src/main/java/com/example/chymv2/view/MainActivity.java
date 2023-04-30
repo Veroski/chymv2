@@ -1,5 +1,6 @@
 package com.example.chymv2.view;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -9,10 +10,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.chymv2.R;
+import com.example.chymv2.sources.InitializeData;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
-
     ExerciceFragment exerciceFragment = new ExerciceFragment();
     ProfileFragment profileFragment = new ProfileFragment();
     RoutineMenuFragment routineMenuFragment = new RoutineMenuFragment();
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationBarView navigation = findViewById(R.id.bottom_navigation);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
         loadFragment(routineMenuFragment);
+
     }
 
     private final NavigationBarView.OnItemSelectedListener mOnNavigationItemSelectedListener = new NavigationBarView.OnItemSelectedListener() {
