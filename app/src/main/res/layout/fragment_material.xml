@@ -17,22 +17,22 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/historialTituloImg"
+            android:id="@+id/matarialTituloTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ver Historial"
+            android:text="Material"
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/circlesHistorialImg"
-            app:layout_constraintEnd_toEndOf="@+id/historialPortadaImg"
+            app:layout_constraintBottom_toBottomOf="@+id/circlesMaterialImg"
+            app:layout_constraintEnd_toEndOf="@+id/puzzlePortadaImg"
             app:layout_constraintHorizontal_bias="0.507"
-            app:layout_constraintStart_toStartOf="@+id/historialPortadaImg"
-            app:layout_constraintTop_toBottomOf="@+id/historialPortadaImg"
+            app:layout_constraintStart_toStartOf="@+id/puzzlePortadaImg"
+            app:layout_constraintTop_toBottomOf="@+id/puzzlePortadaImg"
             app:layout_constraintVertical_bias="0.093" />
 
         <ImageView
-            android:id="@+id/circlesHistorialImg"
+            android:id="@+id/circlesMaterialImg"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
@@ -45,14 +45,14 @@
             app:srcCompat="@drawable/circles" />
 
         <ImageView
-            android:id="@+id/historialPortadaImg"
+            android:id="@+id/puzzlePortadaImg"
             android:layout_width="79dp"
             android:layout_height="70dp"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/circlesHistorialImg"
-            app:layout_constraintTop_toTopOf="@+id/circlesHistorialImg"
-            app:srcCompat="@drawable/baseline_history_24" />
+            app:layout_constraintStart_toStartOf="@+id/circlesMaterialImg"
+            app:layout_constraintTop_toTopOf="@+id/circlesMaterialImg"
+            app:srcCompat="@drawable/puzzle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -71,31 +71,12 @@
         app:layout_constraintVertical_bias="0.982"
         tools:layout_editor_absoluteX="0dp">
 
-        <CalendarView
-            android:id="@+id/calendarioHistorial"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
-        <View
-            android:id="@+id/view3"
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="match_parent"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="0dp"
-            android:background="#D9D9D9" />
-
-        <TextView
-            android:id="@+id/rutinasHechasTxt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Rutinas hechas:"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
-            android:textColor="#000000"
-            android:textSize="17sp"
-            android:textStyle="bold"/>
+            android:layout_marginTop="10dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

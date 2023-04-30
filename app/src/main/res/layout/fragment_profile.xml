@@ -37,7 +37,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
-                            android:id="@+id/imageView9"
+                            android:id="@+id/opcionesPerfilImg"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="356dp"
@@ -54,7 +54,7 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <ImageView
-                        android:id="@+id/ProfileImageView"
+                        android:id="@+id/profileImageView"
                         android:layout_width="139dp"
                         android:layout_height="132dp"
                         android:layout_marginTop="32dp"
@@ -72,12 +72,12 @@
                         android:textColor="#ffffff"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@+id/ProfileImageView"
-                        app:layout_constraintStart_toStartOf="@+id/ProfileImageView"
-                        app:layout_constraintTop_toBottomOf="@+id/ProfileImageView" />
+                        app:layout_constraintEnd_toEndOf="@+id/profileImageView"
+                        app:layout_constraintStart_toStartOf="@+id/profileImageView"
+                        app:layout_constraintTop_toBottomOf="@+id/profileImageView" />
 
                     <TextView
-                        android:id="@+id/usernameProfileTextView"
+                        android:id="@+id/mailProfileTxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="user@gmail.com"
@@ -88,7 +88,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/nameProfileTextView" />
 
                     <ImageView
-                        android:id="@+id/fondoFragmentProfile"
+                        android:id="@+id/circlesProflieImg"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:scaleType="centerCrop"
@@ -112,7 +112,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/usernameProfileTextView">
+                        app:layout_constraintTop_toBottomOf="@+id/mailProfileTxt">
 
                         <LinearLayout
                             android:layout_width="match_parent"
