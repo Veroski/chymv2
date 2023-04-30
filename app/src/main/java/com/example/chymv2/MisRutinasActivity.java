@@ -41,8 +41,9 @@ public class MisRutinasActivity extends AppCompatActivity implements SearchView.
         NavigationBarView navigation = findViewById(R.id.bottom_navigation_misRutinas);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        //assert getSupportActionBar() != null;
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        assert getSupportActionBar() != null;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         data = new InitializeData(this);
         routineViewModel = new RoutineViewModel(this);
         initlistaRutinas();
