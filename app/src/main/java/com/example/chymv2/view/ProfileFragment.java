@@ -118,9 +118,9 @@ public class ProfileFragment extends Fragment {
         pesoNumPerfilTxt = (TextView) view.findViewById(R.id.pesoNumPerfilTxt);
         alturaNumPerfilTxt = (TextView) view.findViewById(R.id.alturaNumPerfilTxt);
         imcNumPerfilTxt = (TextView) view.findViewById(R.id.imcNumPerfilTxt);
-        usernameProfileTextView = (TextView) view.findViewById(R.id.usernameProfileTextView);
+        usernameProfileTextView = (TextView) view.findViewById(R.id.mailProfileTxt);
         nameProfileTextView = (TextView) view.findViewById(R.id.nameProfileTextView);
-        ProfileImageView = (ImageView) view.findViewById(R.id.ProfileImageView);
+        ProfileImageView = (ImageView) view.findViewById(R.id.profileImageView);
 
         // Inflate the layout for this fragment
         return view;
