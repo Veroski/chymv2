@@ -14,18 +14,31 @@ import com.example.chymv2.sources.InitializeData;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
-    ExerciceFragment exerciceFragment = new ExerciceFragment();
-    ProfileFragment profileFragment = new ProfileFragment();
-    RoutineMenuFragment routineMenuFragment = new RoutineMenuFragment();
-
+    private ExerciceFragment exerciceFragment = new ExerciceFragment();
+    private ProfileFragment profileFragment = new ProfileFragment();
+    private RoutineMenuFragment routineMenuFragment = new RoutineMenuFragment();
+    Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        bundle = getIntent().getExtras();
+
         NavigationBarView navigation = findViewById(R.id.bottom_navigation);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
-        loadFragment(routineMenuFragment);
+
+        Integer fragment = bundle.getInt("parametro");
+
+        if (fragment == 1){
+            loadFragment(routineMenuFragment);
+        }
+        else if (fragment == 2) {
+            loadFragment(exerciceFragment);
+        }
+        else{
+            loadFragment(profileFragment);
+        }
 
     }
 

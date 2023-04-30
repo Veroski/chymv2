@@ -107,7 +107,7 @@ public class SignInActivity extends AppCompatActivity {
                     //progressDialog.dismiss();
                     FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                    startActivity(new Intent(SignInActivity.this, MainActivity.class));
+                    startActivity(new Intent(SignInActivity.this, MainActivity.class).putExtra("parametro",1));
                     assert user != null;
                     Toast.makeText(SignInActivity.this, "Bienvenido "+user.getEmail(), Toast.LENGTH_SHORT).show();
                     finish();
@@ -164,7 +164,7 @@ public class SignInActivity extends AppCompatActivity {
                         DatabaseReference reference = firebaseDatabase.getReference("users");
                         reference.child(userID).setValue(usuario);
                     }
-                    startActivity(new Intent(SignInActivity.this, MainActivity.class));
+                    startActivity(new Intent(SignInActivity.this, MainActivity.class).putExtra("parametro",1));
                     finish();
                 }
                 else{

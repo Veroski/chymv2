@@ -1,10 +1,12 @@
 package com.example.chymv2.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,7 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.chymv2.CrearRutinasActivity;
+import com.example.chymv2.MisRutinasActivity;
 import com.example.chymv2.R;
+import com.example.chymv2.RutinasComunidadActivity;
+import com.example.chymv2.RutinasRecomendadasActivity;
 import com.example.chymv2.sources.InitializeData;
 
 /**
@@ -74,50 +80,44 @@ public class RoutineMenuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_routine, container, false);
-    }
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
-        super.onViewCreated(view, savedInstanceState);
-
-
+        View v = inflater.inflate(R.layout.fragment_routine, container, false);
+        crearRutinas_btn = v.findViewById(R.id.crearRutinasBtn);
+        misRutinas_btn = v.findViewById(R.id.misRutinasBtn);
+        rutinasComunidad_btn = v.findViewById(R.id.rutinasComunidadBtn);
+        rutinasRecomendadas_btn = v.findViewById(R.id.rutinasRecomendadasBtn);
         View.OnClickListener miClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 switch(view.getId()){
                     case R.id.crearRutinasBtn:
-                        loadFragment(misRutinasFragment);
+                        System.out.println("aaaaaaaaaaaaaaaaaaaaaaa");
+                        startActivity(new Intent(getActivity(), MisRutinasActivity.class));
                         break;
                     case R.id.misRutinasBtn:
-                        loadFragment(misRutinasFragment);
-                        System.out.println("Kiero ver mis rutinas");
+                        System.out.println("bbbbbbbbbbbbbbbbbbbbb");
+                        startActivity(new Intent(getActivity(), MisRutinasActivity.class));
                         break;
                     case R.id.rutinasComunidadBtn:
-                        loadFragment(misRutinasFragment);
-                        System.out.println("¿Que rutinas habrá hecho la comunidad?");
+                        System.out.println("mmmmmmmmmmmmmmmmmmmmmm");
+                        startActivity(new Intent(getActivity(), RutinasComunidadActivity.class));
                         break;
                     case R.id.rutinasRecomendadasBtn:
-                        loadFragment(misRutinasFragment);
-                        System.out.println("Recomiéndame alguna rutinsita");
+                        System.out.println("cccccccccccccccccccccccccccccccccccc");
+                        startActivity(new Intent(getActivity(), RutinasRecomendadasActivity.class));
                         break;
                 }
             }
         };
-        crearRutinas_btn = view.findViewById(R.id.crearRutinasBtn);
-        misRutinas_btn = view.findViewById(R.id.misRutinasBtn);
-        rutinasComunidad_btn = view.findViewById(R.id.rutinasComunidadBtn);
-        rutinasRecomendadas_btn = view.findViewById(R.id.rutinasRecomendadasBtn);
 
         crearRutinas_btn.setOnClickListener(miClickListener);
         misRutinas_btn.setOnClickListener(miClickListener);
         rutinasComunidad_btn.setOnClickListener(miClickListener);
         rutinasRecomendadas_btn.setOnClickListener(miClickListener);
 
+        return v;
     }
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
 
-    public void loadFragment(Fragment fragment){
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fragment_layout_MainActivity,fragment);
-        transaction.commit();
     }
 }

@@ -9,8 +9,20 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Chymv2"
+        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
         tools:targetApi="31">
+        <activity
+            android:name=".CrearRutinasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RutinasRecomendadasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RutinasComunidadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MisRutinasActivity"
+            android:exported="false" />
         <activity
             android:name=".view.SignInActivity"
             android:exported="true">
@@ -19,7 +31,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".view.SignUPActivity"
