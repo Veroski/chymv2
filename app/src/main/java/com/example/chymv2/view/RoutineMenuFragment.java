@@ -90,20 +90,16 @@ public class RoutineMenuFragment extends Fragment {
             public void onClick(View view) {
                 switch(view.getId()){
                     case R.id.crearRutinasBtn:
-                        System.out.println("aaaaaaaaaaaaaaaaaaaaaaa");
-                        startActivity(new Intent(getActivity(), MisRutinasActivity.class));
+                        startActivity(new Intent(getContext(), CrearRutinasActivity.class));
                         break;
                     case R.id.misRutinasBtn:
-                        System.out.println("bbbbbbbbbbbbbbbbbbbbb");
-                        startActivity(new Intent(getActivity(), MisRutinasActivity.class));
+                        startActivity(new Intent(getContext(), MisRutinasActivity.class));
                         break;
                     case R.id.rutinasComunidadBtn:
-                        System.out.println("mmmmmmmmmmmmmmmmmmmmmm");
-                        startActivity(new Intent(getActivity(), RutinasComunidadActivity.class));
+                        startActivity(new Intent(getContext(), RutinasComunidadActivity.class));
                         break;
                     case R.id.rutinasRecomendadasBtn:
-                        System.out.println("cccccccccccccccccccccccccccccccccccc");
-                        startActivity(new Intent(getActivity(), RutinasRecomendadasActivity.class));
+                        startActivity(new Intent(getContext(), RutinasRecomendadasActivity.class));
                         break;
                 }
             }

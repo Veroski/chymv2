@@ -1,6 +1,7 @@
 package com.example.chymv2.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -39,7 +40,31 @@ public class MainActivity extends AppCompatActivity {
         else{
             loadFragment(profileFragment);
         }
+        System.out.println("1111111111");
+    }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        System.out.println("Dulce");
+        super.onNewIntent(intent);
+        setIntent(intent);
+        System.out.println("JAMON");
+
+        NavigationBarView navigation = findViewById(R.id.bottom_navigation);
+        navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
+        bundle = getIntent().getExtras();
+
+        Integer fragment = bundle.getInt("parametro");
+
+        if (fragment == 1){
+            loadFragment(routineMenuFragment);
+        }
+        else if (fragment == 2) {
+            loadFragment(exerciceFragment);
+        }
+        else{
+            loadFragment(profileFragment);
+        }
     }
 
     private final NavigationBarView.OnItemSelectedListener mOnNavigationItemSelectedListener = new NavigationBarView.OnItemSelectedListener() {
@@ -60,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
         }
     };
     public void loadFragment(Fragment fragment){
-
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_layout_MainActivity,fragment);
         transaction.commit();

@@ -2,9 +2,11 @@ package com.example.chymv2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.KeyEventDispatcher;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -22,11 +24,11 @@ public class RutinasComunidadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rutinas_comunidad);
 
-        /*NavigationBarView navigation = findViewById(R.id.bottom_navigation_rutinasComunidad);
-        navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);*/
+        NavigationBarView navigation = findViewById(R.id.bottom_navigation_rutinasComunidad);
+        navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        assert getSupportActionBar() != null;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //assert getSupportActionBar() != null;
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
