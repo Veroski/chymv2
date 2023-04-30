@@ -41,6 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase DB, int i, int i1) {
         DB.execSQL("drop table if exists Exercices");
         DB.execSQL("drop table if exists Routines");
+
     }
 
     public Boolean insertExerciceData(String color, String exercice, String group, String type){

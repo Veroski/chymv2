@@ -25,8 +25,8 @@ public class MisRutinasActivity extends AppCompatActivity {
         NavigationBarView navigation = findViewById(R.id.bottom_navigation_misRutinas);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        assert getSupportActionBar() != null;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //assert getSupportActionBar() != null;
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     @Override
     public boolean onSupportNavigateUp() {

@@ -24,6 +24,7 @@ public class ExercicesViewModel extends ViewModel {
     private InitializeData data;
     public ExercicesViewModel(Context context){
         data = new InitializeData(context);
+        databaseHelper = new DatabaseHelper(context);
         elements = data.getAllListExercice();
         mExercices = new MutableLiveData<>();
         mExercices.setValue(elements);

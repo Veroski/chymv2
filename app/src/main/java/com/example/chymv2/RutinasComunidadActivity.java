@@ -22,13 +22,16 @@ public class RutinasComunidadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rutinas_comunidad);
 
-        /*NavigationBarView navigation = findViewById(R.id.bottom_navigation_rutinasComunidad);
-        navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);*/
+        NavigationBarView navigation = findViewById(R.id.bottom_navigation_rutinasComunidad);
+        navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        assert getSupportActionBar() != null;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //assert getSupportActionBar() != null;
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+    }
     @Override
     public boolean onSupportNavigateUp() {
         finish();

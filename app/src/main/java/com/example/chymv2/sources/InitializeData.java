@@ -62,7 +62,6 @@ public class InitializeData {
                 String listExercices = cursor.getString(3);
                 ArrayList<ListExercice> exercices = conversorStringToExercice(listExercices);
                 routines.add(new Rutina(color, routine, exercices));
-
             }
         }
     }
