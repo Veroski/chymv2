@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.chymv2.R;
+import com.example.chymv2.sources.InitializeData;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,11 +33,15 @@ public class RoutineMenuFragment extends Fragment {
 
     private Button misRutinas_btn, rutinasComunidad_btn, crearRutinas_btn, rutinasRecomendadas_btn;
 
-    private static MisRutinasFragment misRutinasFragment = new MisRutinasFragment();
+    private MisRutinasFragment misRutinasFragment;
+
 
     public RoutineMenuFragment() {
         // Required empty public constructor
+        misRutinasFragment = new MisRutinasFragment();
+
     }
+
 
     /**
      * Use this factory method to create a new instance of
@@ -73,6 +78,7 @@ public class RoutineMenuFragment extends Fragment {
     }
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
+
 
         View.OnClickListener miClickListener = new View.OnClickListener() {
             @Override

@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.chymv2.model.ListExercice;
 import com.example.chymv2.sources.DatabaseHelper;
 import com.example.chymv2.sources.EjerciciosDBtemporal;
+import com.example.chymv2.sources.InitializeData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,19 +20,14 @@ public class ExercicesViewModel extends ViewModel {
     private MutableLiveData<List<ListExercice>> mExercices;
     private List<ListExercice> elements;
     private MutableLiveData<Boolean> isUpdating = new MutableLiveData<>();
-    private EjerciciosDBtemporal DB;
     private DatabaseHelper databaseHelper;
-
-
-    public void init(Context context) {
-        elements = new ArrayList<>();
-        databaseHelper = new DatabaseHelper(context);
-        displayData(context);
+    private InitializeData data;
+    public ExercicesViewModel(Context context){
+        data = new InitializeData(context);
+        elements = data.getAllListExercice();
         mExercices = new MutableLiveData<>();
         mExercices.setValue(elements);
-
     }
-
     public LiveData<List<ListExercice>> getExercices() {
         return mExercices;
     }
@@ -43,24 +39,6 @@ public class ExercicesViewModel extends ViewModel {
 
     }
 
-
-    private void displayData(Context context) {
-        Cursor cursor = databaseHelper.getDataExercices();
-        if (cursor.getCount() == 0) {
-            Toast.makeText(context, "No Entry Exists", Toast.LENGTH_SHORT).show();
-            return;
-        } else {
-            while (cursor.moveToNext()) {
-                String color = cursor.getString(1);
-                String exercice = cursor.getString(2);
-                String group = cursor.getString(3);
-                String type = cursor.getString(4);
-                elements.add(new ListExercice(color, exercice, group, type));
-
-            }
-        }
-
-    }
 
 }
 

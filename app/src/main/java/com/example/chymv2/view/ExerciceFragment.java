@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.chymv2.R;
 import com.example.chymv2.adapters.ExerciceListAdapter;
 import com.example.chymv2.model.ListExercice;
+import com.example.chymv2.sources.InitializeData;
 import com.example.chymv2.viewmodel.ExercicesViewModel;
 
 /**
@@ -37,9 +38,11 @@ public class ExerciceFragment extends Fragment implements SearchView.OnQueryText
     private ExerciceListAdapter exerciceListAdapter;
     private ExercicesViewModel exercicesViewModel;
     private androidx.appcompat.widget.SearchView svSearch;
+    private InitializeData data;
 
     public ExerciceFragment() {
         // Required empty public constructor
+
     }
 
     /**
@@ -83,10 +86,8 @@ public class ExerciceFragment extends Fragment implements SearchView.OnQueryText
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-
-        exercicesViewModel = new ExercicesViewModel();
-
-        exercicesViewModel.init(getContext());
+        data = new InitializeData(getContext());
+        exercicesViewModel = new ExercicesViewModel(getContext());
         initlistaEjercicios(view);
         initListenerExercices();
     }

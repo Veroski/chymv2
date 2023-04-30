@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class Rutina implements Serializable {
     String nombre;
-    ArrayList<Ejercicio> ejercicios;
+    ArrayList<ListExercice> ejercicios;
 
     Set<String> materiales;
 
@@ -16,11 +16,12 @@ public class Rutina implements Serializable {
     boolean subida;
     String color;
 
-    public Rutina(String color,String nombre){
+    public Rutina(String color,String nombre,ArrayList<ListExercice> ejercicios){
         this.nombre = nombre;
         this.color = color;
+        this.ejercicios = ejercicios;
     }
-    public Rutina(String nombre, ArrayList<Ejercicio> ejercicios, String descripcion, boolean subida) {
+    public Rutina(String nombre, ArrayList<ListExercice> ejercicios, String descripcion, boolean subida) {
         this.nombre = nombre;
         this.ejercicios = ejercicios;
         this.materiales = new HashSet<String>();
@@ -45,11 +46,11 @@ public class Rutina implements Serializable {
         this.nombre = nombre;
     }
 
-    public ArrayList<Ejercicio> getEjercicios() {
+    public ArrayList<ListExercice> getEjercicios() {
         return ejercicios;
     }
 
-    public void setEjercicios(ArrayList<Ejercicio> ejercicios) {
+    public void setEjercicios(ArrayList<ListExercice> ejercicios) {
         this.ejercicios = ejercicios;
     }
 
@@ -85,14 +86,14 @@ public class Rutina implements Serializable {
         this.subida = subida;
     }
 
-    public void añadir_ejercicio(Ejercicio ejercicio){
+    public void añadir_ejercicio(ListExercice ejercicio){
         this.ejercicios.add(ejercicio);
     }
 
-    public void eliminar_ejercicio(Ejercicio ejercicio){
+    public void eliminar_ejercicio(ListExercice ejercicio){
         this.ejercicios.remove(ejercicio);
     }
-
+    /*
     public void material_necesario(){
         this.materiales.clear();
         for(Ejercicio ejercicio : this.ejercicios){
@@ -110,5 +111,5 @@ public class Rutina implements Serializable {
             }
         }
     }
-
+    */
 }

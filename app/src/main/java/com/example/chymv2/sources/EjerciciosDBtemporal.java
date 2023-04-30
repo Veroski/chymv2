@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class EjerciciosDBtemporal {
 
-    private String tabla = "#16B0D6;Press de pecho plano ;Pecho;Mancuernas\n" +
+    private String tablaEjercicios = "#16B0D6;Press de pecho plano ;Pecho;Mancuernas\n" +
             "#16B0D6;Press de pecho inclinado con mancuernas;Pecho;Mancuernas\n" +
             "#16B0D6;Press de pecho con declinado con mancuernas;Pecho;Mancuernas\n" +
             "#16B0D6;Press de pecho plano con barra;Pecho;Barra\n" +
@@ -140,19 +140,44 @@ public class EjerciciosDBtemporal {
             "#9402DE;HIIT;Cardio; \n" +
             "#9402DE;Bailar;Cardio; ";
 
+    private String tablaRutinas = "#000000;Rutina P&W;1,3,7,15,29,115\n" +
+            "#000000;Rutina P&W;1,3,7,15,29,115,12\n" +
+            "#000000;Rutina P&W;1,3,7,15,29,115\n" +
+            "#000000;Rutina P&W;1,3,7,15,29,115\n" +
+            "#000000;Rutina P&W;1,3,7,15,29,115\n" +
+            "#000000;Rutina P&W;1,3,7,15,29,115\n";
+
+
     public ArrayList<String> dataTable(){
         String unity = "";
         ArrayList<String> datos = new ArrayList<>();
-        for(int i = 0; i<tabla.length();i++){
-            if(tabla.charAt(i) == ';' || tabla.charAt(i) == '\n'){
+        for(int i = 0; i<tablaEjercicios.length();i++){
+            if(tablaEjercicios.charAt(i) == ';' || tablaEjercicios.charAt(i) == '\n'){
                 datos.add(unity);
                 unity = "";
             }
             else{
-                unity += tabla.charAt(i);
+                unity += tablaEjercicios.charAt(i);
             }
         }
         return datos;
     }
+
+    public ArrayList<String> routineTable(){
+        String unity = "";
+        ArrayList<String> datos = new ArrayList<>();
+        for(int i = 0; i<tablaRutinas.length();i++){
+            if(tablaRutinas.charAt(i) == ';' || tablaRutinas.charAt(i) == '\n'){
+                datos.add(unity);
+                unity = "";
+            }
+            else{
+                unity += tablaRutinas.charAt(i);
+            }
+        }
+        return datos;
+    }
+
+
 }
 
