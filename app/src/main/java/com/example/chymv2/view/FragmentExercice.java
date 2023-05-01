@@ -15,19 +15,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chymv2.R;
 import com.example.chymv2.adapters.ExerciceListAdapter;
-import com.example.chymv2.adapters.RoutineListAdapter;
 import com.example.chymv2.model.ListExercice;
-import com.example.chymv2.model.Rutina;
 import com.example.chymv2.sources.InitializeData;
 import com.example.chymv2.viewmodel.ExercicesViewModel;
-import com.example.chymv2.viewmodel.RoutineViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link MisRutinasFragment#newInstance} factory method to
+ * Use the {@link FragmentExercice#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MisRutinasFragment extends Fragment implements SearchView.OnQueryTextListener {
+public class FragmentExercice extends Fragment implements SearchView.OnQueryTextListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,13 +35,14 @@ public class MisRutinasFragment extends Fragment implements SearchView.OnQueryTe
     private String mParam1;
     private String mParam2;
     private RecyclerView recyclerView;
-    private RoutineListAdapter routineListAdapter;
-    private RoutineViewModel routineViewModel;
-    private androidx.appcompat.widget.SearchView routineSearch;
-    private static InitializeData data;
+    private ExerciceListAdapter exerciceListAdapter;
+    private ExercicesViewModel exercicesViewModel;
+    private androidx.appcompat.widget.SearchView svSearch;
+    private InitializeData data;
 
-    public MisRutinasFragment() {
+    public FragmentExercice() {
         // Required empty public constructor
+
     }
 
     /**
@@ -53,11 +51,11 @@ public class MisRutinasFragment extends Fragment implements SearchView.OnQueryTe
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment MisRutinasFragment.
+     * @return A new instance of fragment exerciceFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MisRutinasFragment newInstance(String param1, String param2) {
-        MisRutinasFragment fragment = new MisRutinasFragment();
+    public static FragmentExercice newInstance(String param1, String param2) {
+        FragmentExercice fragment = new FragmentExercice();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -71,6 +69,7 @@ public class MisRutinasFragment extends Fragment implements SearchView.OnQueryTe
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
@@ -78,36 +77,39 @@ public class MisRutinasFragment extends Fragment implements SearchView.OnQueryTe
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_mis_rutinas, container, false);
+
+        View view =  inflater.inflate(R.layout.fragment_exercice, container, false);
 
         return view;
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
         data = new InitializeData(getContext());
-        routineViewModel = new RoutineViewModel(getContext());
-        initlistaRutinas(view);
-        initListenerRoutines();
+        exercicesViewModel = new ExercicesViewModel(getContext());
+        initlistaEjercicios(view);
+        initListenerExercices();
     }
-    private void initlistaRutinas(View view) {
-        routineListAdapter = new RoutineListAdapter(routineViewModel.getRoutines().getValue(),getContext(), new RoutineListAdapter.OnItemClickListener() {
+
+    private void initlistaEjercicios(View view) {
+        exerciceListAdapter = new ExerciceListAdapter(exercicesViewModel.getExercices().getValue(), getContext(), new ExerciceListAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Rutina item) {
-                moveToRoutine(item);
+            public void onItemClick(ListExercice item) {
+                moveToDescription(item);
             }
         });
-        routineListAdapter.notifyDataSetChanged();
-        routineSearch = view.findViewById(R.id.routineSearch);
+        exerciceListAdapter.notifyDataSetChanged();
+        svSearch = view.findViewById(R.id.svSearch);
 
-        recyclerView = view.findViewById(R.id.routineListRecyclerView);
+        recyclerView = view.findViewById(R.id.listRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(routineListAdapter);
+        recyclerView.setAdapter(exerciceListAdapter);
     }
-    private void initListenerRoutines(){
-        routineSearch.setOnQueryTextListener(this);
+
+    private void initListenerExercices(){
+        svSearch.setOnQueryTextListener(this);
     }
 
     @Override
@@ -117,13 +119,13 @@ public class MisRutinasFragment extends Fragment implements SearchView.OnQueryTe
 
     @Override
     public boolean onQueryTextChange(String s) {
-        routineListAdapter.filter(s);
-        routineListAdapter.notifyDataSetChanged();
+        exerciceListAdapter.filter(s);
+        exerciceListAdapter.notifyDataSetChanged();
         return false;
     }
-    public void moveToRoutine(Rutina item){
-        Intent intent = new Intent(getContext(), RoutineDescriptionActivity.class);
-        intent.putExtra("Rutina", item);
+    public void moveToDescription(ListExercice item){
+        Intent intent = new Intent(getContext(), ActivityExerciceDescription.class);
+        intent.putExtra("ListExercice", item);
         startActivity(intent);
     }
 }

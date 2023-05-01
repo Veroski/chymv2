@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import com.example.chymv2.R;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class RutinasComunidadActivity extends AppCompatActivity {
+public class ActivityRutinasComunidad extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +35,15 @@ public class RutinasComunidadActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()){
                 case R.id.exercices_fragment:
-                    startActivity(new Intent(RutinasComunidadActivity.this, MainActivity.class).putExtra("parametro",2));
+                    startActivity(new Intent(ActivityRutinasComunidad.this, ActivityMain.class).putExtra("parametro",2));
                     finish();
                     return true;
                 case R.id.profile_fragment:
-                    startActivity(new Intent(RutinasComunidadActivity.this, MainActivity.class).putExtra("parametro",3));
+                    startActivity(new Intent(ActivityRutinasComunidad.this, ActivityMain.class).putExtra("parametro",3));
                     finish();
                     return true;
                 case R.id.routine_fragment:
-                    startActivity(new Intent(RutinasComunidadActivity.this, MainActivity.class).putExtra("parametro",1));
+                    startActivity(new Intent(ActivityRutinasComunidad.this, ActivityMain.class).putExtra("parametro",1));
                     finish();
                     return true;
             }

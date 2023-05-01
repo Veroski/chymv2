@@ -17,7 +17,7 @@ import com.example.chymv2.sources.InitializeData;
 import com.example.chymv2.viewmodel.RoutineViewModel;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class MisRutinasActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
+public class ActivityMisRutinas extends AppCompatActivity implements SearchView.OnQueryTextListener{
     private RecyclerView recyclerView;
     private RoutineListAdapter routineListAdapter;
     private RoutineViewModel routineViewModel;
@@ -49,15 +49,15 @@ public class MisRutinasActivity extends AppCompatActivity implements SearchView.
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()){
                 case R.id.exercices_fragment:
-                    startActivity(new Intent(MisRutinasActivity.this, MainActivity.class).putExtra("parametro",2));
+                    startActivity(new Intent(ActivityMisRutinas.this, ActivityMain.class).putExtra("parametro",2));
                     finish();
                     return true;
                 case R.id.profile_fragment:
-                    startActivity(new Intent(MisRutinasActivity.this, MainActivity.class).putExtra("parametro",3));
+                    startActivity(new Intent(ActivityMisRutinas.this, ActivityMain.class).putExtra("parametro",3));
                     finish();
                     return true;
                 case R.id.routine_fragment:
-                    startActivity(new Intent(MisRutinasActivity.this, MainActivity.class).putExtra("parametro",1));
+                    startActivity(new Intent(ActivityMisRutinas.this, ActivityMain.class).putExtra("parametro",1));
                     finish();
                     return true;
             }
@@ -96,7 +96,7 @@ public class MisRutinasActivity extends AppCompatActivity implements SearchView.
         return false;
     }
     public void moveToRoutine(Rutina item){
-        Intent intent = new Intent(this, RoutineDescriptionActivity.class);
+        Intent intent = new Intent(this, ActivityRoutineDescription.class);
         intent.putExtra("Rutina", item);
         startActivity(intent);
     }

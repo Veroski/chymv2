@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ExerciceDescriptionActivity"
+    tools:context=".view.ActivityExerciceDescription"
     android:background="@drawable/ctr_bg">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -40,7 +40,7 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="30dp"
                 app:layout_collapseMode="pin"
                 />
             

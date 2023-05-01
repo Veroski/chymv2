@@ -10,14 +10,14 @@ import android.view.MenuItem;
 import com.example.chymv2.R;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class CrearRutinasActivity extends AppCompatActivity {
+public class ActivityRutinasRecomendadas extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crear_rutinas);
+        setContentView(R.layout.activity_rutinas_recomendadas);
 
-        NavigationBarView navigation = findViewById(R.id.bottom_navigation_crearRutinas);
+        NavigationBarView navigation = findViewById(R.id.bottom_navigation_rutinasRecomendadas);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
 
         assert getSupportActionBar() != null;
@@ -34,15 +34,15 @@ public class CrearRutinasActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()){
                 case R.id.exercices_fragment:
-                    startActivity(new Intent(CrearRutinasActivity.this, MainActivity.class).putExtra("parametro",2));
+                    startActivity(new Intent(ActivityRutinasRecomendadas.this, ActivityMain.class).putExtra("parametro",2));
                     finish();
                     return true;
                 case R.id.profile_fragment:
-                    startActivity(new Intent(CrearRutinasActivity.this, MainActivity.class).putExtra("parametro",3));
+                    startActivity(new Intent(ActivityRutinasRecomendadas.this, ActivityMain.class).putExtra("parametro",3));
                     finish();
                     return true;
                 case R.id.routine_fragment:
-                    startActivity(new Intent(CrearRutinasActivity.this, MainActivity.class).putExtra("parametro",1));
+                    startActivity(new Intent(ActivityRutinasRecomendadas.this, ActivityMain.class).putExtra("parametro",1));
                     finish();
                     return true;
             }

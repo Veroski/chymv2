@@ -1,17 +1,14 @@
 package com.example.chymv2.view;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.chymv2.R;
-import com.example.chymv2.model.ListExercice;
-import com.example.chymv2.sources.EjerciciosDBtemporal;
 
 
-public class ExerciceDescriptionActivity extends AppCompatActivity {
+public class ActivityExerciceDescription extends AppCompatActivity {
 
     TextView tvExerciceTitle;
     TextView tvExerciceDescription;

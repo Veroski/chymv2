@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.chymv2.R;
 import com.example.chymv2.model.Rutina;
 
-public class RoutineDescriptionActivity extends AppCompatActivity {
+public class ActivityRoutineDescription extends AppCompatActivity {
     TextView tvRoutineTitle;
     TextView tvRoutineDescription;
     TextView tvRoutineStatus;

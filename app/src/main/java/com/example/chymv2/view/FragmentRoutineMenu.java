@@ -15,10 +15,10 @@ import com.example.chymv2.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link RoutineMenuFragment#newInstance} factory method to
+ * Use the {@link FragmentRoutineMenu#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RoutineMenuFragment extends Fragment {
+public class FragmentRoutineMenu extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,12 +31,12 @@ public class RoutineMenuFragment extends Fragment {
 
     private Button misRutinas_btn, rutinasComunidad_btn, crearRutinas_btn, rutinasRecomendadas_btn;
 
-    private MisRutinasFragment misRutinasFragment;
 
 
-    public RoutineMenuFragment() {
+
+    public FragmentRoutineMenu() {
         // Required empty public constructor
-        misRutinasFragment = new MisRutinasFragment();
+
 
     }
 
@@ -50,8 +50,8 @@ public class RoutineMenuFragment extends Fragment {
      * @return A new instance of fragment routineFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static RoutineMenuFragment newInstance(String param1, String param2) {
-        RoutineMenuFragment fragment = new RoutineMenuFragment();
+    public static FragmentRoutineMenu newInstance(String param1, String param2) {
+        FragmentRoutineMenu fragment = new FragmentRoutineMenu();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -82,16 +82,16 @@ public class RoutineMenuFragment extends Fragment {
             public void onClick(View view) {
                 switch(view.getId()){
                     case R.id.crearRutinasBtn:
-                        startActivity(new Intent(getContext(), CrearRutinasActivity.class));
+                        startActivity(new Intent(getContext(), ActivityCrearRutinas.class));
                         break;
                     case R.id.misRutinasBtn:
-                        startActivity(new Intent(getContext(), MisRutinasActivity.class));
+                        startActivity(new Intent(getContext(), ActivityMisRutinas.class));
                         break;
                     case R.id.rutinasComunidadBtn:
-                        startActivity(new Intent(getContext(), RutinasComunidadActivity.class));
+                        startActivity(new Intent(getContext(), ActivityRutinasComunidad.class));
                         break;
                     case R.id.rutinasRecomendadasBtn:
-                        startActivity(new Intent(getContext(), RutinasRecomendadasActivity.class));
+                        startActivity(new Intent(getContext(), ActivityRutinasRecomendadas.class));
                         break;
                 }
             }

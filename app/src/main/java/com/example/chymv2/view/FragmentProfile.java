@@ -3,7 +3,6 @@ package com.example.chymv2.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -26,10 +25,10 @@ import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
+ * Use the {@link FragmentProfile#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProfileFragment extends Fragment {
+public class FragmentProfile extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,7 +47,7 @@ public class ProfileFragment extends Fragment {
     private LinearLayout history;
     private LinearLayout premium;
     private LinearLayout material;
-    public ProfileFragment() {
+    public FragmentProfile() {
         // Required empty public constructor
     }
 
@@ -61,8 +60,8 @@ public class ProfileFragment extends Fragment {
      * @return A new instance of fragment profileFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment fragment = new ProfileFragment();
+    public static FragmentProfile newInstance(String param1, String param2) {
+        FragmentProfile fragment = new FragmentProfile();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -134,21 +133,21 @@ public class ProfileFragment extends Fragment {
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), SignInActivity.class);
+                Intent intent = new Intent(getContext(), ActivitySignIn.class);
                 startActivity(intent);
             }
         });
         premium.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), SignInActivity.class);
+                Intent intent = new Intent(getContext(), ActivitySignIn.class);
                 startActivity(intent);
             }
         });
         material.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), SignInActivity.class);
+                Intent intent = new Intent(getContext(), ActivitySignIn.class);
                 startActivity(intent);
             }
         });

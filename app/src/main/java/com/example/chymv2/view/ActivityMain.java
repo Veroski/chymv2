@@ -1,6 +1,5 @@
 package com.example.chymv2.view;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -11,13 +10,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.chymv2.R;
-import com.example.chymv2.sources.InitializeData;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class MainActivity extends AppCompatActivity {
-    private ExerciceFragment exerciceFragment = new ExerciceFragment();
-    private ProfileFragment profileFragment = new ProfileFragment();
-    private RoutineMenuFragment routineMenuFragment = new RoutineMenuFragment();
+public class ActivityMain extends AppCompatActivity {
+    private FragmentExercice fragmentExercice = new FragmentExercice();
+    private FragmentProfile fragmentProfile = new FragmentProfile();
+    private FragmentRoutineMenu fragmentRoutineMenu = new FragmentRoutineMenu();
     Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +30,13 @@ public class MainActivity extends AppCompatActivity {
         Integer fragment = bundle.getInt("parametro");
 
         if (fragment == 1){
-            loadFragment(routineMenuFragment);
+            loadFragment(fragmentRoutineMenu);
         }
         else if (fragment == 2) {
-            loadFragment(exerciceFragment);
+            loadFragment(fragmentExercice);
         }
         else{
-            loadFragment(profileFragment);
+            loadFragment(fragmentProfile);
         }
         System.out.println("1111111111");
     }
@@ -57,13 +55,13 @@ public class MainActivity extends AppCompatActivity {
         Integer fragment = bundle.getInt("parametro");
 
         if (fragment == 1){
-            loadFragment(routineMenuFragment);
+            loadFragment(fragmentRoutineMenu);
         }
         else if (fragment == 2) {
-            loadFragment(exerciceFragment);
+            loadFragment(fragmentExercice);
         }
         else{
-            loadFragment(profileFragment);
+            loadFragment(fragmentProfile);
         }
     }
     private final NavigationBarView.OnItemSelectedListener mOnNavigationItemSelectedListener = new NavigationBarView.OnItemSelectedListener() {
@@ -71,13 +69,13 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()){
                 case R.id.exercices_fragment:
-                    loadFragment(exerciceFragment);
+                    loadFragment(fragmentExercice);
                     return true;
                 case R.id.profile_fragment:
-                    loadFragment(profileFragment);
+                    loadFragment(fragmentProfile);
                     return true;
                 case R.id.routine_fragment:
-                    loadFragment(routineMenuFragment);
+                    loadFragment(fragmentRoutineMenu);
                     return true;
             }
             return false;

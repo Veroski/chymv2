@@ -36,7 +36,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class SignInActivity extends AppCompatActivity {
+public class ActivitySignIn extends AppCompatActivity {
 
     private EditText signInUsername, signInPassword;
     private Button signInBtn, signUpRedirectBtn, googleRedirectBtn;
@@ -83,7 +83,7 @@ public class SignInActivity extends AppCompatActivity {
         signUpRedirectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SignInActivity.this, SignUPActivity.class);
+                Intent intent = new Intent(ActivitySignIn.this, ActivitySignUp.class);
                 startActivity(intent);
                 finish();
             }
@@ -107,9 +107,9 @@ public class SignInActivity extends AppCompatActivity {
                     //progressDialog.dismiss();
                     FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                    startActivity(new Intent(SignInActivity.this, MainActivity.class).putExtra("parametro",1));
+                    startActivity(new Intent(ActivitySignIn.this, ActivityMain.class).putExtra("parametro",1));
                     assert user != null;
-                    Toast.makeText(SignInActivity.this, "Bienvenido "+user.getEmail(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivitySignIn.this, "Bienvenido "+user.getEmail(), Toast.LENGTH_SHORT).show();
                     finish();
                 }
                 else{
@@ -121,7 +121,7 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 //progressDialog.dismiss();
-                Toast.makeText(SignInActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivitySignIn.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -164,7 +164,7 @@ public class SignInActivity extends AppCompatActivity {
                         DatabaseReference reference = firebaseDatabase.getReference("users");
                         reference.child(userID).setValue(usuario);
                     }
-                    startActivity(new Intent(SignInActivity.this, MainActivity.class).putExtra("parametro",1));
+                    startActivity(new Intent(ActivitySignIn.this, ActivityMain.class).putExtra("parametro",1));
                     finish();
                 }
                 else{

@@ -3,7 +3,6 @@ package com.example.chymv2.view;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PatternMatcher;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -22,14 +21,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
-public class SignUPActivity extends AppCompatActivity {
+public class ActivitySignUp extends AppCompatActivity {
     private Boolean existEmail = false;
     private Boolean existUsername = false;
     private EditText signUpName, signUpEmail, signUpPassword, signUpUsername;
@@ -85,7 +80,7 @@ public class SignUPActivity extends AppCompatActivity {
         loginRedirectText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SignUPActivity.this, SignInActivity.class);
+                Intent intent = new Intent(ActivitySignUp.this, ActivitySignIn.class);
                 startActivity(intent);
                 finish();
             }
@@ -111,19 +106,19 @@ public class SignUPActivity extends AppCompatActivity {
                     reference = database.getReference("users");
                     reference.child(user.getUid()).setValue(usuario);
 
-                    startActivity(new Intent(SignUPActivity.this, SignInActivity.class));
+                    startActivity(new Intent(ActivitySignUp.this, ActivitySignIn.class));
                     finish();
                 }
                 else{
                     progressDialog.dismiss();
-                    Toast.makeText(SignUPActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivitySignUp.this, "Error", Toast.LENGTH_SHORT).show();
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 progressDialog.dismiss();
-                Toast.makeText(SignUPActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivitySignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
