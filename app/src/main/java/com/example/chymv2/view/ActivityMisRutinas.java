@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.chymv2.R;
 import com.example.chymv2.adapters.RoutineListAdapter;
@@ -23,6 +25,8 @@ public class ActivityMisRutinas extends AppCompatActivity implements SearchView.
     private RoutineViewModel routineViewModel;
     private androidx.appcompat.widget.SearchView routineSearch;
     private static InitializeData data;
+
+    private Button returnMain_misRutinas_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,18 +35,22 @@ public class ActivityMisRutinas extends AppCompatActivity implements SearchView.
         NavigationBarView navigation = findViewById(R.id.bottom_navigation_misRutinas);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        assert getSupportActionBar() != null;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        returnMain_misRutinas_btn = findViewById(R.id.returnMain_misRutinas_btn);
+
+        returnMain_misRutinas_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        //assert getSupportActionBar() != null;
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         data = new InitializeData(this);
         routineViewModel = new RoutineViewModel(this);
         initlistaRutinas();
         initListenerRoutines();
-    }
-    @Override
-    public boolean onSupportNavigateUp() {
-        finish();
-        return true;
     }
     private final NavigationBarView.OnItemSelectedListener mOnNavigationItemSelectedListener = new NavigationBarView.OnItemSelectedListener() {
         @Override

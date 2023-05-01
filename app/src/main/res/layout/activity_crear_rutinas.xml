@@ -16,6 +16,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/returnMain_crearRutinas_btn"
+            android:layout_width="37dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:drawableLeft="@drawable/flechaatras"
+            android:paddingStart="8dp"
+            />
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

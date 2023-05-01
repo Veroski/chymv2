@@ -7,6 +7,33 @@
     android:background="@color/colorPrimary"
     tools:context=".view.ActivityRutinasRecomendadas">
 
+    <LinearLayout
+        android:id="@+id/layout_rutinasRecomendadas_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/returnMain_rutinasRecomendadas_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="8dp"
+            android:drawableLeft="@drawable/flechaatras"
+            android:background="@color/colorPrimary"/>
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/routineSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:iconifiedByDefault="false"
+            android:layout_weight="8"
+            app:queryHint="Buscar ejercicios" />
+    </LinearLayout>
+
     <FrameLayout
         android:id="@+id/fragment_layout_rutinasRecomendadas"
         android:layout_width="0dp"
