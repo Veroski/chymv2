@@ -348,7 +348,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="86dp"
                             android:layout_marginTop="5dp"
-                            android:src="@drawable/circles" />
+                            android:src="@drawable/imc_bar" />
 
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
