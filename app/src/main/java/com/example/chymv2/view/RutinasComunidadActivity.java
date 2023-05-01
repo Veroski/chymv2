@@ -1,20 +1,13 @@
-package com.example.chymv2;
+package com.example.chymv2.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.KeyEventDispatcher;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
-import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.chymv2.view.ExerciceFragment;
-import com.example.chymv2.view.MainActivity;
-import com.example.chymv2.view.ProfileFragment;
-import com.example.chymv2.view.RoutineMenuFragment;
+import com.example.chymv2.R;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class RutinasComunidadActivity extends AppCompatActivity {

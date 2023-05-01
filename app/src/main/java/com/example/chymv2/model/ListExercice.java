@@ -8,13 +8,23 @@ public class ListExercice implements Serializable {
     String grupoMuscular;
     String tipoEjercicio;
     int id;
+    String descripcion;
 
-    public ListExercice(String color, String ejercicio, String grupoMuscular, String tipoEjercicio,int id) {
+    public ListExercice(String color, String ejercicio, String grupoMuscular, String tipoEjercicio,int id,String descripcion) {
         this.color = color;
         this.ejercicio = ejercicio;
         this.grupoMuscular = grupoMuscular;
         this.tipoEjercicio = tipoEjercicio;
         this.id = id;
+        this.descripcion = descripcion;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public int getId() {

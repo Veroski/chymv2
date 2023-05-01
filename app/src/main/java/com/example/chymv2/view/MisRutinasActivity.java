@@ -1,29 +1,19 @@
-package com.example.chymv2;
+package com.example.chymv2.view;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
+import com.example.chymv2.R;
 import com.example.chymv2.adapters.RoutineListAdapter;
 import com.example.chymv2.model.Rutina;
 import com.example.chymv2.sources.InitializeData;
-import com.example.chymv2.view.ExerciceFragment;
-import com.example.chymv2.view.MainActivity;
-import com.example.chymv2.view.ProfileFragment;
-import com.example.chymv2.view.RoutineDescriptionActivity;
-import com.example.chymv2.view.RoutineMenuFragment;
 import com.example.chymv2.viewmodel.RoutineViewModel;
 import com.google.android.material.navigation.NavigationBarView;
 

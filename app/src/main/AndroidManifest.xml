@@ -12,16 +12,16 @@
         android:theme="@style/Theme.Chymv2"
         tools:targetApi="31">
         <activity
-            android:name=".CrearRutinasActivity"
+            android:name=".view.CrearRutinasActivity"
             android:exported="false" />
         <activity
-            android:name=".RutinasRecomendadasActivity"
+            android:name=".view.RutinasRecomendadasActivity"
             android:exported="false" />
         <activity
-            android:name=".RutinasComunidadActivity"
+            android:name=".view.RutinasComunidadActivity"
             android:exported="false" />
         <activity
-            android:name=".MisRutinasActivity"
+            android:name=".view.MisRutinasActivity"
             android:exported="false" />
         <activity
             android:name=".view.SignInActivity"

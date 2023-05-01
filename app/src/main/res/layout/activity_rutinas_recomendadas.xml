@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".RutinasRecomendadasActivity">
+    tools:context=".view.RutinasRecomendadasActivity">
 
     <FrameLayout
         android:id="@+id/fragment_layout_rutinasRecomendadas"

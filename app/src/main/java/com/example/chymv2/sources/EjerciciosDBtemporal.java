@@ -1,5 +1,10 @@
 package com.example.chymv2.sources;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class EjerciciosDBtemporal {
@@ -49,7 +54,7 @@ public class EjerciciosDBtemporal {
             "#A11414;Extension de cuadriceps;Piernas;Maquina\n" +
             "#A11414;Abduccion de cadera;Piernas;Maquina\n" +
             "#A11414;Sentadillas con salto;Piernas;Corporal\n" +
-            "#A11414;Press de piernas;Piernas;Maquina\n" +
+            "#A11414;Press de piernas;Piernas;Maquina\n"+
             "#A11414;Hip thrust;Piernas;Barra\n" +
             "#144EA1;Jalones con Cuerda;Triceps;Polea\n" +
             "#144EA1;Jalon hacia abajo basicos de triceps;Triceps;Polea\n" +
@@ -125,20 +130,20 @@ public class EjerciciosDBtemporal {
             "#FC00FC;Deslizante;Abdominales;Corporal\n" +
             "#FC00FC;Pliegue de gimnasta;Abdominales;Corporal\n" +
             "#FC00FC;Pliegue deslizante;Abdominales;Corporal\n" +
-            "#9402DE;Bicicleta;Cardio; \n" +
-            "#9402DE;Correr;Cardio; \n" +
-            "#9402DE;Saltar a la comba;Cardio; \n" +
-            "#9402DE;Natacion;Cardio; \n" +
+            "#9402DE;Bicicleta;Cardio;\n" +
+            "#9402DE;Correr;Cardio;\n" +
+            "#9402DE;Saltar a la comba;Cardio;\n" +
+            "#9402DE;Natacion;Cardio;\n" +
             "#9402DE;Remo indoor cardio;Cardio;Maquina\n" +
-            "#9402DE;Caminar;Cardio; \n" +
-            "#9402DE;Marcha;Cardio; \n" +
-            "#9402DE;Jumping jacks;Cardio; \n" +
-            "#9402DE;Pegar al saco;Cardio; \n" +
+            "#9402DE;Caminar;Cardio;\n" +
+            "#9402DE;Marcha;Cardio;\n" +
+            "#9402DE;Jumping jacks;Cardio;\n" +
+            "#9402DE;Pegar al saco;Cardio;\n" +
             "#9402DE;Zancada de maquina eliptica;Cardio;Maquina\n" +
-            "#9402DE;Jumping box;Cardio; \n" +
+            "#9402DE;Jumping box;Cardio;\n" +
             "#9402DE;Maquina de escaleras;Cardio;Maquina\n" +
-            "#9402DE;HIIT;Cardio; \n" +
-            "#9402DE;Bailar;Cardio; ";
+            "#9402DE;HIIT;Cardio;\n" +
+            "#9402DE;Bailar;Cardio;";
 
     private String tablaRutinas = "#000000;Rutina P&W;1,3,7,15,29,115\n" +
             "#000000;Rutina P&W;1,3,7,15,29,115,12\n" +
@@ -177,6 +182,7 @@ public class EjerciciosDBtemporal {
         }
         return datos;
     }
+
 
 
 }

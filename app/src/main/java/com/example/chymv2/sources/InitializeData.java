@@ -44,8 +44,9 @@ public class InitializeData {
                 String exercice = cursor.getString(2);
                 String group = cursor.getString(3);
                 String type = cursor.getString(4);
+                String description = cursor.getString(5);
 
-                exercices.add(new ListExercice(color, exercice, group, type,id));
+                exercices.add(new ListExercice(color, exercice, group, type,id,description));
             }
         }
     }

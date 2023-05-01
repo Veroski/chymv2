@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.chymv2.R;
 import com.example.chymv2.model.ListExercice;
+import com.example.chymv2.sources.EjerciciosDBtemporal;
 
 
 public class ExerciceDescriptionActivity extends AppCompatActivity {
@@ -19,8 +20,9 @@ public class ExerciceDescriptionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercice_description);
-
+        /*
         ListExercice element = (ListExercice) getIntent().getSerializableExtra("ListExercice");
+
         tvExerciceTitle = findViewById(R.id.tvExerciceTitle);
         tvExerciceDescription = findViewById(R.id.tvExerciceDescription);
         tvExerciceStatus = findViewById(R.id.tvExerciceStatus);
@@ -28,9 +30,10 @@ public class ExerciceDescriptionActivity extends AppCompatActivity {
         tvExerciceTitle.setText(element.getEjercicio());
         tvExerciceTitle.setTextColor(Color.parseColor(element.getColor()));
 
-        tvExerciceDescription.setText(element.getGrupoMuscular());// Ejamplo 1- Cambiar
+        tvExerciceDescription.setText(element.getDescripcion());// Ejamplo 1- Cambiar
 
         tvExerciceStatus.setText(element.getTipoEjercicio());// Ejamplo 2- Cambiar
-        tvExerciceStatus.setTextColor(Color.RED);
+        */
+
     }
 }
