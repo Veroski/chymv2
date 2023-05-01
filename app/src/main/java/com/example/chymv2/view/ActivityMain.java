@@ -31,12 +31,15 @@ public class ActivityMain extends AppCompatActivity {
 
         if (fragment == 1){
             loadFragment(fragmentRoutineMenu);
+            navigation.setSelectedItemId(R.id.routine_fragment);
         }
         else if (fragment == 2) {
             loadFragment(fragmentExercice);
+            navigation.setSelectedItemId(R.id.exercices_fragment);
         }
         else{
             loadFragment(fragmentProfile);
+            navigation.setSelectedItemId(R.id.profile_fragment);
         }
         System.out.println("1111111111");
     }
@@ -45,23 +48,28 @@ public class ActivityMain extends AppCompatActivity {
     protected void onNewIntent(Intent intent) {
         System.out.println("Dulce");
         super.onNewIntent(intent);
-        setIntent(intent);
+        //setIntent(intent);
         System.out.println("JAMON");
 
         NavigationBarView navigation = findViewById(R.id.bottom_navigation);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
-        bundle = getIntent().getExtras();
+        bundle = intent.getExtras();
 
         Integer fragment = bundle.getInt("parametro");
 
+        System.out.println(fragment);
+
         if (fragment == 1){
             loadFragment(fragmentRoutineMenu);
+            navigation.setSelectedItemId(R.id.routine_fragment);
         }
         else if (fragment == 2) {
             loadFragment(fragmentExercice);
+            navigation.setSelectedItemId(R.id.exercices_fragment);
         }
         else{
             loadFragment(fragmentProfile);
+            navigation.setSelectedItemId(R.id.profile_fragment);
         }
     }
     private final NavigationBarView.OnItemSelectedListener mOnNavigationItemSelectedListener = new NavigationBarView.OnItemSelectedListener() {
