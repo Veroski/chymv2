@@ -7,12 +7,12 @@
     tools:context=".view.ActivityExerciceDescription"
     android:background="@drawable/ctr_bg">
 
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbarExercice"
         android:layout_width="match_parent"
         android:layout_height="280dp"
         android:fitsSystemWindows="true"
-        app:title="Exercice"
         android:theme="@style/Theme.Chymv2">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -22,6 +22,8 @@
             app:contentScrim="@color/teal_700"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
             app:title="Exercice"
+            app:collapsedTitleTextAppearance="@style/MyCollapsingToolbarLayoutTitleStyle"
+            app:expandedTitleTextAppearance="@style/MyCollapsingToolbarLayoutTitleStyle"
             app:collapsedTitleTextColor="#FFFFFF"
             app:expandedTitleTextColor="@color/white"
             android:id="@+id/collapsingToolBar"
@@ -47,13 +49,46 @@
             
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/layout_bg"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:padding="20dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/constraintLayoutEx">
 
+                <TextView
+                    android:id="@+id/tvGrupoMuscular"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Caca"
+                    android:textSize="30dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintVertical_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvExerciceDescription"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintVertical_bias="0"
+                    android:layout_marginTop="15dp"
+                    android:text="Hola"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/constraintLayoutEx"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGrupoMuscular" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
