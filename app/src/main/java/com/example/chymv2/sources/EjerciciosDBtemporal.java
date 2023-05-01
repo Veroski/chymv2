@@ -10,20 +10,20 @@ import java.util.ArrayList;
 public class EjerciciosDBtemporal {
 
     private String tablaEjercicios = "#16B0D6;Press de pecho plano ;Pecho;Mancuernas\n" +
-            "#16B0D6;Press de pecho inclinado con mancuernas;Pecho;Mancuernas\n" +
-            "#16B0D6;Press de pecho con declinado con mancuernas;Pecho;Mancuernas\n" +
-            "#16B0D6;Press de pecho plano con barra;Pecho;Barra\n" +
-            "#16B0D6;Press de pecho inclinado con barra;Pecho;Barra\n" +
-            "#16B0D6;Press de pecho declinado con barra;Pecho;Barra\n" +
-            "#16B0D6;Press de pecho con maquina;Pecho;Maquina\n" +
-            "#16B0D6;Aperturas de pecho con polea;Pecho;Polea\n" +
-            "#16B0D6;Aperturas de pecho con polea de un brazo;Pecho;Polea\n" +
-            "#16B0D6;Aperturas de pecho con maquina;Pecho;Maquina\n" +
-            "#16B0D6;Aperturas de pecho con mancuerna;Pecho;Mancuernas\n" +
+            "#16B0D6;Press de pecho inclinado;Pecho;Mancuernas\n" +
+            "#16B0D6;Press de pecho con declinado;Pecho;Mancuernas\n" +
+            "#16B0D6;Press de pecho plano;Pecho;Barra\n" +
+            "#16B0D6;Press de pecho inclinado;Pecho;Barra\n" +
+            "#16B0D6;Press de pecho declinado;Pecho;Barra\n" +
+            "#16B0D6;Press de pecho;Pecho;Maquina\n" +
+            "#16B0D6;Aperturas de pecho;Pecho;Polea\n" +
+            "#16B0D6;Aperturas de pecho de un brazo;Pecho;Polea\n" +
+            "#16B0D6;Aperturas de pecho;Pecho;Maquina\n" +
+            "#16B0D6;Aperturas de pecho;Pecho;Mancuernas\n" +
             "#16B0D6;Fondos;Pecho;Corporal\n" +
             "#16B0D6;Flexiones inclinadas;Pecho;Corporal\n" +
             "#16B0D6;Flexiones declinadas;Pecho;Corporal\n" +
-            "#16B0D6;Pullover de pecho con mancuernas;Pecho;Mancuernas\n" +
+            "#16B0D6;Pullover de pecho;Pecho;Mancuernas\n" +
             "#F0DB2E;Remo con mancuernas a una mano;Espalda;Mancuernas\n" +
             "#F0DB2E;Jalon hacia abajo tras nuca;Espalda;Polea\n" +
             "#F0DB2E;Remo renegado;Espalda;Mancuernas\n" +
@@ -31,11 +31,11 @@ public class EjerciciosDBtemporal {
             "#F0DB2E;Remo Pendlay;Espalda;Barra\n" +
             "#F0DB2E;Remo tripode;Espalda;Mancuernas\n" +
             "#F0DB2E;Jalon con brazos rectos;Espalda;Polea\n" +
-            "#F0DB2E;Pullover con mancuerna;Espalda;Mancuernas\n" +
+            "#F0DB2E;Pullover;Espalda;Mancuernas\n" +
             "#F0DB2E;Pullover humano;Espalda;Mancuernas\n" +
-            "#F0DB2E;Remo de cable sentado;Espalda;Polea\n" +
+            "#F0DB2E;Remo sentado;Espalda;Polea\n" +
             "#F0DB2E;Remo Meadows;Espalda;Barra\n" +
-            "#F0DB2E;Remo de cable alto a una mano;Espalda;Polea\n" +
+            "#F0DB2E;Remo alto a una mano;Espalda;Polea\n" +
             "#F0DB2E;Jalones para dorsales;Espalda;Polea\n" +
             "#F0DB2E;Jalones balanceando;Espalda;Polea\n" +
             "#F0DB2E;Remo muerto;Espalda;Mancuernas\n" +
@@ -43,12 +43,12 @@ public class EjerciciosDBtemporal {
             "#F0DB2E;Remo apoyado en el pecho;Espalda;Maquina\n" +
             "#F0DB2E; Dominadas;Espalda;Corporal\n" +
             "#A11414;Squats ;Piernas;Barra\n" +
-            "#A11414;Empuje de cadera con barra;Piernas;Barra\n" +
-            "#A11414;Zancada en Reversa con Mancuernas/Barra;Piernas;Barra\n" +
-            "#A11414;Zancada en Reversa con Mancuernas/Barra;Piernas;Mancuernas\n" +
+            "#A11414;Empuje de cadera;Piernas;Barra\n" +
+            "#A11414;Zancada en Reversa;Piernas;Barra\n" +
+            "#A11414;Zancada en Reversa;Piernas;Mancuernas\n" +
             "#A11414;Peso Muerto Rumano a una pierna;Piernas;Mancuernas\n" +
-            "#A11414;Elevacion de pantorrillas de pie con Mancuernas;Piernas;Mancuernas\n" +
-            "#A11414;Elevacion de pantorrillas con Mancuernas sentado;Piernas;Mancuernas\n" +
+            "#A11414;Elevacion de pantorrillas de pie;Piernas;Mancuernas\n" +
+            "#A11414;Elevacion de pantorrillas sentado;Piernas;Mancuernas\n" +
             "#A11414;Curl de femoral sentado;Piernas;Maquina\n" +
             "#A11414;Curl de femoral tumbado;Piernas;Maquina\n" +
             "#A11414;Extension de cuadriceps;Piernas;Maquina\n" +
@@ -57,19 +57,19 @@ public class EjerciciosDBtemporal {
             "#A11414;Press de piernas;Piernas;Maquina\n"+
             "#A11414;Hip thrust;Piernas;Barra\n" +
             "#144EA1;Jalones con Cuerda;Triceps;Polea\n" +
-            "#144EA1;Jalon hacia abajo basicos de triceps;Triceps;Polea\n" +
+            "#144EA1;Jalon hacia abajo de triceps;Triceps;Polea\n" +
             "#144EA1;Flexiones de diamante;Triceps;Corporal\n" +
             "#144EA1; Flexiones cobra;Triceps;Corporal\n" +
-            "#144EA1;Jalones para triceps con agarre invertido;Triceps;Polea\n" +
-            "#144EA1;Extensiones de cuerdas por encima de la cabeza;Triceps;Polea\n" +
+            "#144EA1;Jalon de triceps con agarre invertido;Triceps;Polea\n" +
+            "#144EA1;Extensiones por encima de la cabeza;Triceps;Polea\n" +
             "#144EA1; Press JM;Triceps;Barra\n" +
             "#144EA1;Patada hacia Atras;Triceps;Mancuernas\n" +
-            "#144EA1;Bombeo de Poder con Mancuernas Inclinado;Triceps;Mancuernas\n" +
+            "#144EA1;Bombeo de Poder Inclinado;Triceps;Mancuernas\n" +
             "#144EA1;Fondos Erguido;Triceps;Corporal\n" +
             "#144EA1;Jalones hacia Abajo Balanceando;Triceps;Polea\n" +
             "#144EA1;Press de banca con agarre cerrado;Triceps;Barra\n" +
             "#144EA1;Extensiones de triceps acostado;Triceps;Mancuernas\n" +
-            "#144EA1;Bombeo de Poder con Mancuernas de pie;Triceps;Mancuernas\n" +
+            "#144EA1;Bombeo de Poder de pie;Triceps;Mancuernas\n" +
             "#144EA1;Extensiones cruzadas de cara recostado;Triceps;Mancuernas\n" +
             "#144EA1;Fondos sobre banca;Triceps;Corporal\n" +
             "#1BD62C;Curls concentrados;Biceps;Mancuernas\n" +
@@ -79,40 +79,40 @@ public class EjerciciosDBtemporal {
             "#1BD62C;Curl Zottman;Biceps;Mancuernas\n" +
             "#1BD62C;Curls de predicador;Biceps;Barra\n" +
             "#1BD62C;Curls con cable;Biceps;Polea\n" +
-            "#1BD62C;Curls de ara�a;Biceps;Mancuernas\n" +
+            "#1BD62C;Spider curls;Biceps;Mancuernas\n" +
             "#1BD62C;Curls de arrastre;Biceps;Barra\n" +
-            "#1BD62C;Curls flexionando con cable;Biceps;Polea\n" +
+            "#1BD62C;Curls flexionando;Biceps;Polea\n" +
             "#1BD62C;Curls de mesero;Biceps;Mancuernas\n" +
-            "#1BD62C;Curls inclinado con mancuernas;Biceps;Mancuernas\n" +
+            "#1BD62C;Curls inclinado;Biceps;Mancuernas\n" +
             "#1BD62C;Dominada a la barbilla;Biceps;Corporal\n" +
             "#1BD62C;Curl con barra;Biceps;Barra\n" +
-            "#1BD62C;Curls de pie alternando con mancuernas;Biceps;Mancuernas\n" +
+            "#1BD62C;Curls de pie alternando;Biceps;Mancuernas\n" +
             "#FC9100;Remo Erguido;Hombro;Barra\n" +
             "#FC9100;Press cubano;Hombro;Barra\n" +
             "#FC9100;Press por detras de la cabeza;Hombro;Barra\n" +
-            "#FC9100;Elevaciones laterales vertiendo agua;Hombro;Mancuernas\n" +
-            "#FC9100;Press hacia afuera con mancuernas;Hombro;Mancuernas\n" +
-            "#FC9100;Elevaciones laterales con trampa con mancuernas;Hombro;Mancuernas\n" +
-            "#FC9100;Flys en reversa con mancuernas;Hombro;Mancuernas\n" +
+            "#FC9100;Elevaciones laterales;Hombro;Mancuernas\n" +
+            "#FC9100;Press hacia afuera;Hombro;Mancuernas\n" +
+            "#FC9100;Elevaciones laterales con trampa;Hombro;Mancuernas\n" +
+            "#FC9100;Flys en reversa;Hombro;Mancuernas\n" +
             "#FC9100;Press Arnold;Hombro;Mancuernas\n" +
             "#FC9100;Remo de abduccion;Hombro;Mancuernas\n" +
             "#FC9100;Jalones a la cara;Hombro;Polea\n" +
-            "#FC9100;Press de pala con mancuernas;Hombro;Mancuernas\n" +
+            "#FC9100;Press de pala;Hombro;Mancuernas\n" +
             "#FC9100;Elevaciones laterales;Hombro;Mancuernas\n" +
             "#FC9100;Abraza caderas;Hombro;Mancuernas\n" +
-            "#FC9100; Elevacion frontal con mancuernas;Hombro;Mancuernas\n" +
-            "#FC9100;Elevaciones laterales con cables;Hombro;Polea\n" +
+            "#FC9100; Elevacion frontal;Hombro;Mancuernas\n" +
+            "#FC9100;Elevaciones laterales;Hombro;Polea\n" +
             "#FC9100;Remo para deltoides posteriores;Hombro;Mancuernas\n" +
-            "#FCED00;Flexiones de munyeca con mancuernas;Antebrazo;Mancuernas\n" +
-            "#FCED00;Extensiones de munyeca con mancuernas;Antebrazo;Mancuernas\n" +
+            "#FCED00;Flexiones de carpo;Antebrazo;Mancuernas\n" +
+            "#FCED00;Extensiones de carpo;Antebrazo;Mancuernas\n" +
             "#FCED00;Curl de antebrazos con barra EZ;Antebrazo;Barra\n" +
-            "#FCED00;Curl de antebrazos con mancuernas;Antebrazo;Mancuernas\n" +
-            "#FCED00;Extensiones de antebrazos con barra;Antebrazo;Barra\n" +
-            "#FCED00;Flexiones de munyeca con polea;Antebrazo;Polea\n" +
-            "#FCED00;Extensiones de munyeca con polea;Antebrazo;Polea\n" +
+            "#FCED00;Curl de antebrazos;Antebrazo;Mancuernas\n" +
+            "#FCED00;Extensiones de antebrazos;Antebrazo;Barra\n" +
+            "#FCED00;Flexiones de carpo;Antebrazo;Polea\n" +
+            "#FCED00;Extensiones de carpo;Antebrazo;Polea\n" +
             "#FCED00;Pinzas con agarre;Antebrazo;Maquina\n" +
-            "#FCED00;Levantamiento de peso muerto con agarre inverso;Antebrazo;Barra\n" +
-            "#FCED00;Elevacion de dedos con barra;Antebrazo;Barra\n" +
+            "#FCED00;Peso muerto con agarre inverso;Antebrazo;Barra\n" +
+            "#FCED00;Elevacion de dedos;Antebrazo;Barra\n" +
             "#FCED00;Farmer's carry;Antebrazo;Mancuernas\n" +
             "#FCED00;Colgado de barra;Antebrazo;Corporal\n" +
             "#FC00FC;Giro Ruso;Abdominales;Mancuernas\n" +

@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.chymv2.R;
 
-public class HistorialActivity extends AppCompatActivity {
+public class ActivityHistorial extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

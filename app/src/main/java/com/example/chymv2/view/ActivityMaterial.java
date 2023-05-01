@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.CheckBox;
+import android.widget.Toast;
 
 import com.example.chymv2.R;
 import com.example.chymv2.adapters.MaterialAdapter;
@@ -13,9 +15,12 @@ import com.example.chymv2.model.CardMaterial;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MaterialActivity extends AppCompatActivity {
+public class ActivityMaterial extends AppCompatActivity {
 
     List<CardMaterial> elements;
+    RecyclerView materialRecyclerView ;
+    MaterialAdapter materialAdapter;
+    CheckBox materialCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +38,16 @@ public class MaterialActivity extends AppCompatActivity {
         elements.add(new CardMaterial("Kettlebell", false));
         elements.add(new CardMaterial("Peso Corporal", false));
 
-        MaterialAdapter materialAdapter = new MaterialAdapter(elements, this);
-        RecyclerView recyclerView = findViewById(R.id.listRecyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(materialAdapter);
+        materialAdapter = new MaterialAdapter(elements, this);
+
+        materialAdapter.notifyDataSetChanged();
+        materialRecyclerView = findViewById(R.id.rvMaterial);
+        materialRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        materialRecyclerView.setHasFixedSize(true);
+        materialRecyclerView.setAdapter(materialAdapter);
+
+
+
     }
 
 }

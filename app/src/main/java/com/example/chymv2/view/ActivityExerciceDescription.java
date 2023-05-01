@@ -29,18 +29,7 @@ public class ActivityExerciceDescription extends AppCompatActivity {
         collapsingToolbarLayout.setTitle(element.getEjercicio());
         tvExerciceDescription.setText(element.getDescripcion());
         tvExerciceMuscleGroup.setText(element.getGrupoMuscular());
-        /*
-        tvExerciceTitle = findViewById(R.id.tvExerciceTitle);
-        tvExerciceDescription = findViewById(R.id.tvExerciceDescription);
-        tvExerciceStatus = findViewById(R.id.tvExerciceStatus);
 
-        tvExerciceTitle.setText(element.getEjercicio());
-        tvExerciceTitle.setTextColor(Color.parseColor(element.getColor()));
-
-        tvExerciceDescription.setText(element.getDescripcion());// Ejamplo 1- Cambiar
-
-        tvExerciceStatus.setText(element.getTipoEjercicio());// Ejamplo 2- Cambiar
-        */
 
     }
 }

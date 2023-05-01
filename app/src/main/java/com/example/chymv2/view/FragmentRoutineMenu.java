@@ -91,7 +91,7 @@ public class FragmentRoutineMenu extends Fragment {
                         startActivity(new Intent(getContext(), ActivityRutinasComunidad.class));
                         break;
                     case R.id.rutinasRecomendadasBtn:
-                        startActivity(new Intent(getContext(), ActivityRutinasRecomendadas.class));
+                        startActivity(new Intent(getContext(), ActivityRecomendedRoutines.class));
                         break;
                 }
             }

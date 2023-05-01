@@ -147,7 +147,7 @@ public class FragmentProfile extends Fragment {
         material.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ActivitySignIn.class);
+                Intent intent = new Intent(getContext(), ActivityMaterial.class);
                 startActivity(intent);
             }
         });
