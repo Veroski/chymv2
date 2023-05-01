@@ -27,7 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class ActivitySignUp extends AppCompatActivity {
     private Boolean existEmail = false;
     private Boolean existUsername = false;
-    private EditText signUpName, signUpEmail, signUpPassword, signUpUsername;
+    private EditText signUpEmail, signUpPassword, signUpUsername, signUpRepassword;
     private TextView loginRedirectText;
     private Button signUpButton;
     private FirebaseAuth firebaseAuth;
@@ -40,12 +40,12 @@ public class ActivitySignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        signUpName = findViewById(R.id.singUpName);
         signUpUsername = findViewById(R.id.singUpUsername);
         signUpEmail = findViewById(R.id.singUpEmail);
         signUpPassword = findViewById(R.id.singUpPassword);
-        signUpButton = findViewById(R.id.singInRedirectBtn);
+        signUpButton = findViewById(R.id.signInRedirectBtn);
         loginRedirectText = findViewById(R.id.signInRedirectText);
+        signUpRepassword = findViewById(R.id.signUpRepassword);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -60,6 +60,7 @@ public class ActivitySignUp extends AppCompatActivity {
                 String password = signUpPassword.getText().toString();
                 //String username = signUpUsername.getText().toString();
                 String userEmail = signUpEmail.getText().toString().trim();
+                String repassword = signUpRepassword.getText().toString();
                 //String userUsername = signUpUsername.getText().toString().trim();
                 //createUser(userUsername,userEmail,username,name,email,password,reference);
 
@@ -70,8 +71,12 @@ public class ActivitySignUp extends AppCompatActivity {
                 else if(password.length()<6){
                     signUpPassword.setError("Min lenght is 6 characters");
                     signUpPassword.setFocusable(true);
-                }
-                else{
+                } else if (!password.equals(repassword)) {
+                    signUpRepassword.setError("The passwords doesn't match");
+                    signUpPassword.setError("The passwords doesn't match");
+                    signUpPassword.setFocusable(true);
+                    signUpRepassword.setFocusable(true);
+                } else{
                     REGISTRAR(userEmail,password);
                 }
             }
@@ -96,11 +101,10 @@ public class ActivitySignUp extends AppCompatActivity {
                     FirebaseUser user = firebaseAuth.getCurrentUser();
 
                     assert user != null;
-                    String name = signUpName.getText().toString();
                     String email = signUpEmail.getText().toString();
                     String username = signUpUsername.getText().toString();
 
-                    Usuario usuario = new Usuario(username,email,name);
+                    Usuario usuario = new Usuario(username,email);
 
                     database = FirebaseDatabase.getInstance();
                     reference = database.getReference("users");

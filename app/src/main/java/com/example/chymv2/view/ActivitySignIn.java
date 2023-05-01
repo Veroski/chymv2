@@ -158,8 +158,7 @@ public class ActivitySignIn extends AppCompatActivity {
                         String userID = user.getUid();
                         String username = "username chym";
                         String correo = user.getEmail();
-                        String nombre = user.getDisplayName();
-                        Usuario usuario = new Usuario(username,correo,nombre);
+                        Usuario usuario = new Usuario(username,correo);
                         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
                         DatabaseReference reference = firebaseDatabase.getReference("users");
                         reference.child(userID).setValue(usuario);

@@ -86,7 +86,6 @@ public class FragmentProfile extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     String username = ""+snapshot.child("username").getValue();
-                    String nombre = ""+snapshot.child("nombre").getValue();
                     String altura = ""+snapshot.child("altura").getValue();
                     String email = ""+snapshot.child("correo").getValue();
                     String pes = ""+snapshot.child("peso").getValue();
@@ -96,8 +95,8 @@ public class FragmentProfile extends Fragment {
                     pesoNumPerfilTxt.setText(pes);
                     alturaNumPerfilTxt.setText(altura);
                     imcNumPerfilTxt.setText(calcularIMC(Float.parseFloat(pes),Float.parseFloat(altura)));
-                    usernameProfileTextView.setText(username);
-                    nameProfileTextView.setText(nombre);
+                    usernameProfileTextView.setText(email);
+                    nameProfileTextView.setText(username);
 
                     try {
                         Picasso.get().load(imagen).placeholder(R.drawable.img_perfil).into(ProfileImageView);

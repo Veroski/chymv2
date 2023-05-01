@@ -6,7 +6,6 @@ public class Usuario {
     String username;
     String userUID;
     String correo;
-    String nombre;
     String imagen;
     float peso;
     float altura;
@@ -17,8 +16,7 @@ public class Usuario {
 
     public Usuario(String userUID, String username, String correo, float peso, float altura,
                    ArrayList<Rutina> rutinas, ArrayList<String> materiales, boolean premium,
-                   String nombre, String imagen) {
-        this.nombre = nombre;
+                   String imagen) {
         this.username = username;
         this.correo = correo;
         this.peso = peso;
@@ -31,10 +29,9 @@ public class Usuario {
         this.userUID = userUID;
     }
 
-    public Usuario(String username, String correo, String nombre) {
+    public Usuario(String username, String correo) {
         this.username = username;
         this.correo = correo;
-        this.nombre = nombre;
     }
 
     public String getUsername() {
@@ -87,12 +84,6 @@ public class Usuario {
     }
     public float calcularIMC(float peso, float altura){
         return (float) (peso / Math.pow(altura/100, 2));
-    }
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
     public String getImagen() {
         return imagen;
