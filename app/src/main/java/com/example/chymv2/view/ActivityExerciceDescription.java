@@ -6,20 +6,30 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.chymv2.R;
+import com.example.chymv2.model.ListExercice;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 
 public class ActivityExerciceDescription extends AppCompatActivity {
 
-    TextView tvExerciceTitle;
+
     TextView tvExerciceDescription;
-    TextView tvExerciceStatus;
+    TextView tvExerciceMuscleGroup;
+    CollapsingToolbarLayout collapsingToolbarLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercice_description);
-        /*
-        ListExercice element = (ListExercice) getIntent().getSerializableExtra("ListExercice");
 
+        ListExercice element = (ListExercice) getIntent().getSerializableExtra("ListExercice");
+        collapsingToolbarLayout = findViewById(R.id.collapsingToolBar);
+        tvExerciceDescription = findViewById(R.id.tvExerciceDescription);
+        tvExerciceMuscleGroup = findViewById(R.id.tvGrupoMuscular);
+
+        collapsingToolbarLayout.setTitle(element.getEjercicio());
+        tvExerciceDescription.setText(element.getDescripcion());
+        tvExerciceMuscleGroup.setText(element.getGrupoMuscular());
+        /*
         tvExerciceTitle = findViewById(R.id.tvExerciceTitle);
         tvExerciceDescription = findViewById(R.id.tvExerciceDescription);
         tvExerciceStatus = findViewById(R.id.tvExerciceStatus);
