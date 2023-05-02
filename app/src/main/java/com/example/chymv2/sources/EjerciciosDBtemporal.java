@@ -130,34 +130,34 @@ public class EjerciciosDBtemporal {
             "#FC00FC;Deslizante;Abdominales;Corporal\n" +
             "#FC00FC;Pliegue de gimnasta;Abdominales;Corporal\n" +
             "#FC00FC;Pliegue deslizante;Abdominales;Corporal\n" +
-            "#9402DE;Bicicleta;Cardio;\n" +
-            "#9402DE;Correr;Cardio;\n" +
-            "#9402DE;Saltar a la comba;Cardio;\n" +
-            "#9402DE;Natacion;Cardio;\n" +
+            "#9402DE;Bicicleta;Cardio; \n" +
+            "#9402DE;Correr;Cardio; \n" +
+            "#9402DE;Saltar a la comba;Cardio; \n" +
+            "#9402DE;Natacion;Cardio; \n" +
             "#9402DE;Remo indoor cardio;Cardio;Maquina\n" +
-            "#9402DE;Caminar;Cardio;\n" +
-            "#9402DE;Marcha;Cardio;\n" +
-            "#9402DE;Jumping jacks;Cardio;\n" +
-            "#9402DE;Pegar al saco;Cardio;\n" +
+            "#9402DE;Caminar;Cardio; \n" +
+            "#9402DE;Marcha;Cardio; \n" +
+            "#9402DE;Jumping jacks;Cardio; \n" +
+            "#9402DE;Pegar al saco;Cardio; \n" +
             "#9402DE;Zancada de maquina eliptica;Cardio;Maquina\n" +
-            "#9402DE;Jumping box;Cardio;\n" +
+            "#9402DE;Jumping box;Cardio; \n" +
             "#9402DE;Maquina de escaleras;Cardio;Maquina\n" +
-            "#9402DE;HIIT;Cardio;\n" +
-            "#9402DE;Bailar;Cardio;";
+            "#9402DE;HIIT;Cardio; \n" +
+            "#9402DE;Bailar;Cardio; ";
 
-    private String tablaRutinas = "#000000;Rutina P&W;1,3,7,15,29,115\n" +
-            "#000000;Rutina P&W;1,3,7,15,29,115,12\n" +
-            "#000000;Rutina P&W;1,3,7,15,29,115\n" +
-            "#000000;Rutina P&W;1,3,7,15,29,115\n" +
-            "#000000;Rutina P&W;1,3,7,15,29,115\n" +
-            "#000000;Rutina P&W;1,3,7,15,29,115\n";
+    private String tablaRutinas = "#FF0000;Rutina Pecho;1,6,7,12,15,119\n" +
+            "#00FF00;Rutina Full Body;1,20,40,60,80,100,120\n" +
+            "#000000;Rutina P&W;1,1,1,1,1,1\n" +
+            "#11FFF1;Rutina Piernas;50,38,75,111,29,115\n" +
+            "#FE0FE0;Rutina Espalda;33,15,7,95,100,43\n" +
+            "#F0F095;Rutina Push & Pull;1,3,46,77,112,115\n";
 
 
     public ArrayList<String> dataTable(){
         String unity = "";
         ArrayList<String> datos = new ArrayList<>();
         for(int i = 0; i<tablaEjercicios.length();i++){
-            if(tablaEjercicios.charAt(i) == ';' || tablaEjercicios.charAt(i) == '\n'){
+            if((tablaEjercicios.charAt(i) == ';' || tablaEjercicios.charAt(i) == '\n')&& !unity.equals("")){
                 datos.add(unity);
                 unity = "";
             }
@@ -172,7 +172,7 @@ public class EjerciciosDBtemporal {
         String unity = "";
         ArrayList<String> datos = new ArrayList<>();
         for(int i = 0; i<tablaRutinas.length();i++){
-            if(tablaRutinas.charAt(i) == ';' || tablaRutinas.charAt(i) == '\n'){
+            if((tablaRutinas.charAt(i) == ';' || tablaRutinas.charAt(i) == '\n') && !unity.equals("")){
                 datos.add(unity);
                 unity = "";
             }

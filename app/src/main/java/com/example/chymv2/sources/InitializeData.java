@@ -72,7 +72,7 @@ public class InitializeData {
         ArrayList<ListExercice> listExercices = new ArrayList<>();
         int j = 0;
         for(int i = 0; i<lista.length();i++){
-            if(lista.charAt(i) == ',' || i == lista.length()-1){
+            if((lista.charAt(i) == ',' || i == lista.length()-1) && !id.equals("")){
 
                 int traductor = Integer.parseInt(id);
                 listExercices.add(findExerciceById(traductor));

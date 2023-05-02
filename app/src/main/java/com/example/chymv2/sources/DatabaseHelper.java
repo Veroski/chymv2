@@ -92,7 +92,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private void initDatabaseExercices(ContentValues contentValues,SQLiteDatabase DB){
         EjerciciosDBtemporal initialData = new EjerciciosDBtemporal();
         ArrayList<String> lista = initialData.dataTable();
-        for(int i = 0; i<lista.size()-4;i+=4){
+        for(int i = 0; i<lista.size()-3;i+=4){
             dataInsertionExercices(lista.get(i),lista.get(i+1),lista.get(i+2),lista.get(i+3),"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh lacus, auctor feugiat enim ut, consequat efficitur ipsum. Mauris porttitor interdum ipsum non finibus. Etiam urna dui, maximus at lorem sed, lacinia auctor ex. Ut eu velit dui. Integer maximus ac ante at sollicitudin. Phasellus velit orci, maximus vitae blandit et, blandit id tortor. Phasellus maximus sed urna sit amet molestie. Nullam sed leo risus. Curabitur malesuada ullamcorper maximus. Suspendisse quis libero vel ipsum tincidunt ultrices vel et tellus. Aliquam erat volutpat. Praesent sit amet vulputate metus, nec vulputate odio. Aliquam eros nisl, varius in lectus nec, interdum commodo ipsum.",contentValues);
             DB.insert("Exercices",null,contentValues);
 
@@ -102,7 +102,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private void initDatabaseRoutine(ContentValues contentValues,SQLiteDatabase DB){
         EjerciciosDBtemporal initialData = new EjerciciosDBtemporal();
         ArrayList<String> lista = initialData.routineTable();
-        for(int i = 0; i<lista.size()-3;i+=3){
+        for(int i = 0; i<lista.size()-2;i+=3){
             dataInsertionRoutine(lista.get(i),lista.get(i+1),lista.get(i+2),contentValues);
             DB.insert("Routines",null,contentValues);
 
