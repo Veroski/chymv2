@@ -4,7 +4,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,12 +14,12 @@ import android.content.Context;
 
 import java.util.List;
 
-public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.ViewHolder> {
+public class MaterialListAdapter extends RecyclerView.Adapter<MaterialListAdapter.ViewHolder> {
     private List<CardMaterial> mData;
     private LayoutInflater mInflater;
     private Context context;
 
-    public MaterialAdapter(List<CardMaterial> itemMaterial, Context context){
+    public MaterialListAdapter(List<CardMaterial> itemMaterial, Context context){
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemMaterial;
@@ -31,13 +30,13 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.ViewHo
     public int getItemCount(){ return mData.size();}
 
     @Override
-    public MaterialAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+    public MaterialListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View view = mInflater.inflate(R.layout.card_material, null);
-        return new MaterialAdapter.ViewHolder(view);
+        return new MaterialListAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final MaterialAdapter.ViewHolder holder, final int position){
+    public void onBindViewHolder(final MaterialListAdapter.ViewHolder holder, final int position){
         holder.bindData(mData.get(position));
     }
 

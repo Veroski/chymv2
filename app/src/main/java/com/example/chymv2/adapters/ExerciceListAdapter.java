@@ -43,7 +43,7 @@ public class ExerciceListAdapter extends RecyclerView.Adapter<ExerciceListAdapte
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.activity_list_exercices, null);
+        View view = mInflater.inflate(R.layout.card_exercices, null);
         return new ViewHolder(view);
     }
 

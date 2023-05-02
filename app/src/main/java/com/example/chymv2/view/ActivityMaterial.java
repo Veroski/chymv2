@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.widget.CheckBox;
 
 import com.example.chymv2.R;
-import com.example.chymv2.adapters.MaterialAdapter;
+import com.example.chymv2.adapters.MaterialListAdapter;
 import com.example.chymv2.model.CardMaterial;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class ActivityMaterial extends AppCompatActivity {
 
     List<CardMaterial> elements;
     RecyclerView materialRecyclerView ;
-    MaterialAdapter materialAdapter;
+    MaterialListAdapter materialListAdapter;
     CheckBox materialCheckBox;
 
     @Override
@@ -37,13 +37,13 @@ public class ActivityMaterial extends AppCompatActivity {
         elements.add(new CardMaterial("Kettlebell", false));
         elements.add(new CardMaterial("Peso Corporal", false));
 
-        materialAdapter = new MaterialAdapter(elements, this);
+        materialListAdapter = new MaterialListAdapter(elements, this);
 
-        materialAdapter.notifyDataSetChanged();
+        materialListAdapter.notifyDataSetChanged();
         materialRecyclerView = findViewById(R.id.rvMaterial);
         materialRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         materialRecyclerView.setHasFixedSize(true);
-        materialRecyclerView.setAdapter(materialAdapter);
+        materialRecyclerView.setAdapter(materialListAdapter);
 
 
 
