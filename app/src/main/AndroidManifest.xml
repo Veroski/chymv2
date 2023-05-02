@@ -15,6 +15,9 @@
             android:name=".view.ActivityMaterial"
             android:exported="false" />
         <activity
+            android:name=".view.ActivityHistorial"
+            android:exported="false" />
+        <activity
             android:name=".view.ActivityCrearRutinas"
             android:exported="false" />
         <activity

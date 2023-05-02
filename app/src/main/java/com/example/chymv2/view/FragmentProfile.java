@@ -132,10 +132,11 @@ public class FragmentProfile extends Fragment {
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ActivitySignIn.class);
+                Intent intent = new Intent(getContext(), ActivityHistorial.class);
                 startActivity(intent);
             }
         });
+        /*
         premium.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -143,6 +144,7 @@ public class FragmentProfile extends Fragment {
                 startActivity(intent);
             }
         });
+        */
         material.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

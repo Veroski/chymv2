@@ -11,6 +11,6 @@ public class ActivityHistorial extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_history);
+        setContentView(R.layout.activity_history);
     }
 }

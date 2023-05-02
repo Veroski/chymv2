@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.CheckBox;
-import android.widget.Toast;
 
 import com.example.chymv2.R;
 import com.example.chymv2.adapters.MaterialAdapter;
@@ -25,7 +24,7 @@ public class ActivityMaterial extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_material);
+        setContentView(R.layout.activity_material);
 
         init();
     }
