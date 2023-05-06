@@ -5,7 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".view.ActivityCrearRutinas">
+    tools:context=".view.ActivityRutinasComunidad">
+
+    <LinearLayout
+        android:id="@+id/layout_crearRutinas_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/returnMain_crearRutinas_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="8dp"
+            android:drawableLeft="@drawable/flechaatras"
+            android:background="@color/colorPrimary" />
+
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/fragment_layout_crearRutinas"
@@ -15,16 +35,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/returnMain_crearRutinas_btn"
-            android:layout_width="37dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary"
-            android:drawableLeft="@drawable/flechaatras"
-            android:paddingStart="8dp"
-            />
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
