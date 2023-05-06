@@ -38,7 +38,7 @@ public class FragmentExercice extends Fragment implements SearchView.OnQueryText
     private ExerciceListAdapter exerciceListAdapter;
     private ExercicesViewModel exercicesViewModel;
     private androidx.appcompat.widget.SearchView svSearch;
-    private InitializeData data;
+
 
     public FragmentExercice() {
         // Required empty public constructor
@@ -86,7 +86,7 @@ public class FragmentExercice extends Fragment implements SearchView.OnQueryText
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-        data = new InitializeData(getContext());
+
         exercicesViewModel = new ExercicesViewModel(getContext());
         initlistaEjercicios(view);
         initListenerExercices();

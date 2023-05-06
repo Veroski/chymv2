@@ -10,18 +10,19 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.chymv2.R;
+import com.example.chymv2.sources.InitializeData;
 import com.google.android.material.navigation.NavigationBarView;
-
 public class ActivityMain extends AppCompatActivity {
     private FragmentExercice fragmentExercice = new FragmentExercice();
     private FragmentProfile fragmentProfile = new FragmentProfile();
     private FragmentRoutineMenu fragmentRoutineMenu = new FragmentRoutineMenu();
     Bundle bundle;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         bundle = getIntent().getExtras();
 
         NavigationBarView navigation = findViewById(R.id.bottom_navigation);
@@ -43,6 +44,7 @@ public class ActivityMain extends AppCompatActivity {
         }
         System.out.println("1111111111");
     }
+
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -94,4 +96,5 @@ public class ActivityMain extends AppCompatActivity {
         transaction.replace(R.id.fragment_layout_MainActivity,fragment);
         transaction.commit();
     }
+
 }

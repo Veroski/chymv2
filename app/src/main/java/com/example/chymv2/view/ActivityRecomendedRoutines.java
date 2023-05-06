@@ -24,18 +24,17 @@ public class ActivityRecomendedRoutines extends AppCompatActivity implements Sea
     private RoutineListAdapter routineListAdapter;
     private RoutineViewModel routineViewModel;
     private androidx.appcompat.widget.SearchView routineSearch;
-    private static InitializeData data;
 
     private Button returnMain_misRutinas_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mis_rutinas);
+        setContentView(R.layout.activity_rutinas_recomendadas);
 
-        NavigationBarView navigation = findViewById(R.id.bottom_navigation_misRutinas);
+        NavigationBarView navigation = findViewById(R.id.bottom_navigation_rutinasRecomendadas);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        returnMain_misRutinas_btn = findViewById(R.id.returnMain_misRutinas_btn);
+        returnMain_misRutinas_btn = findViewById(R.id.returnMain_rutinasRecomendadas_btn);
 
         returnMain_misRutinas_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +46,6 @@ public class ActivityRecomendedRoutines extends AppCompatActivity implements Sea
         //assert getSupportActionBar() != null;
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        data = new InitializeData(this);
         routineViewModel = new RoutineViewModel(this);
         initlistaRutinas();
         initListenerRoutines();

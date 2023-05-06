@@ -15,6 +15,13 @@ public class InitializeData {
     private List<Rutina> routines;
     private DatabaseHelper databaseHelper;
     private Context context;
+    private static InitializeData instance;
+    public static synchronized InitializeData getInstance(Context context) {
+        if (instance == null) {
+            instance = new InitializeData(context.getApplicationContext());
+        }
+        return instance;
+    }
 
     public InitializeData(Context context){
 

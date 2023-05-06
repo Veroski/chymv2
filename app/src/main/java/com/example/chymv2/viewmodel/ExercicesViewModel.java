@@ -12,6 +12,7 @@ import com.example.chymv2.model.ListExercice;
 import com.example.chymv2.sources.DatabaseHelper;
 import com.example.chymv2.sources.EjerciciosDBtemporal;
 import com.example.chymv2.sources.InitializeData;
+import com.example.chymv2.view.ActivityMain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +21,9 @@ public class ExercicesViewModel extends ViewModel {
     private MutableLiveData<List<ListExercice>> mExercices;
     private List<ListExercice> elements;
     private MutableLiveData<Boolean> isUpdating = new MutableLiveData<>();
-    private DatabaseHelper databaseHelper;
     private InitializeData data;
     public ExercicesViewModel(Context context){
-        data = new InitializeData(context);
-        databaseHelper = new DatabaseHelper(context);
+        data = InitializeData.getInstance(context);
         elements = data.getAllListExercice();
         mExercices = new MutableLiveData<>();
         mExercices.setValue(elements);

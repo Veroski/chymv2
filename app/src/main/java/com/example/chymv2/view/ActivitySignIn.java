@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.chymv2.R;
 import com.example.chymv2.model.Usuario;
+import com.example.chymv2.sources.InitializeData;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -47,7 +48,6 @@ public class ActivitySignIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-
         signInUsername = findViewById(R.id.signInEmail);
         signInPassword = findViewById(R.id.signInPassword);
         signInBtn = findViewById(R.id.loginBtn);
@@ -171,4 +171,5 @@ public class ActivitySignIn extends AppCompatActivity {
             }
         });
     }
+
 }

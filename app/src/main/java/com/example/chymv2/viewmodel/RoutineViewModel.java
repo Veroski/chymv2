@@ -13,6 +13,7 @@ import com.example.chymv2.model.Rutina;
 import com.example.chymv2.sources.DatabaseHelper;
 import com.example.chymv2.sources.EjerciciosDBtemporal;
 import com.example.chymv2.sources.InitializeData;
+import com.example.chymv2.view.ActivityMain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class RoutineViewModel {
     private InitializeData data;
 
     public RoutineViewModel(Context context){
-        data = new InitializeData(context);
+        data = InitializeData.getInstance(context);
         RoutineElements = data.getAllRoutines();
         mRoutines = new MutableLiveData<>();
         mRoutines.setValue(RoutineElements);

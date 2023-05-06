@@ -17,15 +17,15 @@ import com.example.chymv2.adapters.RoutineListAdapter;
 import com.example.chymv2.model.Rutina;
 import com.example.chymv2.sources.InitializeData;
 import com.example.chymv2.viewmodel.RoutineViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class ActivityMisRutinas extends AppCompatActivity implements SearchView.OnQueryTextListener{
+public class ActivityMisRutinas extends AppCompatActivity{
     private RecyclerView recyclerView;
     private RoutineListAdapter routineListAdapter;
     private RoutineViewModel routineViewModel;
-    private androidx.appcompat.widget.SearchView routineSearch;
-    private static InitializeData data;
     private Button returnMain_rutinasRecomendadas_btn;
+    private FloatingActionButton fabMisRutinas;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +35,7 @@ public class ActivityMisRutinas extends AppCompatActivity implements SearchView.
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
 
         returnMain_rutinasRecomendadas_btn = findViewById(R.id.returnMain_misRutinas_btn);
-
+        fabMisRutinas = findViewById(R.id.fabMisRutinas);
         returnMain_rutinasRecomendadas_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,10 +44,16 @@ public class ActivityMisRutinas extends AppCompatActivity implements SearchView.
         });
         //assert getSupportActionBar() != null;
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        data = new InitializeData(this);
+
+        fabMisRutinas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivityMisRutinas.this, ActivityCrearRutinas.class));;
+            }
+        });
         routineViewModel = new RoutineViewModel(this);
         initlistaRutinas();
-        initListenerRoutines();
+
     }
     /*@Override
     public boolean onSupportNavigateUp() {
@@ -83,27 +89,11 @@ public class ActivityMisRutinas extends AppCompatActivity implements SearchView.
             }
         });
         routineListAdapter.notifyDataSetChanged();
-        routineSearch = findViewById(R.id.routineSearch);
 
         recyclerView = findViewById(R.id.routineListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(routineListAdapter);
-    }
-    private void initListenerRoutines(){
-        routineSearch.setOnQueryTextListener(this);
-    }
-
-    @Override
-    public boolean onQueryTextSubmit(String s) {
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String s) {
-        routineListAdapter.filter(s);
-        routineListAdapter.notifyDataSetChanged();
-        return false;
     }
     public void moveToRoutine(Rutina item){
         Intent intent = new Intent(this, ActivityRoutineDescription.class);
