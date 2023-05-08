@@ -25,10 +25,12 @@ public class RoutineViewModel {
     private MutableLiveData<Boolean> isUpdating = new MutableLiveData<>();
 
     private InitializeData data;
+    private Context context;
 
-    public RoutineViewModel(Context context){
+    public RoutineViewModel(Context context, int vLista){
+        this.context = context;
         data = InitializeData.getInstance(context);
-        RoutineElements = data.getAllRoutines();
+        RoutineElements = listaRutinasCorrespondiente(vLista);
         mRoutines = new MutableLiveData<>();
         mRoutines.setValue(RoutineElements);
         ExerciceElements = data.getAllListExercice();
@@ -49,8 +51,49 @@ public class RoutineViewModel {
         return data.findExerciceById(id);
     }
 
-    /*
-    Este metodo peta porque eVM es una instancia vacia recien creada de ExercicesViewModel, lo que necesito es conseguir la primera instanciacion de la clase
-    meter esa instancia en una clase con metodos de findCosasById y llamar a esa clase aqui.
-     */
+    public List<Rutina> listaRutinasCorrespondiente(int vLista){
+        List<Rutina> rutinas;
+        switch (vLista){
+            case 0:
+                //Rutinas recomendadas
+                rutinas = new ArrayList<>();
+                ArrayList<ListExercice> ejersisios = new ArrayList<>();
+                ejersisios.add(findExerciceById(100));
+                ejersisios.add(findExerciceById(90));
+                ejersisios.add(findExerciceById(57));
+                ejersisios.add(findExerciceById(15));
+                ejersisios.add(findExerciceById(18));
+                ejersisios.add(findExerciceById(5));
+
+                rutinas.add(new Rutina("#000000","Celao's Rutine",ejersisios));
+
+
+                /*
+                DatabaseHelper testing = InitializeData.getDbInstance(context);
+                testing.insertRoutineData("#000000","Celao's Rutine","100,90,57,15,18,5");
+                Hay que hacer un id en el constructor de Rutinas para diferenciar entre la lista que estamos usando (0 mis rutinas, 2 rutinas recomendadas, 3 ambas)
+                 */
+                break;
+            case 1:
+                //Rutinas comunidad
+                rutinas = new ArrayList<>();
+                break;
+            case 2:
+                //Mis Rutinas
+
+                rutinas = data.getAllRoutines();
+                break;
+            default:
+                rutinas = null;
+                break;
+        }
+
+        return rutinas;
+    }
+    public void addRoutine(Rutina rutina){
+
+        RoutineElements.add(rutina);
+        mRoutines.setValue(RoutineElements);
+    }
+
 }

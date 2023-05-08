@@ -14,11 +14,14 @@ import android.widget.Button;
 
 import com.example.chymv2.R;
 import com.example.chymv2.adapters.RoutineListAdapter;
+import com.example.chymv2.model.ListExercice;
 import com.example.chymv2.model.Rutina;
 import com.example.chymv2.sources.InitializeData;
 import com.example.chymv2.viewmodel.RoutineViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+
+import java.util.ArrayList;
 
 public class ActivityMisRutinas extends AppCompatActivity{
     private RecyclerView recyclerView;
@@ -36,23 +39,11 @@ public class ActivityMisRutinas extends AppCompatActivity{
 
         returnMain_rutinasRecomendadas_btn = findViewById(R.id.returnMain_misRutinas_btn);
         fabMisRutinas = findViewById(R.id.fabMisRutinas);
-        returnMain_rutinasRecomendadas_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        //assert getSupportActionBar() != null;
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        fabMisRutinas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ActivityMisRutinas.this, ActivityCrearRutinas.class));;
-            }
-        });
-        routineViewModel = new RoutineViewModel(this);
+        routineViewModel = new RoutineViewModel(this,0);
         initlistaRutinas();
+
+        setOnClickListeners();
 
     }
     /*@Override
@@ -99,5 +90,34 @@ public class ActivityMisRutinas extends AppCompatActivity{
         Intent intent = new Intent(this, ActivityRoutineDescription.class);
         intent.putExtra("Rutina", item);
         startActivity(intent);
+    }
+    public void setOnClickListeners(){
+        returnMain_rutinasRecomendadas_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        //assert getSupportActionBar() != null;
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        fabMisRutinas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //ESTO SE HA DE PONER EN SU SITIO Y CON LA DB
+                ArrayList<ListExercice> ejersisios = new ArrayList<>();
+                ejersisios.add(routineViewModel.findExerciceById(104));
+                ejersisios.add(routineViewModel.findExerciceById(92));
+                ejersisios.add(routineViewModel.findExerciceById(97));
+                ejersisios.add(routineViewModel.findExerciceById(65));
+                ejersisios.add(routineViewModel.findExerciceById(28));
+                ejersisios.add(routineViewModel.findExerciceById(3));
+
+                routineViewModel.addRoutine(new Rutina("#000000","Celao's 2nd Rutine",ejersisios));
+                //startActivity(new Intent(ActivityMisRutinas.this, ActivityCrearRutinas.class));;
+                routineListAdapter.notifyDataSetChanged();
+
+            }
+        });
     }
 }

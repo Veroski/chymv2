@@ -14,20 +14,27 @@ public class InitializeData {
     private List<ListExercice> exercices;
     private List<Rutina> routines;
     private DatabaseHelper databaseHelper;
-    private Context context;
     private static InitializeData instance;
+    private static DatabaseHelper dbInstance;
+    private Context context;
+
     public static synchronized InitializeData getInstance(Context context) {
         if (instance == null) {
             instance = new InitializeData(context.getApplicationContext());
         }
         return instance;
     }
+    public static synchronized DatabaseHelper getDbInstance(Context context){
+        if(dbInstance == null){
+            dbInstance = new DatabaseHelper(context.getApplicationContext());
+        }
+        return dbInstance;
+    }
 
     public InitializeData(Context context){
-
         this.context = context;
         //Base de datos
-        databaseHelper = new DatabaseHelper(context);
+        databaseHelper = getDbInstance(context);
 
         //Listas de los objetos
         exercices = new ArrayList<>();

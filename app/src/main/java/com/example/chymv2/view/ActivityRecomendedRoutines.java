@@ -46,7 +46,7 @@ public class ActivityRecomendedRoutines extends AppCompatActivity implements Sea
         //assert getSupportActionBar() != null;
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        routineViewModel = new RoutineViewModel(this);
+        routineViewModel = new RoutineViewModel(this,2);
         initlistaRutinas();
         initListenerRoutines();
     }
