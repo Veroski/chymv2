@@ -145,12 +145,16 @@ public class EjerciciosDBtemporal {
             "#9402DE;HIIT;Cardio; \n" +
             "#9402DE;Bailar;Cardio; ";
 
-    private String tablaRutinas = "#FF0000;Rutina Pecho;1,6,7,12,15,119\n" +
-            "#00FF00;Rutina Full Body;1,20,40,60,80,100,120\n" +
-            "#000000;Rutina P&W;1,1,1,1,1,1\n" +
-            "#11FFF1;Rutina Piernas;50,38,75,111,29,115\n" +
-            "#FE0FE0;Rutina Espalda;33,15,7,95,100,43\n" +
-            "#F0F095;Rutina Push & Pull;1,3,46,77,112,115\n";
+    private String tablaRutinas = "#FF0000;Rutina Pecho;1,6,7,12,15,119;0\n" +
+            "#00FF00;Rutina Full Body;1,20,40,60,80,100,120;0\n" +
+            "#000000;Rutina P&W;1,1,1,1,1,1;0\n" +
+            "#11FFF1;Rutina Piernas;50,38,75,111,29,115;0\n" +
+            "#FE0FE0;Rutina Espalda;33,15,7,95,100,43;0\n" +
+            "#F0F095;Rutina Push & Pull;1,3,46,77,112,115;0\n"+
+            "#F0F095;Rutina Push & Pull;1,3,46,77,112,115;1\n"+
+            "#F0F095;Rutina Push & Pull;1,3,46,77,112,115;2\n"+
+            "#F0F095;Rutina Push & Pull;1,3,46,77,112,115;2\n"+
+            "#F0F095;Rutina Push & Pull;1,3,46,77,112,115;2\n";
 
 
     public ArrayList<String> dataTable(){

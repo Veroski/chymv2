@@ -11,11 +11,13 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.chymv2.R;
 import com.example.chymv2.adapters.RoutineListAdapter;
 import com.example.chymv2.model.ListExercice;
 import com.example.chymv2.model.Rutina;
+import com.example.chymv2.sources.DatabaseHelper;
 import com.example.chymv2.sources.InitializeData;
 import com.example.chymv2.viewmodel.RoutineViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -40,7 +42,7 @@ public class ActivityMisRutinas extends AppCompatActivity{
         returnMain_rutinasRecomendadas_btn = findViewById(R.id.returnMain_misRutinas_btn);
         fabMisRutinas = findViewById(R.id.fabMisRutinas);
 
-        routineViewModel = new RoutineViewModel(this,0);
+        routineViewModel = new RoutineViewModel(this,2);
         initlistaRutinas();
 
         setOnClickListeners();
@@ -113,7 +115,13 @@ public class ActivityMisRutinas extends AppCompatActivity{
                 ejersisios.add(routineViewModel.findExerciceById(28));
                 ejersisios.add(routineViewModel.findExerciceById(3));
 
-                routineViewModel.addRoutine(new Rutina("#000000","Celao's 2nd Rutine",ejersisios));
+                // Para que se vea instantaneo
+                routineViewModel.addRoutine(new Rutina("#000000","Celao's 2nd Rutine",ejersisios,"2"));
+                //Para guardar en DB
+                InitializeData.getDbInstance(ActivityMisRutinas.this).insertRoutineData("#000000","Celao's 2nd Rutine","104,92,97,65,28,3","2");
+                //Para guardar durante la ejecucion
+                InitializeData.getInstance(ActivityMisRutinas.this).addRoutineData(new Rutina("#000000","Celao's 2nd Rutine",ejersisios,"2"));
+                routineViewModel.actualizarLista(2);
                 //startActivity(new Intent(ActivityMisRutinas.this, ActivityCrearRutinas.class));;
                 routineListAdapter.notifyDataSetChanged();
 

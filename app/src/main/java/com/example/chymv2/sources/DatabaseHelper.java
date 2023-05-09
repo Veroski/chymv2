@@ -10,6 +10,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+    private ContentValues contentValues = new ContentValues();
     public static final String EXERCICES_ID = "COLUMN_ID";
     public static final String EXERCICES_COLOR = "COLUMN_COLOR";
     public static final String EXERCICES_NAME = "COLUMN_EXERCICE";
@@ -17,11 +18,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String EXERCICES_TYPE = "COLUMN_TYPE";
     public static final String EXERCICES_DESCRIPTION = "COLUMN_DESCRIPTION";
 
-    public static final String ROUTINE_ID = "COLUMN_TYPE";
+    public static final String ROUTINE_ID = "COLUMN_ID";
     public static final String ROUTINE_COLOR = "COLUMN_COLOR";
     public static final String ROUTINE_NAME = "COLUMN_NAME";
     public static final String ROUTINE_EXERCICES = "COLUMN_EXERCICES";
 
+    public static final String ROUTINE_LIST_ID = "COLUMN_ID_LIST";
 
 
     public DatabaseHelper(Context context) {
@@ -32,10 +34,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase DB) {
 
         DB.execSQL("create table Exercices(" + EXERCICES_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + EXERCICES_COLOR + " TEXT, " + EXERCICES_NAME + " TEXT, " + EXERCICES_GROUP + " TEXT, " + EXERCICES_TYPE + " TEXT, " + EXERCICES_DESCRIPTION + " TEXT )");
-        DB.execSQL("create table Routines(" + ROUTINE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + ROUTINE_COLOR + " TEXT, " + ROUTINE_NAME + " TEXT, " + ROUTINE_EXERCICES + " TEXT )");
-        ContentValues contentValues = new ContentValues();
+        DB.execSQL("create table Routines(" + ROUTINE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + ROUTINE_COLOR + " TEXT, " + ROUTINE_NAME + " TEXT, " + ROUTINE_EXERCICES + " TEXT, " + ROUTINE_LIST_ID + " TEXT )");
         initDatabaseExercices(contentValues, DB);
-        contentValues = new ContentValues();
+        contentValues.clear();
         initDatabaseRoutine(contentValues, DB);
 
     }
@@ -49,17 +50,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Boolean insertExerciceData(String color, String exercice, String group, String type,String description){
         SQLiteDatabase DB = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
         dataInsertionExercices(color,exercice,group,type,description,contentValues);
         long result = DB.insert("Exercices", null,contentValues);
+        contentValues.clear();
         return (result == -1);
     }
 
-    public Boolean insertRoutineData(String color, String routine,String listExercices){
+    public Boolean insertRoutineData(String color, String routine,String listExercices, String idList){
         SQLiteDatabase DB = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        dataInsertionRoutine(color,routine,listExercices,contentValues);
-        long result = DB.insert("Routine", null,contentValues);
+        dataInsertionRoutine(color,routine,listExercices,idList,contentValues);
+        long result = DB.insert("Routines", null,contentValues);
+        contentValues.clear();
         return (result == -1);
     }
     public Cursor getDataExercices(){
@@ -83,11 +84,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    private void dataInsertionRoutine(String color, String routine,String listExercices, ContentValues contentValues){
+    private void dataInsertionRoutine(String color, String routine,String listExercices, String idList, ContentValues contentValues){
 
         contentValues.put(ROUTINE_COLOR,color);
         contentValues.put(ROUTINE_NAME,routine);
         contentValues.put(ROUTINE_EXERCICES,listExercices);
+        contentValues.put(ROUTINE_LIST_ID,idList);
     }
 
     private void initDatabaseExercices(ContentValues contentValues,SQLiteDatabase DB){
@@ -103,8 +105,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private void initDatabaseRoutine(ContentValues contentValues,SQLiteDatabase DB){
         EjerciciosDBtemporal initialData = new EjerciciosDBtemporal();
         ArrayList<String> lista = initialData.routineTable();
-        for(int i = 0; i<lista.size()-2;i+=3){
-            dataInsertionRoutine(lista.get(i),lista.get(i+1),lista.get(i+2),contentValues);
+        for(int i = 0; i<lista.size()-3;i+=4){
+            dataInsertionRoutine(lista.get(i),lista.get(i+1),lista.get(i+2),lista.get(i+3),contentValues);
             DB.insert("Routines",null,contentValues);
 
         }

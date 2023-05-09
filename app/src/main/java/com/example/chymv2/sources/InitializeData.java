@@ -75,10 +75,14 @@ public class InitializeData {
                 String color = cursor.getString(1);
                 String routine = cursor.getString(2);
                 String listExercices = cursor.getString(3);
+                String idList = cursor.getString(4);
                 ArrayList<ListExercice> exercices = conversorStringToExercice(listExercices);
-                routines.add(new Rutina(color, routine, exercices));
+                routines.add(new Rutina(color, routine, exercices,idList));
             }
         }
+    }
+    public void addRoutineData(Rutina rutina){
+        routines.add(rutina);
     }
 
     public ArrayList<ListExercice>conversorStringToExercice(String lista){
