@@ -115,15 +115,9 @@ public class ActivityMisRutinas extends AppCompatActivity{
                 ejersisios.add(routineViewModel.findExerciceById(28));
                 ejersisios.add(routineViewModel.findExerciceById(3));
 
-                // Para que se vea instantaneo
                 routineViewModel.addRoutine(new Rutina("#000000","Celao's 2nd Rutine",ejersisios,"2"));
-                //Para guardar en DB
-                InitializeData.getDbInstance(ActivityMisRutinas.this).insertRoutineData("#000000","Celao's 2nd Rutine","104,92,97,65,28,3","2");
-                //Para guardar durante la ejecucion
-                InitializeData.getInstance(ActivityMisRutinas.this).addRoutineData(new Rutina("#000000","Celao's 2nd Rutine",ejersisios,"2"));
-                routineViewModel.actualizarLista(2);
-                //startActivity(new Intent(ActivityMisRutinas.this, ActivityCrearRutinas.class));;
                 routineListAdapter.notifyDataSetChanged();
+                //Ahora hay que hacer la logica para que se haga desde una ActivityCrearRutinas
 
             }
         });

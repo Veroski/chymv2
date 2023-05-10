@@ -14,6 +14,7 @@ import com.example.chymv2.sources.DatabaseHelper;
 import com.example.chymv2.sources.EjerciciosDBtemporal;
 import com.example.chymv2.sources.InitializeData;
 import com.example.chymv2.view.ActivityMain;
+import com.example.chymv2.view.ActivityMisRutinas;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,6 +84,10 @@ public class RoutineViewModel {
 
         RoutineElements.add(rutina);
         mRoutines.setValue(RoutineElements);
+        InitializeData.getInstance(context).addRoutineData(rutina);
+
+        InitializeData.getDbInstance(context).insertRoutineData(rutina.getColor(),rutina.getNombre(),ListaEjerciciosToStringId(rutina),rutina.getIdList());
+        actualizarLista(Integer.parseInt(rutina.getIdList()));
     }
     public List<Rutina> getRoutineByIdList(String idList){
         List<Rutina> rutinas = new ArrayList<>();
@@ -92,6 +97,17 @@ public class RoutineViewModel {
             }
         }
         return rutinas;
+    }
+    public String ListaEjerciciosToStringId(Rutina rutina){
+        String ids ="";
+        List<ListExercice> lista= rutina.getEjercicios();
+        for(int i=0;i<lista.size();i++){
+            ids += lista.get(i).getId();
+            if(i < lista.size() -1){
+                ids += ",";
+            }
+        }
+        return ids;
     }
 
 }
