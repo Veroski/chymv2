@@ -29,6 +29,7 @@ public class RoutineViewModel {
     private Context context;
 
     public RoutineViewModel(Context context, int vLista){
+        mRoutines = new MutableLiveData<>();
         this.context = context;
         data = InitializeData.getInstance(context);
         actualizarLista(vLista);
@@ -55,7 +56,7 @@ public class RoutineViewModel {
         List<Rutina> rutinas = new ArrayList<>();
         switch (vLista){
             case 0:
-
+                //Rutinas recomendadas
                 rutinas = getRoutineByIdList("0");
 
                 break;
@@ -77,7 +78,7 @@ public class RoutineViewModel {
     }
     public void actualizarLista(int vLista){
         RoutineElements = listaRutinasCorrespondiente(vLista);
-        mRoutines = new MutableLiveData<>();
+
         mRoutines.setValue(RoutineElements);
     }
     public void addRoutine(Rutina rutina){
@@ -108,6 +109,24 @@ public class RoutineViewModel {
             }
         }
         return ids;
+    }
+    public Rutina crearRutina(String color, String name, String listEx, String idList){
+
+        return new Rutina(color,name,StringToExercices(listEx),idList);
+    }
+    public ArrayList<ListExercice> StringToExercices(String listEx){
+        ArrayList<ListExercice> listExercices = new ArrayList<>();
+        String almacenar = "";
+        for(int i = 0; i<listEx.length();i++){
+            if(listEx.charAt(i) == ','){
+                listExercices.add(findExerciceById(Integer.parseInt(almacenar)));
+                almacenar = "";
+            }
+            else{
+                almacenar += listEx.charAt(i);
+            }
+        }
+        return listExercices;
     }
 
 }

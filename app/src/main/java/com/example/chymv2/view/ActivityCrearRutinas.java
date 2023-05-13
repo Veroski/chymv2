@@ -8,29 +8,36 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.chymv2.R;
+import com.example.chymv2.model.Rutina;
+import com.example.chymv2.viewmodel.RoutineViewModel;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class ActivityCrearRutinas extends AppCompatActivity {
 
-    Button returnMain_crearRutinas_btn;
+    private Button returnMain_crearRutinas_btn, btnCrearRutina;
+    private TextInputEditText colorRoutine, nameRoutine, ExerciceListRoutine;
+    private NavigationBarView navigation;
+    private RoutineViewModel routineViewModel;
+    private String color, nombre, listaEjs, idList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_rutinas);
-
-        NavigationBarView navigation = findViewById(R.id.bottom_navigation_crearRutinas);
+        routineViewModel = new RoutineViewModel(this,2);
+        navigation = findViewById(R.id.bottom_navigation_crearRutinas);
+        colorRoutine = findViewById(R.id.tvColorRoutine);
+        nameRoutine = findViewById(R.id.tvNameRoutine);
+        ExerciceListRoutine = findViewById(R.id.tvListaEjercicios);
+        returnMain_crearRutinas_btn = findViewById(R.id.returnMain_crearRutinas_btn);
+        btnCrearRutina = findViewById(R.id.btnRoutineCreate);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        returnMain_crearRutinas_btn = findViewById(R.id.returnMain_crearRutinas_btn);
+        onClickListeners();
 
-        returnMain_crearRutinas_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
 
         //assert getSupportActionBar() != null;
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -62,5 +69,28 @@ public class ActivityCrearRutinas extends AppCompatActivity {
             return false;
         }
     };
+    public void onClickListeners(){
+        returnMain_crearRutinas_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        btnCrearRutina.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                color = colorRoutine.getText().toString();
+                nombre = nameRoutine.getText().toString();
+                listaEjs = ExerciceListRoutine.getText().toString();
+                idList = "2";
+                Toast.makeText(ActivityCrearRutinas.this,color + " " + nombre + " " + listaEjs + " " + idList,Toast.LENGTH_LONG).show();
+                //Rutina rutina = new Rutina()
+                routineViewModel.addRoutine(routineViewModel.crearRutina(color,nombre,listaEjs,idList));
+            }
+        });
+    }
+
+
 
 }

@@ -106,19 +106,9 @@ public class ActivityMisRutinas extends AppCompatActivity{
         fabMisRutinas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //ESTO SE HA DE PONER EN SU SITIO Y CON LA DB
-                ArrayList<ListExercice> ejersisios = new ArrayList<>();
-                ejersisios.add(routineViewModel.findExerciceById(104));
-                ejersisios.add(routineViewModel.findExerciceById(92));
-                ejersisios.add(routineViewModel.findExerciceById(97));
-                ejersisios.add(routineViewModel.findExerciceById(65));
-                ejersisios.add(routineViewModel.findExerciceById(28));
-                ejersisios.add(routineViewModel.findExerciceById(3));
-
-                routineViewModel.addRoutine(new Rutina("#000000","Celao's 2nd Rutine",ejersisios,"2"));
-                routineListAdapter.notifyDataSetChanged();
-                //Ahora hay que hacer la logica para que se haga desde una ActivityCrearRutinas
-
+                Intent intent = new Intent(ActivityMisRutinas.this, ActivityCrearRutinas.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
