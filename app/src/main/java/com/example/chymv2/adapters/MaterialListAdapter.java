@@ -19,10 +19,12 @@ public class MaterialListAdapter extends RecyclerView.Adapter<MaterialListAdapte
     private LayoutInflater mInflater;
     private Context context;
 
-    public MaterialListAdapter(List<CardMaterial> itemMaterial, Context context){
+    final MaterialListAdapter.OnItemClickListener listener;
+    public MaterialListAdapter(List<CardMaterial> itemMaterial, Context context, OnItemClickListener listener){
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemMaterial;
+        this.listener = listener;
     }
 
 
@@ -42,6 +44,11 @@ public class MaterialListAdapter extends RecyclerView.Adapter<MaterialListAdapte
 
     public void setItems(List<CardMaterial> items){ mData = items;}
 
+    public interface OnItemClickListener {
+        void onItemClick(CardMaterial item);
+    }
+
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView name;
         CheckBox status;
@@ -55,6 +62,18 @@ public class MaterialListAdapter extends RecyclerView.Adapter<MaterialListAdapte
         void bindData(final CardMaterial item){
             name.setText(item.getName());
             status.setEnabled(item.isStatus());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(status.isChecked()){
+                        status.setChecked(false);
+                    }
+                    else{
+                        status.setChecked(true);
+                    }
+                    listener.onItemClick(item);
+                }
+            });
         }
     }
 }

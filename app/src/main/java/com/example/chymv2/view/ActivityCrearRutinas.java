@@ -39,15 +39,7 @@ public class ActivityCrearRutinas extends AppCompatActivity {
         onClickListeners();
 
 
-        //assert getSupportActionBar() != null;
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-
-    /*@Override
-    public boolean onSupportNavigateUp() {
-        finish();
-        return true;
-    }*/
 
     private final NavigationBarView.OnItemSelectedListener mOnNavigationItemSelectedListener = new NavigationBarView.OnItemSelectedListener() {
         @Override

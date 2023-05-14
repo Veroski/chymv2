@@ -111,6 +111,7 @@ public class ActivitySignUp extends AppCompatActivity {
                     reference.child(user.getUid()).setValue(usuario);
 
                     startActivity(new Intent(ActivitySignUp.this, ActivitySignIn.class));
+                    Toast.makeText(ActivitySignUp.this, "Bienvenido "+user.getEmail(), Toast.LENGTH_SHORT).show();
                     finish();
                 }
                 else{

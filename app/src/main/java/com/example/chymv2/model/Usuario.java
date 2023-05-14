@@ -27,11 +27,15 @@ public class Usuario {
         this.premium = premium;
         this.imagen = imagen;
         this.userUID = userUID;
+        materiales = new ArrayList<String>();
+        materiales.add("Peso Corporal");
     }
 
     public Usuario(String username, String correo) {
         this.username = username;
         this.correo = correo;
+        materiales = new ArrayList<String>();
+        materiales.add("Peso Corporal");
     }
 
     public String getUsername() {
