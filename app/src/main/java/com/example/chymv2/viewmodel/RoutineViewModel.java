@@ -81,14 +81,15 @@ public class RoutineViewModel {
 
         mRoutines.setValue(RoutineElements);
     }
-    public void addRoutine(Rutina rutina){
+    public boolean addRoutine(Rutina rutina){
 
         RoutineElements.add(rutina);
         mRoutines.setValue(RoutineElements);
         InitializeData.getInstance(context).addRoutineData(rutina);
 
-        InitializeData.getDbInstance(context).insertRoutineData(rutina.getColor(),rutina.getNombre(),ListaEjerciciosToStringId(rutina),rutina.getIdList());
+        boolean problemsAdding = InitializeData.getDbInstance(context).insertRoutineData(rutina.getColor(),rutina.getNombre(),ListaEjerciciosToStringId(rutina),rutina.getIdList());
         actualizarLista(Integer.parseInt(rutina.getIdList()));
+        return problemsAdding;
     }
     public List<Rutina> getRoutineByIdList(String idList){
         List<Rutina> rutinas = new ArrayList<>();

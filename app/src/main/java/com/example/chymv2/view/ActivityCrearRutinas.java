@@ -84,9 +84,14 @@ public class ActivityCrearRutinas extends AppCompatActivity {
                 nombre = nameRoutine.getText().toString();
                 listaEjs = ExerciceListRoutine.getText().toString();
                 idList = "2";
-                Toast.makeText(ActivityCrearRutinas.this,color + " " + nombre + " " + listaEjs + " " + idList,Toast.LENGTH_LONG).show();
-                //Rutina rutina = new Rutina()
-                routineViewModel.addRoutine(routineViewModel.crearRutina(color,nombre,listaEjs,idList));
+                boolean problemsAdding = routineViewModel.addRoutine(routineViewModel.crearRutina(color,nombre,listaEjs,idList));
+                if(!problemsAdding){
+                    Toast.makeText(ActivityCrearRutinas.this,"Rutina añadida correctamente a Mis Rutinas", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(ActivityCrearRutinas.this,"Error al añadir Rutina a Mis Rutinas", Toast.LENGTH_SHORT).show();
+                    //Eliminar la rutina de la base de datos ipsofacto
+                }
             }
         });
     }
