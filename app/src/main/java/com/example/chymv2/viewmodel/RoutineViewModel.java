@@ -53,7 +53,7 @@ public class RoutineViewModel {
     }
 
     public List<Rutina> listaRutinasCorrespondiente(int vLista){
-        List<Rutina> rutinas = new ArrayList<>();
+        List<Rutina> rutinas;
         switch (vLista){
             case 0:
                 //Rutinas recomendadas

@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 
 public class ExerciceListAdapter extends RecyclerView.Adapter<ExerciceListAdapter.ViewHolder> {
     private List<ListExercice> data;
+    private List<ListExercice> filteredData;
     private LayoutInflater mInflater;
     private Context context;
     private List<ListExercice> originalExercices;
@@ -31,6 +32,8 @@ public class ExerciceListAdapter extends RecyclerView.Adapter<ExerciceListAdapte
         this.data = itemList;
         this.originalExercices = new ArrayList<>();
         originalExercices.addAll(itemList);
+        this.filteredData = new ArrayList<>();
+        filteredData.addAll(itemList);
         this.listener = listener;
     }
     public interface OnItemClickListener{
@@ -50,6 +53,7 @@ public class ExerciceListAdapter extends RecyclerView.Adapter<ExerciceListAdapte
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.bindData(data.get(position));
+
     }
 
     public void setItems(List<ListExercice> items) {
@@ -57,15 +61,38 @@ public class ExerciceListAdapter extends RecyclerView.Adapter<ExerciceListAdapte
     }
 
     public void filter(String strSearch) {
+
+        nameFiltrationAlgortihm(strSearch);
+    }
+
+    public void filterByType(String strFilter){
+            if(strFilter.equals("Todo")){
+                data.clear();
+                data.addAll(originalExercices);
+                filteredData.clear();
+                filteredData.addAll(originalExercices);
+            }
+            else {
+                data.clear();
+                List<ListExercice> collect = originalExercices.stream().filter(i -> i.getGrupoMuscular().equals(strFilter)).collect(Collectors.toList());
+                data.addAll(collect);
+                filteredData.clear();
+                filteredData.addAll(collect);
+            }
+        }
+
+
+    public void nameFiltrationAlgortihm(String strSearch){
         if (strSearch.length() == 0) {
             data.clear();
-            data.addAll(originalExercices);
+            data.addAll(filteredData);
         } else {
             data.clear();
-            List<ListExercice> collect = originalExercices.stream().filter(i -> i.getEjercicio().toLowerCase().contains(strSearch.toLowerCase())).collect(Collectors.toList());
+            List<ListExercice> collect = filteredData.stream().filter(i -> i.getEjercicio().toLowerCase().contains(strSearch.toLowerCase())).collect(Collectors.toList());
             data.addAll(collect);
         }
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iconImage;

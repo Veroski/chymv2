@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="combo_musculos">
+        <item>Todo</item>
+        <item>Pecho</item>
+        <item>Espalda</item>
+        <item>Pierna</item>
+        <item>Triceps</item>
+        <item>Biceps</item>
+        <item>Antebrazo</item>
+        <item>Hombro</item>
+        <item>Abdominales</item>
+        <item>Cardio</item>
+
+    </string-array>
+
+</resources>

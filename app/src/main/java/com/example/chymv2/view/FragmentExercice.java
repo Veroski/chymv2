@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,6 +42,7 @@ public class FragmentExercice extends Fragment implements SearchView.OnQueryText
     private ExerciceListAdapter exerciceListAdapter;
     private ExercicesViewModel exercicesViewModel;
     private androidx.appcompat.widget.SearchView svSearch;
+    private Spinner spinner;
 
 
     public FragmentExercice() {
@@ -102,10 +107,17 @@ public class FragmentExercice extends Fragment implements SearchView.OnQueryText
         exerciceListAdapter.notifyDataSetChanged();
         svSearch = view.findViewById(R.id.svSearch);
 
+        //Spinner init logic
+        spinner = view.findViewById(R.id.spinnerEx);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.combo_musculos, android.R.layout.simple_spinner_item);
+        spinner.setAdapter(adapter);
+
+        //Recyclerview init logic
         recyclerView = view.findViewById(R.id.listRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(exerciceListAdapter);
+        onClickListeners();
     }
 
     private void initListenerExercices(){
@@ -127,5 +139,22 @@ public class FragmentExercice extends Fragment implements SearchView.OnQueryText
         Intent intent = new Intent(getContext(), ActivityExerciceDescription.class);
         intent.putExtra("ListExercice", item);
         startActivity(intent);
+    }
+
+    public void onClickListeners(){
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getContext(),"Seleccionado: " + adapterView.getItemAtPosition(i).toString(),Toast.LENGTH_LONG).show();
+                exerciceListAdapter.filterByType(adapterView.getItemAtPosition(i).toString());
+                svSearch.setQuery("",true);
+                exerciceListAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 }
