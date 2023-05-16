@@ -4,13 +4,26 @@
         <item>Todo</item>
         <item>Pecho</item>
         <item>Espalda</item>
-        <item>Pierna</item>
+        <item>Piernas</item>
         <item>Triceps</item>
         <item>Biceps</item>
         <item>Antebrazo</item>
         <item>Hombro</item>
         <item>Abdominales</item>
         <item>Cardio</item>
+
+    </string-array>
+
+    <string-array name="combo_rutina">
+        <item>Todo</item>
+        <item>FullBody</item>
+        <item>Pecho</item>
+        <item>Espalda</item>
+        <item>Piernas</item>
+        <item>Brazo</item>
+        <item>Abdominales</item>
+        <item>Cardio</item>
+
 
     </string-array>
 

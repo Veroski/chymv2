@@ -85,9 +85,8 @@ public class RoutineViewModel {
 
         RoutineElements.add(rutina);
         mRoutines.setValue(RoutineElements);
+        boolean problemsAdding = InitializeData.getDbInstance(context).insertRoutineData(rutina.getColor(),rutina.getNombre(),rutina.getRoutineType(),ListaEjerciciosToStringId(rutina),rutina.getIdList());
         InitializeData.getInstance(context).addRoutineData(rutina);
-
-        boolean problemsAdding = InitializeData.getDbInstance(context).insertRoutineData(rutina.getColor(),rutina.getNombre(),ListaEjerciciosToStringId(rutina),rutina.getIdList());
         actualizarLista(Integer.parseInt(rutina.getIdList()));
         return problemsAdding;
     }
@@ -111,9 +110,9 @@ public class RoutineViewModel {
         }
         return ids;
     }
-    public Rutina crearRutina(String color, String name, String listEx, String idList){
+    public Rutina crearRutina(String color, String name,String routineType, String listEx, String idList){
 
-        return new Rutina(color,name,StringToExercices(listEx),idList);
+        return new Rutina(color,name,routineType,StringToExercices(listEx),idList);
     }
     public ArrayList<ListExercice> StringToExercices(String listEx){
         ArrayList<ListExercice> listExercices = new ArrayList<>();

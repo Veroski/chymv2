@@ -74,10 +74,11 @@ public class InitializeData {
 
                 String color = cursor.getString(1);
                 String routine = cursor.getString(2);
-                String listExercices = cursor.getString(3);
-                String idList = cursor.getString(4);
+                String routineType = cursor.getString(3);
+                String listExercices = cursor.getString(4);
+                String idList = cursor.getString(5);
                 ArrayList<ListExercice> exercices = conversorStringToExercice(listExercices);
-                routines.add(new Rutina(color, routine, exercices,idList));
+                routines.add(new Rutina(color, routine,routineType, exercices,idList));
             }
         }
     }

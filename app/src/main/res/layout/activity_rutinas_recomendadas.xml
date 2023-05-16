@@ -6,7 +6,18 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     tools:context=".view.ActivityMisRutinas">
-
+    <TextView
+        android:id = "@+id/tvListaRutinasRecomendadas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rutinas recomendadas"
+        android:textSize ="35dp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/layout_rutinasRecomendadas_top"
+        />
     <LinearLayout
         android:id="@+id/layout_rutinasRecomendadas_top"
         android:layout_width="match_parent"
@@ -14,13 +25,14 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/tvListaRutinasRecomendadas"
+        android:layout_marginTop="25dp">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/returnMain_rutinasRecomendadas_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:paddingStart="8dp"
             android:drawableLeft="@drawable/flechaatras"
             android:background="@color/colorPrimary"/>
@@ -30,8 +42,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:iconifiedByDefault="false"
-            android:layout_weight="8"
-            app:queryHint="Buscar ejercicios" />
+            android:layout_weight="4"
+            app:queryHint="Buscar rutinas" />
+        <Spinner
+            android:id="@+id/spinnerRutinasRecomendadas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             />
     </LinearLayout>
 
     <FrameLayout

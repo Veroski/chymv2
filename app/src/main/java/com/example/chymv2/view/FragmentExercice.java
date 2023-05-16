@@ -145,7 +145,7 @@ public class FragmentExercice extends Fragment implements SearchView.OnQueryText
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getContext(),"Seleccionado: " + adapterView.getItemAtPosition(i).toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"Seleccionado: " + adapterView.getItemAtPosition(i).toString(),Toast.LENGTH_SHORT).show();
                 exerciceListAdapter.filterByType(adapterView.getItemAtPosition(i).toString());
                 svSearch.setQuery("",true);
                 exerciceListAdapter.notifyDataSetChanged();

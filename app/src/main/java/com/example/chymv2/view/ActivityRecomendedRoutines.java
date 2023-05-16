@@ -10,7 +10,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.chymv2.R;
 import com.example.chymv2.adapters.RoutineListAdapter;
@@ -26,6 +30,7 @@ public class ActivityRecomendedRoutines extends AppCompatActivity implements Sea
     private androidx.appcompat.widget.SearchView routineSearch;
 
     private Button returnMain_misRutinas_btn;
+    private Spinner spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +54,7 @@ public class ActivityRecomendedRoutines extends AppCompatActivity implements Sea
         routineViewModel = new RoutineViewModel(this,0);
         initlistaRutinas();
         initListenerRoutines();
+        onClickListeners();
     }
     private final NavigationBarView.OnItemSelectedListener mOnNavigationItemSelectedListener = new NavigationBarView.OnItemSelectedListener() {
         @Override
@@ -81,6 +87,12 @@ public class ActivityRecomendedRoutines extends AppCompatActivity implements Sea
         routineListAdapter.notifyDataSetChanged();
         routineSearch = findViewById(R.id.routineSearch);
 
+        //Spinner
+        spinner = findViewById(R.id.spinnerRutinasRecomendadas);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(ActivityRecomendedRoutines.this,R.array.combo_rutina, android.R.layout.simple_spinner_item);
+        spinner.setAdapter(adapter);
+
+        //RecyclerView
         recyclerView = findViewById(R.id.routineListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -105,6 +117,22 @@ public class ActivityRecomendedRoutines extends AppCompatActivity implements Sea
         Intent intent = new Intent(this, ActivityRoutineDescription.class);
         intent.putExtra("Rutina", item);
         startActivity(intent);
+    }
+    public void onClickListeners(){
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(ActivityRecomendedRoutines.this,"Seleccionado: " + adapterView.getItemAtPosition(i).toString(),Toast.LENGTH_SHORT).show();
+                routineListAdapter.filterByType(adapterView.getItemAtPosition(i).toString());
+                routineSearch.setQuery("",true);
+                routineListAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
 

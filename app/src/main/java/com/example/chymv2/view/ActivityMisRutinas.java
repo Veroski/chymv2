@@ -10,7 +10,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.chymv2.R;
@@ -25,12 +28,14 @@ import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
 
-public class ActivityMisRutinas extends AppCompatActivity{
+public class ActivityMisRutinas extends AppCompatActivity implements SearchView.OnQueryTextListener{
     private RecyclerView recyclerView;
     private RoutineListAdapter routineListAdapter;
     private RoutineViewModel routineViewModel;
     private Button returnMain_rutinasRecomendadas_btn;
     private FloatingActionButton fabMisRutinas;
+    private Spinner spinner;
+    private androidx.appcompat.widget.SearchView svSearch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +49,7 @@ public class ActivityMisRutinas extends AppCompatActivity{
 
         routineViewModel = new RoutineViewModel(this,2);
         initlistaRutinas();
-
+        initListenerRoutines();
         setOnClickListeners();
 
     }
@@ -82,11 +87,31 @@ public class ActivityMisRutinas extends AppCompatActivity{
             }
         });
         routineListAdapter.notifyDataSetChanged();
+        svSearch = findViewById(R.id.routineSearch);
+        //Spinner
+        spinner = findViewById(R.id.spinnerMisRutinas);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(ActivityMisRutinas.this,R.array.combo_rutina, android.R.layout.simple_spinner_item);
+        spinner.setAdapter(adapter);
 
+        //RecyclerView
         recyclerView = findViewById(R.id.routineListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(routineListAdapter);
+    }
+    private void initListenerRoutines(){
+        svSearch.setOnQueryTextListener(this);
+    }
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        routineListAdapter.filter(s);
+        routineListAdapter.notifyDataSetChanged();
+        return false;
     }
     public void moveToRoutine(Rutina item){
         Intent intent = new Intent(this, ActivityRoutineDescription.class);
@@ -109,6 +134,21 @@ public class ActivityMisRutinas extends AppCompatActivity{
                 Intent intent = new Intent(ActivityMisRutinas.this, ActivityCrearRutinas.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getApplicationContext(),"Seleccionado: " + adapterView.getItemAtPosition(i).toString(),Toast.LENGTH_SHORT).show();
+                routineListAdapter.filterByType(adapterView.getItemAtPosition(i).toString());
+                svSearch.setQuery("",true);
+                routineListAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
     }

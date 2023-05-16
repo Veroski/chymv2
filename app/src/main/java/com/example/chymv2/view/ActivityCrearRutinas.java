@@ -19,19 +19,22 @@ import com.google.android.material.textfield.TextInputEditText;
 public class ActivityCrearRutinas extends AppCompatActivity {
 
     private Button returnMain_crearRutinas_btn, btnCrearRutina;
-    private TextInputEditText colorRoutine, nameRoutine, ExerciceListRoutine;
+    private TextInputEditText tvColorRoutine, tvNameRoutine,tvRoutineType, tvExerciceListRoutine;
     private NavigationBarView navigation;
     private RoutineViewModel routineViewModel;
-    private String color, nombre, listaEjs, idList;
+    private String color, nombre,routineType,listaEjs, idList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_rutinas);
         routineViewModel = new RoutineViewModel(this,2);
         navigation = findViewById(R.id.bottom_navigation_crearRutinas);
-        colorRoutine = findViewById(R.id.tvColorRoutine);
-        nameRoutine = findViewById(R.id.tvNameRoutine);
-        ExerciceListRoutine = findViewById(R.id.tvListaEjercicios);
+
+        tvColorRoutine = findViewById(R.id.tvColorRoutine);
+        tvRoutineType = findViewById(R.id.tvTypeRoutine);
+        tvNameRoutine = findViewById(R.id.tvNameRoutine);
+        tvExerciceListRoutine = findViewById(R.id.tvListaEjercicios);
+
         returnMain_crearRutinas_btn = findViewById(R.id.returnMain_crearRutinas_btn);
         btnCrearRutina = findViewById(R.id.btnRoutineCreate);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -72,11 +75,12 @@ public class ActivityCrearRutinas extends AppCompatActivity {
         btnCrearRutina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                color = colorRoutine.getText().toString();
-                nombre = nameRoutine.getText().toString();
-                listaEjs = ExerciceListRoutine.getText().toString();
+                color = tvColorRoutine.getText().toString();
+                nombre = tvNameRoutine.getText().toString();
+                routineType = tvRoutineType.getText().toString();
+                listaEjs = tvExerciceListRoutine.getText().toString();
                 idList = "2";
-                boolean problemsAdding = routineViewModel.addRoutine(routineViewModel.crearRutina(color,nombre,listaEjs,idList));
+                boolean problemsAdding = routineViewModel.addRoutine(routineViewModel.crearRutina(color,nombre,routineType,listaEjs,idList));
                 if(!problemsAdding){
                     Toast.makeText(ActivityCrearRutinas.this,"Rutina añadida correctamente a Mis Rutinas", Toast.LENGTH_SHORT).show();
                 }

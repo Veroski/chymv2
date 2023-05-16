@@ -16,12 +16,14 @@ public class Rutina implements Serializable {
     boolean subida;
     String color;
     String idList;
+    String routineType;
 
-    public Rutina(String color,String nombre,ArrayList<ListExercice> ejercicios, String idList){
+    public Rutina(String color,String nombre,String routineType,ArrayList<ListExercice> ejercicios, String idList){
         this.nombre = nombre;
         this.color = color;
         this.ejercicios = ejercicios;
         this.idList = idList;
+        this.routineType = routineType;
     }
     public Rutina(String nombre, ArrayList<ListExercice> ejercicios, String descripcion, boolean subida) {
         this.nombre = nombre;
@@ -30,6 +32,14 @@ public class Rutina implements Serializable {
         this.musculos = new HashSet<String>();
         this.descripcion = descripcion;
         this.subida = subida;
+    }
+
+    public String getRoutineType() {
+        return routineType;
+    }
+
+    public void setRoutineType(String routineType) {
+        this.routineType = routineType;
     }
 
     public String getIdList() {
