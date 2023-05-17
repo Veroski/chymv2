@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -95,6 +96,7 @@ public class FragmentExercice extends Fragment implements SearchView.OnQueryText
         exercicesViewModel = new ExercicesViewModel(getContext());
         initlistaEjercicios(view);
         initListenerExercices();
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
     private void initlistaEjercicios(View view) {

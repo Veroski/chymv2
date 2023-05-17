@@ -1,30 +1,24 @@
 package com.example.chymv2.viewmodel;
 
 import android.content.Context;
-import android.database.Cursor;
-import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.chymv2.model.ListExercice;
-import com.example.chymv2.sources.DatabaseHelper;
-import com.example.chymv2.sources.EjerciciosDBtemporal;
 import com.example.chymv2.sources.InitializeData;
-import com.example.chymv2.view.ActivityMain;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExercicesViewModel extends ViewModel {
+public class CrearRutinasViewModel {
     private MutableLiveData<List<ListExercice>> mExercices;
     private List<ListExercice> elements;
     private MutableLiveData<Boolean> isUpdating = new MutableLiveData<>();
     private InitializeData data;
-    public ExercicesViewModel(Context context){
+    public CrearRutinasViewModel(Context context){
         data = InitializeData.getInstance(context);
-        elements = data.getAllListExercice();
+        elements = new ArrayList<>();
         mExercices = new MutableLiveData<>();
         mExercices.setValue(elements);
     }
@@ -41,7 +35,4 @@ public class ExercicesViewModel extends ViewModel {
     public void setElements(List<ListExercice> items){
         elements = items;
     }
-
-
 }
-

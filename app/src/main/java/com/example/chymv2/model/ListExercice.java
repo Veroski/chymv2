@@ -9,6 +9,7 @@ public class ListExercice implements Serializable {
     String tipoEjercicio;
     int id;
     String descripcion;
+    String SRK;
 
     public ListExercice(String color, String ejercicio, String grupoMuscular, String tipoEjercicio,int id,String descripcion) {
         this.color = color;
@@ -17,6 +18,15 @@ public class ListExercice implements Serializable {
         this.tipoEjercicio = tipoEjercicio;
         this.id = id;
         this.descripcion = descripcion;
+        this.SRK = null;
+    }
+
+    public String getSRK() {
+        return SRK;
+    }
+
+    public void setSRK(String SRK) {
+        this.SRK = SRK;
     }
 
     public String getDescripcion() {
