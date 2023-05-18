@@ -3,14 +3,16 @@ package com.example.chymv2.model;
 import java.io.Serializable;
 
 public class ListExercice implements Serializable {
-    String color;
-    String ejercicio;
-    String grupoMuscular;
-    String tipoEjercicio;
-    int id;
-    String descripcion;
-    String SRK;
-    boolean selected = false;
+    private String color;
+    private String ejercicio;
+    private String grupoMuscular;
+    private String tipoEjercicio;
+    private int id;
+    private String descripcion;
+    private int series;
+    private String repeticiones;
+    private String kg;
+    String selected;
     public ListExercice(String color, String ejercicio, String grupoMuscular, String tipoEjercicio,int id,String descripcion) {
         this.color = color;
         this.ejercicio = ejercicio;
@@ -18,24 +20,42 @@ public class ListExercice implements Serializable {
         this.tipoEjercicio = tipoEjercicio;
         this.id = id;
         this.descripcion = descripcion;
-        this.SRK = null;
+        this.selected = "#FFFFFF";
     }
 
-    public boolean isSelected() {
+    public int getSeries() {
+        return series;
+    }
+
+    public void setSeries(int series) {
+        this.series = series;
+    }
+
+    public String getRepeticiones() {
+        return repeticiones;
+    }
+
+    public void setRepeticiones(String repeticiones) {
+        this.repeticiones = repeticiones;
+    }
+
+    public String getKg() {
+        return kg;
+    }
+
+    public void setKg(String kg) {
+        this.kg = kg;
+    }
+
+    public String getSelected() {
         return selected;
     }
 
-    public void setSelected(boolean selected) {
+    public void setSelected(String selected) {
         this.selected = selected;
     }
 
-    public String getSRK() {
-        return SRK;
-    }
 
-    public void setSRK(String SRK) {
-        this.SRK = SRK;
-    }
 
     public String getDescripcion() {
         return descripcion;

@@ -19,9 +19,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chymv2.R;
 import com.example.chymv2.model.ListExercice;
+import com.example.chymv2.sources.InitializeData;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Handler;
 import java.util.stream.Collectors;
 
 public class PopUpCrearRutinasAdapter extends RecyclerView.Adapter<PopUpCrearRutinasAdapter.ViewHolderPopUp>{
@@ -30,7 +32,7 @@ public class PopUpCrearRutinasAdapter extends RecyclerView.Adapter<PopUpCrearRut
     private LayoutInflater mInflater;
     private Context context;
     private List<ListExercice> originalExercices;
-    private int selectedItem = RecyclerView.NO_POSITION;
+
 
     final PopUpCrearRutinasAdapter.OnItemClickListener listener;
     public PopUpCrearRutinasAdapter(List<ListExercice> itemList, Context context, PopUpCrearRutinasAdapter.OnItemClickListener listener) {
@@ -42,6 +44,7 @@ public class PopUpCrearRutinasAdapter extends RecyclerView.Adapter<PopUpCrearRut
         this.filteredData = new ArrayList<>();
         filteredData.addAll(itemList);
         this.listener = listener;
+
     }
     public interface OnItemClickListener{
         void onItemClick(ListExercice item);
@@ -59,7 +62,10 @@ public class PopUpCrearRutinasAdapter extends RecyclerView.Adapter<PopUpCrearRut
 
     @Override
     public void onBindViewHolder(final PopUpCrearRutinasAdapter.ViewHolderPopUp holder, final int position) {
+
+        //holder.bindData(InitializeData.getInstance(context).findExerciceById(data.get(position).getId()));
         holder.bindData(data.get(position));
+
 
     }
 
@@ -106,33 +112,36 @@ public class PopUpCrearRutinasAdapter extends RecyclerView.Adapter<PopUpCrearRut
         TextView ejercicio, grupoMuscular, tipoEjercicio;
         LinearLayout backGround;
         Drawable backgroundDrawable;
+
         public ViewHolderPopUp(View itemView) {
             super(itemView);
             //iconImage = itemView.findViewById(R.id.iconImageView);
             ejercicio = itemView.findViewById(R.id.muscleTextViewPopUp);
             grupoMuscular = itemView.findViewById(R.id.bodyPartTextViewPopUp);
             tipoEjercicio = itemView.findViewById(R.id.typeTextViewPopUp);
-            backGround = itemView.findViewById(R.id.LinearLayoutPopUp);
-            backgroundDrawable = backGround.getBackground();
+            backGround = itemView.findViewById(R.id.cardPopUp);
+
         }
+
 
         public void bindData(final ListExercice item) {
             //iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
             ejercicio.setText(item.getEjercicio());
             grupoMuscular.setText(item.getGrupoMuscular());
             tipoEjercicio.setText(item.getTipoEjercicio());
+            backGround.setBackgroundColor(Color.parseColor(item.getSelected()));
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onItemClick(item);
-                    if(item.isSelected()){
-                        backGround.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                        item.setSelected(false);
+                    if(item.getSelected().equals("#FFFFFF")){
+                        item.setSelected("#D9D9D9");
                     }
                     else {
-                        backGround.setBackgroundColor(Color.parseColor("#D9D9D9"));
-                        item.setSelected(true);
+                        item.setSelected("#FFFFFF");
                     }
+                    backGround.setBackgroundColor(Color.parseColor(item.getSelected()));
+                    listener.onItemClick(item);
+
                 }
             });
 

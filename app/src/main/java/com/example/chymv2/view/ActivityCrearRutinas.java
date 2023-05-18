@@ -134,10 +134,11 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
                 }
             }
         });
+        //PopUp de añadir ejercicios
         fabAddExercices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {;
-                showPopUpView();
+                showPopUpViewCrear();
             }
         });
     }
@@ -146,7 +147,7 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
         exerciceListAdapter = new ExerciceListAdapter(crearRutinasViewModel.getExercices().getValue(), this, new ExerciceListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(ListExercice item) {
-
+                //showPopUpViewEditar();
             }
         });
         rvCrearRutinas.setLayoutManager(new LinearLayoutManager(this));
@@ -158,13 +159,13 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 
-                            ACTIVITY POP UP
+                            ACTIVITY POP UP AÑADIR EJERCICIOS
 
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
  */
-    public void showPopUpView(){
+    public void showPopUpViewCrear(){
         elements = new ArrayList<>();
 
         myDialog.setContentView(R.layout.activity_pop_up_crear_rutinas);
@@ -213,6 +214,7 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
             public void onClick(View view) {
                 for(ListExercice i: elements){
                     ListExercice newExercice = i;
+                    i.setSelected("#FFFFFF");
                     crearRutinasViewModel.addNewValue(newExercice);
                     exerciceListAdapter.notifyDataSetChanged();
                 }
@@ -223,18 +225,24 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
         myDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialogInterface) {
+                for(ListExercice i:exercicesViewModelPopUp.getExercices().getValue()){
+                    i.setSelected("#FFFFFF");
+                }
                 popUpCrearRutinasAdapter.filterByType("Todo");
             }
         });
     }
 
     public void initListEjercicios(){
+
         popUpCrearRutinasAdapter = new PopUpCrearRutinasAdapter(exercicesViewModelPopUp.getExercices().getValue(), myDialog.getContext(), new PopUpCrearRutinasAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(ListExercice item) {
+
                 if(!elements.contains(item)){
                     elements.add(item);
                 }
+
             }
         });
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(myDialog.getContext(), R.array.combo_musculos, android.R.layout.simple_spinner_item);
@@ -257,5 +265,28 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
         popUpCrearRutinasAdapter.filter(newText);
         popUpCrearRutinasAdapter.notifyDataSetChanged();
         return false;
+    }
+/*
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+
+                      ACTIVITY POP UP EDITAR EJERCICIOS
+
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+*/
+
+    public void showPopUpViewEditar(){
+
+        myDialog.setContentView(R.layout.activity_pop_up_crear_rutinas);
+        myDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+
+
+        searchPopUp.requestFocus();
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
     }
 }
