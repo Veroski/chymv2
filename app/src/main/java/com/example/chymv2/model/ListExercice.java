@@ -10,7 +10,7 @@ public class ListExercice implements Serializable {
     int id;
     String descripcion;
     String SRK;
-
+    boolean selected = false;
     public ListExercice(String color, String ejercicio, String grupoMuscular, String tipoEjercicio,int id,String descripcion) {
         this.color = color;
         this.ejercicio = ejercicio;
@@ -19,6 +19,14 @@ public class ListExercice implements Serializable {
         this.id = id;
         this.descripcion = descripcion;
         this.SRK = null;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 
     public String getSRK() {

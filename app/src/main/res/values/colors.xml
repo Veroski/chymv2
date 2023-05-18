@@ -11,4 +11,6 @@
     <color name="strongRed">#a51e22</color>
     <color name="strongBlue">#2199B0</color>
     <color name="azulFlaco">#00D6FF</color>
+    <color name="grisSeleccion">#939DA1</color>
+
 </resources>

@@ -35,4 +35,13 @@ public class CrearRutinasViewModel {
     public void setElements(List<ListExercice> items){
         elements = items;
     }
+
+    public String listaToTexto(List<ListExercice> items){
+        String accum="";
+        for(ListExercice i:items){
+            accum+= i.getId() + ",";
+        }
+        return accum;
+    }
+
 }

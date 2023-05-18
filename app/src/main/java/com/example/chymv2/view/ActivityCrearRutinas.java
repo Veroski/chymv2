@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.chymv2.R;
 import com.example.chymv2.adapters.ExerciceListAdapter;
+import com.example.chymv2.adapters.PopUpCrearRutinasAdapter;
 import com.example.chymv2.model.ListExercice;
 import com.example.chymv2.model.Rutina;
 import com.example.chymv2.viewmodel.CrearRutinasViewModel;
@@ -44,7 +46,7 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
     private String color, nombre,routineType,listaEjs, idList;
     private FloatingActionButton fabAddExercices;
     private Dialog myDialog;
-    private ExerciceListAdapter exerciceListAdapterPopUp;
+    private PopUpCrearRutinasAdapter popUpCrearRutinasAdapter;
     private ExerciceListAdapter exerciceListAdapter;
     private ExercicesViewModel exercicesViewModelPopUp;
     private CrearRutinasViewModel crearRutinasViewModel;
@@ -120,7 +122,7 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
                 color = tvColorRoutine.getText().toString();
                 nombre = tvNameRoutine.getText().toString();
                 routineType = tvRoutineType.getText().toString();
-                //listaEjs = tvExerciceListRoutine.getText().toString();
+                listaEjs = crearRutinasViewModel.listaToTexto(elements);
                 idList = "2";
                 boolean problemsAdding = routineViewModel.addRoutine(routineViewModel.crearRutina(color,nombre,routineType,listaEjs,idList));
                 if(!problemsAdding){
@@ -187,6 +189,7 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
         closePopUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 myDialog.dismiss();
             }
         });
@@ -195,9 +198,9 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(myDialog.getContext(),"Seleccionado: " + adapterView.getItemAtPosition(i).toString(),Toast.LENGTH_SHORT).show();
-                exerciceListAdapterPopUp.filterByType(adapterView.getItemAtPosition(i).toString());
+                popUpCrearRutinasAdapter.filterByType(adapterView.getItemAtPosition(i).toString());
                 searchPopUp.setQuery("",true);
-                exerciceListAdapterPopUp.notifyDataSetChanged();
+                popUpCrearRutinasAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -213,23 +216,32 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
                     crearRutinasViewModel.addNewValue(newExercice);
                     exerciceListAdapter.notifyDataSetChanged();
                 }
+
                 myDialog.dismiss();
+            }
+        });
+        myDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                popUpCrearRutinasAdapter.filterByType("Todo");
             }
         });
     }
 
     public void initListEjercicios(){
-        exerciceListAdapterPopUp = new ExerciceListAdapter(exercicesViewModelPopUp.getExercices().getValue(), myDialog.getContext(), new ExerciceListAdapter.OnItemClickListener() {
+        popUpCrearRutinasAdapter = new PopUpCrearRutinasAdapter(exercicesViewModelPopUp.getExercices().getValue(), myDialog.getContext(), new PopUpCrearRutinasAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(ListExercice item) {
-                elements.add(item);
+                if(!elements.contains(item)){
+                    elements.add(item);
+                }
             }
         });
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(myDialog.getContext(), R.array.combo_musculos, android.R.layout.simple_spinner_item);
         spinnerPopUp.setAdapter(adapter);
         recyclerPopUp.setLayoutManager(new LinearLayoutManager(myDialog.getContext()));
         recyclerPopUp.setHasFixedSize(true);
-        recyclerPopUp.setAdapter(exerciceListAdapterPopUp);
+        recyclerPopUp.setAdapter(popUpCrearRutinasAdapter);
     }
 
     private void initListenerTeclado(){
@@ -242,8 +254,8 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        exerciceListAdapterPopUp.filter(newText);
-        exerciceListAdapterPopUp.notifyDataSetChanged();
+        popUpCrearRutinasAdapter.filter(newText);
+        popUpCrearRutinasAdapter.notifyDataSetChanged();
         return false;
     }
 }
