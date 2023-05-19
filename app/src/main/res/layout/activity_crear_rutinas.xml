@@ -36,7 +36,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_crearRutinas_top">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.example.chymv2.view.CustomEditText
             android:id="@+id/tvColorRoutine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
             android:layout_marginEnd="25dp"
             android:textColor="@color/black"
             android:textColorHint="@color/teal_700" />
-        <com.google.android.material.textfield.TextInputEditText
+        <com.example.chymv2.view.CustomEditText
             android:id="@+id/tvNameRoutine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
             android:layout_marginEnd="25dp"
             android:textColor="@color/black"
             android:textColorHint="@color/teal_700" />
-        <com.google.android.material.textfield.TextInputEditText
+        <com.example.chymv2.view.CustomEditText
             android:id="@+id/tvTypeRoutine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

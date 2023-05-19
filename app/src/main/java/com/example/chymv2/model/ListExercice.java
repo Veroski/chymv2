@@ -9,7 +9,7 @@ public class ListExercice implements Serializable {
     private String tipoEjercicio;
     private int id;
     private String descripcion;
-    private int series;
+    private String series;
     private String repeticiones;
     private String kg;
     String selected;
@@ -23,11 +23,11 @@ public class ListExercice implements Serializable {
         this.selected = "#FFFFFF";
     }
 
-    public int getSeries() {
+    public String getSeries() {
         return series;
     }
 
-    public void setSeries(int series) {
+    public void setSeries(String series) {
         this.series = series;
     }
 

@@ -16,6 +16,7 @@ public class ActivityExerciceDescription extends AppCompatActivity {
     TextView tvExerciceDescription;
     TextView tvExerciceMuscleGroup;
     CollapsingToolbarLayout collapsingToolbarLayout;
+    String srk;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -27,9 +28,10 @@ public class ActivityExerciceDescription extends AppCompatActivity {
         tvExerciceMuscleGroup = findViewById(R.id.tvGrupoMuscular);
 
         collapsingToolbarLayout.setTitle(element.getEjercicio());
-        tvExerciceDescription.setText(element.getDescripcion());
         tvExerciceMuscleGroup.setText(element.getGrupoMuscular());
 
+        srk = "Series: " + element.getSeries() + ", Repeticiones: " + element.getRepeticiones() + ", Kg: " + element.getKg();
 
+        tvExerciceDescription.setText(srk);
     }
 }
