@@ -91,8 +91,6 @@ public class RoutineViewModel {
         String ejercicios = ListaEjerciciosToStringId(rutina);
         String idList = rutina.getIdList();
 
-        String series = rutina.getEjercicios().get(0).getSeries();
-        Toast.makeText(context,series,Toast.LENGTH_LONG).show();
         boolean problemsAdding = InitializeData.getDbInstance(context).insertRoutineData(color,nombre,tipo,ejercicios,idList);
         InitializeData.getInstance(context).addRoutineData(rutina);
         actualizarLista(Integer.parseInt(rutina.getIdList()));

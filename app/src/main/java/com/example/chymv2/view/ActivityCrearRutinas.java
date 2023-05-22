@@ -11,7 +11,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,7 +44,8 @@ import java.util.List;
 public class ActivityCrearRutinas extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
     private Button returnMain_crearRutinas_btn, btnCrearRutina;
-    private com.example.chymv2.view.CustomEditText tvColorRoutine, tvNameRoutine,tvRoutineType;
+    private com.example.chymv2.view.CustomEditText tvNameRoutine,tvRoutineType;
+    private ImageView ivColor;
     private NavigationBarView navigation;
     private RoutineViewModel routineViewModel;
     private String color, nombre,routineType,listaEjs, idList;
@@ -72,6 +75,13 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
     private String strSeries, strRepes, strKg;
     private int sumadorId;
 
+    //POP UP CAMBIAR COLOR
+
+    private ImageView color1,color2,color3,color4;
+    private ImageView color5,color6,color7,color8;
+    private ImageView color9,color10,color11,color12;
+    private int col;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +90,7 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
         routineViewModel = new RoutineViewModel(this,2);
         navigation = findViewById(R.id.bottom_navigation_crearRutinas);
 
-        tvColorRoutine = findViewById(R.id.tvColorRoutine);
+        ivColor = findViewById(R.id.selectColor);
         tvRoutineType = findViewById(R.id.tvTypeRoutine);
         tvNameRoutine = findViewById(R.id.tvNameRoutine);
         fabAddExercices = findViewById(R.id.fabCrearRutinas);
@@ -96,8 +106,12 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
 
         sumadorId = 1;
 
+        col= getResources().getColor(R.color.black,null);
+        color= String.format("#%06X", (0xFFFFFF & col));
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
 
         onClickListeners();
         listaEjerciciosSelec();
@@ -135,7 +149,7 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
         btnCrearRutina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                color = tvColorRoutine.getText().toString();
+                //color = tvColorRoutine.getText().toString();
                 nombre = tvNameRoutine.getText().toString();
                 routineType = tvRoutineType.getText().toString();
 
@@ -143,7 +157,6 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
                 listaEjs = crearRutinasViewModel.listaToTexto(elements);
                 idList = "2";
 
-                Toast.makeText(ActivityCrearRutinas.this,listaEjs,Toast.LENGTH_LONG).show();
                 boolean problemsAdding = routineViewModel.addRoutine(routineViewModel.crearRutina(color,nombre,routineType,listaEjs,idList));
                 if(!problemsAdding){
                     Toast.makeText(ActivityCrearRutinas.this,"Rutina añadida correctamente a Mis Rutinas", Toast.LENGTH_SHORT).show();
@@ -152,6 +165,11 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
                     Toast.makeText(ActivityCrearRutinas.this,"Error al añadir Rutina a Mis Rutinas", Toast.LENGTH_SHORT).show();
                     //Eliminar la rutina de la base de datos ipsofacto
                 }
+                tvNameRoutine.setText("");
+                tvRoutineType.setText("");
+                elements.clear();
+                col= getResources().getColor(R.color.black,null);
+                color= String.format("#%06X", (0xFFFFFF & col));
             }
         });
         //PopUp de añadir ejercicios
@@ -159,6 +177,12 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
             @Override
             public void onClick(View view) {;
                 showPopUpViewCrear();
+            }
+        });
+        ivColor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopUpColor();
             }
         });
     }
@@ -174,6 +198,7 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
         rvCrearRutinas.setHasFixedSize(true);
         rvCrearRutinas.setAdapter(exerciceListAdapter);
     }
+
 /*
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
@@ -355,4 +380,131 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
             }
         });
     }
+    /*
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+
+                      ACTIVITY POP UP CAMBIAR COLOR
+
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+*/
+    public void showPopUpColor(){
+        myDialog.setContentView(R.layout.pop_up_select_color);
+
+        color1 = myDialog.findViewById(R.id.color1);
+        color2 = myDialog.findViewById(R.id.color2);
+        color3 = myDialog.findViewById(R.id.color3);
+        color4 = myDialog.findViewById(R.id.color4);
+        color5 = myDialog.findViewById(R.id.color5);
+        color6 = myDialog.findViewById(R.id.color6);
+        color7 = myDialog.findViewById(R.id.color7);
+        color8= myDialog.findViewById(R.id.color8);
+        color9 = myDialog.findViewById(R.id.color9);
+        color10 = myDialog.findViewById(R.id.color10);
+        color11 = myDialog.findViewById(R.id.color11);
+        color12 = myDialog.findViewById(R.id.color12);
+
+
+        colorOnClickListeners();
+        myDialog.show();
+    }
+    public void colorOnClickListeners(){
+
+        color1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                col= getResources().getColor(R.color.azulFlaco,null);
+                cambiarColor();
+            }
+        });
+        color2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                col= getResources().getColor(R.color.azulMarino,null);
+                cambiarColor();
+            }
+        });
+        color3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                col= getResources().getColor(R.color.magenta,null);
+                cambiarColor();
+            }
+        });
+        color4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                col= getResources().getColor(R.color.purple_500,null);
+                cambiarColor();
+
+            }
+        });
+        color5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                col= getResources().getColor(R.color.amarisho,null);
+                cambiarColor();
+            }
+        });
+
+        color6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                col= getResources().getColor(R.color.verdesito,null);
+                cambiarColor();
+            }
+        });
+        color7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                col= getResources().getColor(R.color.naranja,null);
+                cambiarColor();
+            }
+        });
+        color8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                col= getResources().getColor(R.color.rojoPuro,null);
+                cambiarColor();
+
+            }
+        });
+        color9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                col= getResources().getColor(R.color.white,null);
+                cambiarColor();
+            }
+        });
+        color10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                col= getResources().getColor(R.color.humito,null);
+                cambiarColor();
+            }
+        });
+        color11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                col= getResources().getColor(R.color.humo,null);
+                cambiarColor();
+            }
+        });
+        color12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                col= getResources().getColor(R.color.black,null);
+                cambiarColor();
+            }
+        });
+    }
+    public void cambiarColor(){
+        color= String.format("#%06X", (0xFFFFFF & col));
+        ivColor.setColorFilter(Color.parseColor(color),PorterDuff.Mode.SRC_IN);
+        myDialog.dismiss();
+    }
+
 }
