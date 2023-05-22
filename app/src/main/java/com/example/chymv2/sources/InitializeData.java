@@ -2,6 +2,7 @@ package com.example.chymv2.sources;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 
 import com.example.chymv2.model.ListExercice;
@@ -59,8 +60,12 @@ public class InitializeData {
                 String group = cursor.getString(3);
                 String type = cursor.getString(4);
                 String description = cursor.getString(5);
-
-                exercices.add(new ListExercice(color, exercice, group, type,id,description));
+                ListExercice ex = new ListExercice(color, exercice, group, type,description);
+                ex.setId(id);
+                ex.setSeries(cursor.getString(6));
+                ex.setRepeticiones(cursor.getString(7));
+                ex.setKg(cursor.getString(8));
+                exercices.add(ex);
             }
         }
     }
@@ -82,21 +87,46 @@ public class InitializeData {
             }
         }
     }
+    public int meterEjercicioDB(ListExercice ex){
+        String color = ex.getColor();
+        String exercice = ex.getEjercicio();
+        String group = ex.getGrupoMuscular();
+        String type = ex.getTipoEjercicio();
+        String description = ex.getDescripcion();
+        String series = ex.getSeries();
+        String reps = ex.getRepeticiones();
+        String kg = ex.getKg();
+        databaseHelper.insertExerciceData(color,exercice,group,type,description,series,reps,kg);
+        Cursor c = databaseHelper.getDataExercices();
+        c.moveToFirst();
+        /*int id = c.getInt(0);
+        while(c.moveToNext()){
+            id = c.getInt(0);
+        }
+        //Cursor cursor= DB.rawQuery("SELECT last_insert_rowid() as LastID FROM Exercices",null);
+        ListExercice ex = new ListExercice(color, exercice, group, type,description);
+        ex.setId(id);*/
+        exercices.add(ex);
+        c.close();
+        return ex.getId();
+
+    }
     public void addRoutineData(Rutina rutina){
         routines.add(rutina);
+    }public void addExerciceData(ListExercice exercice){
+        exercices.add(exercice);
     }
 
     public ArrayList<ListExercice>conversorStringToExercice(String lista){
         String id = "";
         ArrayList<ListExercice> listExercices = new ArrayList<>();
-        int j = 0;
+
         for(int i = 0; i<lista.length();i++){
             if((lista.charAt(i) == ',' || i == lista.length()-1) && !id.equals("")){
 
                 int traductor = Integer.parseInt(id);
                 listExercices.add(findExerciceById(traductor));
                 id = "";
-                j++;
             }
             else{
                 id += lista.charAt(i);

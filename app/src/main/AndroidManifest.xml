@@ -25,9 +25,11 @@
             android:exported="false" />
         <activity
             android:name=".view.ActivityRutinasComunidad"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".view.ActivityRecomendedRoutines"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".view.ActivitySignIn"

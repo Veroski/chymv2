@@ -38,6 +38,7 @@ public class RoutineListAdapter extends RecyclerView.Adapter<RoutineListAdapter.
         this.filteredData = new ArrayList<>();
         filteredData.addAll(itemList);
         this.listener = listener;
+        this.context = context;
     }
 
     public interface OnItemClickListener{

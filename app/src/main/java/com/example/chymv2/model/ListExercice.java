@@ -13,7 +13,7 @@ public class ListExercice implements Serializable {
     private String repeticiones;
     private String kg;
     String selected;
-    public ListExercice(String color, String ejercicio, String grupoMuscular, String tipoEjercicio,int id,String descripcion) {
+    public ListExercice(String color, String ejercicio, String grupoMuscular, String tipoEjercicio,String descripcion) {
         this.color = color;
         this.ejercicio = ejercicio;
         this.grupoMuscular = grupoMuscular;
@@ -22,6 +22,7 @@ public class ListExercice implements Serializable {
         this.descripcion = descripcion;
         this.selected = "#FFFFFF";
     }
+
 
     public String getSeries() {
         return series;

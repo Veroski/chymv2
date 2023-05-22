@@ -85,9 +85,18 @@ public class RoutineViewModel {
 
         RoutineElements.add(rutina);
         mRoutines.setValue(RoutineElements);
-        boolean problemsAdding = InitializeData.getDbInstance(context).insertRoutineData(rutina.getColor(),rutina.getNombre(),rutina.getRoutineType(),ListaEjerciciosToStringId(rutina),rutina.getIdList());
+        String color = rutina.getColor();
+        String nombre = rutina.getNombre();
+        String tipo = rutina.getRoutineType();
+        String ejercicios = ListaEjerciciosToStringId(rutina);
+        String idList = rutina.getIdList();
+
+        String series = rutina.getEjercicios().get(0).getSeries();
+        Toast.makeText(context,series,Toast.LENGTH_LONG).show();
+        boolean problemsAdding = InitializeData.getDbInstance(context).insertRoutineData(color,nombre,tipo,ejercicios,idList);
         InitializeData.getInstance(context).addRoutineData(rutina);
         actualizarLista(Integer.parseInt(rutina.getIdList()));
+
         return problemsAdding;
     }
     public List<Rutina> getRoutineByIdList(String idList){
@@ -104,9 +113,10 @@ public class RoutineViewModel {
         List<ListExercice> lista= rutina.getEjercicios();
         for(int i=0;i<lista.size();i++){
             ids += lista.get(i).getId();
-            if(i < lista.size() -1){
-                ids += ",";
-            }
+            ids += ",";
+            /*if(i < lista.size() -1){
+
+            }*/
         }
         return ids;
     }

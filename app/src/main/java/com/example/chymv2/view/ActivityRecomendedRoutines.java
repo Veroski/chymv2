@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -55,6 +56,8 @@ public class ActivityRecomendedRoutines extends AppCompatActivity implements Sea
         initlistaRutinas();
         initListenerRoutines();
         onClickListeners();
+        routineSearch.clearFocus();
+
     }
     private final NavigationBarView.OnItemSelectedListener mOnNavigationItemSelectedListener = new NavigationBarView.OnItemSelectedListener() {
         @Override
@@ -78,6 +81,7 @@ public class ActivityRecomendedRoutines extends AppCompatActivity implements Sea
     };
 
     private void initlistaRutinas() {
+
         routineListAdapter = new RoutineListAdapter(routineViewModel.getRoutines().getValue(),this, new RoutineListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Rutina item) {

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.chymv2.R;
@@ -14,6 +15,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class ActivityRutinasComunidad extends AppCompatActivity {
     private Button returnMain_rutinasComunidad_btn;
+    private androidx.appcompat.widget.SearchView svSearch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +23,7 @@ public class ActivityRutinasComunidad extends AppCompatActivity {
 
         NavigationBarView navigation = findViewById(R.id.bottom_navigation_rutinasComunidad);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
+        svSearch = findViewById(R.id.routineSearch);
 
         returnMain_rutinasComunidad_btn = findViewById(R.id.returnMain_rutinasComunidad_btn);
 
@@ -30,6 +33,8 @@ public class ActivityRutinasComunidad extends AppCompatActivity {
                 finish();
             }
         });
+        svSearch.clearFocus();
+        //svSearch.requestFocus();
         //assert getSupportActionBar() != null;
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }

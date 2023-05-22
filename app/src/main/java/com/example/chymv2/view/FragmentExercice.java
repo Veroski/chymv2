@@ -96,7 +96,7 @@ public class FragmentExercice extends Fragment implements SearchView.OnQueryText
         exercicesViewModel = new ExercicesViewModel(getContext());
         initlistaEjercicios(view);
         initListenerExercices();
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
     }
 
     private void initlistaEjercicios(View view) {
@@ -108,7 +108,7 @@ public class FragmentExercice extends Fragment implements SearchView.OnQueryText
         });
         exerciceListAdapter.notifyDataSetChanged();
         svSearch = view.findViewById(R.id.svSearch);
-
+        svSearch.clearFocus();
         //Spinner init logic
         spinner = view.findViewById(R.id.spinnerEx);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.combo_musculos, android.R.layout.simple_spinner_item);

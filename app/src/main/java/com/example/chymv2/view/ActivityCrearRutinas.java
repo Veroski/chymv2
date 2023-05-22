@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.example.chymv2.R;
 import com.example.chymv2.adapters.ExerciceListAdapter;
 import com.example.chymv2.adapters.PopUpCrearRutinasAdapter;
 import com.example.chymv2.model.ListExercice;
+import com.example.chymv2.sources.InitializeData;
 import com.example.chymv2.viewmodel.CrearRutinasViewModel;
 import com.example.chymv2.viewmodel.ExercicesViewModel;
 import com.example.chymv2.viewmodel.RoutineViewModel;
@@ -68,6 +70,7 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
     private com.example.chymv2.view.CustomEditText series,repes,kg;
     private Button btnEditPopUp;
     private String strSeries, strRepes, strKg;
+    private int sumadorId;
 
 
     @Override
@@ -90,6 +93,8 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
         myDialog = new Dialog(this);
 
         crearRutinasViewModel = new CrearRutinasViewModel(this);
+
+        sumadorId = 1;
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
@@ -133,8 +138,12 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
                 color = tvColorRoutine.getText().toString();
                 nombre = tvNameRoutine.getText().toString();
                 routineType = tvRoutineType.getText().toString();
+
+
                 listaEjs = crearRutinasViewModel.listaToTexto(elements);
                 idList = "2";
+
+                Toast.makeText(ActivityCrearRutinas.this,listaEjs,Toast.LENGTH_LONG).show();
                 boolean problemsAdding = routineViewModel.addRoutine(routineViewModel.crearRutina(color,nombre,routineType,listaEjs,idList));
                 if(!problemsAdding){
                     Toast.makeText(ActivityCrearRutinas.this,"Rutina añadida correctamente a Mis Rutinas", Toast.LENGTH_SHORT).show();
@@ -209,7 +218,7 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
         spinnerPopUp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(myDialog.getContext(),"Seleccionado: " + adapterView.getItemAtPosition(i).toString(),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(myDialog.getContext(),"Seleccionado: " + adapterView.getItemAtPosition(i).toString(),Toast.LENGTH_SHORT).show();
                 popUpCrearRutinasAdapter.filterByType(adapterView.getItemAtPosition(i).toString());
                 searchPopUp.setQuery("",true);
                 popUpCrearRutinasAdapter.notifyDataSetChanged();
@@ -224,9 +233,8 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
             @Override
             public void onClick(View view) {
                 for(ListExercice i: elements){
-                    ListExercice newExercice = i;
                     i.setSelected("#FFFFFF");
-                    crearRutinasViewModel.addNewValue(newExercice);
+                    crearRutinasViewModel.addNewValue(i);
                     exerciceListAdapter.notifyDataSetChanged();
                 }
 
@@ -315,14 +323,35 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
         btnEditPopUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                ListExercice newExercice = new ListExercice(item.getColor(),item.getEjercicio(),item.getGrupoMuscular(),item.getTipoEjercicio(),item.getDescripcion());
+                Cursor c = InitializeData.getDbInstance(ActivityCrearRutinas.this).getDataExercices();
+                c.moveToLast();
+                int id = c.getInt(0) +sumadorId;
+
+                newExercice.setId(id);
+                sumadorId +=1;
+
                 strSeries = series.getText().toString();
                 strRepes = repes.getText().toString();
                 strKg = kg.getText().toString();
 
-                item.setSeries(strSeries);
-                item.setRepeticiones(strRepes);
-                item.setKg(strKg);
+                newExercice.setSeries(strSeries);
+                newExercice.setRepeticiones(strRepes);
+                newExercice.setKg(strKg);
+
+                elements.remove(item);
+                elements.add(newExercice);
+
+                //String pa = newExercice.getSeries() + ", " + newExercice.getId();
+                //Toast.makeText(ActivityCrearRutinas.this,pa,Toast.LENGTH_LONG).show();
                 myDialog.dismiss();
+            }
+        });
+        myDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+
             }
         });
     }

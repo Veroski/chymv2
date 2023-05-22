@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -51,6 +52,7 @@ public class ActivityMisRutinas extends AppCompatActivity implements SearchView.
         initlistaRutinas();
         initListenerRoutines();
         setOnClickListeners();
+        svSearch.clearFocus();
 
     }
     /*@Override
@@ -88,6 +90,7 @@ public class ActivityMisRutinas extends AppCompatActivity implements SearchView.
         });
         routineListAdapter.notifyDataSetChanged();
         svSearch = findViewById(R.id.routineSearch);
+
         //Spinner
         spinner = findViewById(R.id.spinnerMisRutinas);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(ActivityMisRutinas.this,R.array.combo_rutina, android.R.layout.simple_spinner_item);
