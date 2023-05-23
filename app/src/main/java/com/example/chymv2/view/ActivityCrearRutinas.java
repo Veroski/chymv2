@@ -167,9 +167,11 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
                 }
                 tvNameRoutine.setText("");
                 tvRoutineType.setText("");
-                elements.clear();
                 col= getResources().getColor(R.color.black,null);
                 color= String.format("#%06X", (0xFFFFFF & col));
+                ivColor.setColorFilter(Color.parseColor(color),PorterDuff.Mode.SRC_IN);
+                exerciceListAdapter.deleteAll();
+                exerciceListAdapter.notifyDataSetChanged();
             }
         });
         //PopUp de añadir ejercicios

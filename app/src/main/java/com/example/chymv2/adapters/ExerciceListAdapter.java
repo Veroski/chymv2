@@ -93,6 +93,9 @@ public class ExerciceListAdapter extends RecyclerView.Adapter<ExerciceListAdapte
             data.addAll(collect);
         }
     }
+    public void deleteAll(){
+        data.clear();
+    }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
