@@ -50,6 +50,7 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
     private RoutineViewModel routineViewModel;
     private String color, nombre,routineType,listaEjs, idList;
     private FloatingActionButton fabAddExercices;
+    boolean problemsAdding;
 
     private PopUpCrearRutinasAdapter popUpCrearRutinasAdapter;
     private ExerciceListAdapter exerciceListAdapter;
@@ -152,26 +153,29 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
                 //color = tvColorRoutine.getText().toString();
                 nombre = tvNameRoutine.getText().toString();
                 routineType = tvRoutineType.getText().toString();
-
-
-                listaEjs = crearRutinasViewModel.listaToTexto(elements);
                 idList = "2";
-
-                boolean problemsAdding = routineViewModel.addRoutine(routineViewModel.crearRutina(color,nombre,routineType,listaEjs,idList));
-                if(!problemsAdding){
-                    Toast.makeText(ActivityCrearRutinas.this,"Rutina añadida correctamente a Mis Rutinas", Toast.LENGTH_SHORT).show();
+                if(exerciceListAdapter.getItemCount()==0) {
+                    Toast.makeText(ActivityCrearRutinas.this, "¡No puedes crear una rutina sin ejercicios!", Toast.LENGTH_SHORT).show();
+                    listaEjs = "";
+                    problemsAdding = true;
                 }
-                else{
+                else {
+                    listaEjs = crearRutinasViewModel.listaToTexto(elements);
+                    problemsAdding = routineViewModel.addRoutine(routineViewModel.crearRutina(color,nombre,routineType,listaEjs,idList));
+                }
+
+
+
+                if(!problemsAdding && exerciceListAdapter.getItemCount()!=0){
+                    Toast.makeText(ActivityCrearRutinas.this,"Rutina añadida correctamente a Mis Rutinas", Toast.LENGTH_SHORT).show();
+                    resetActivity();
+                }
+                else if(problemsAdding){
                     Toast.makeText(ActivityCrearRutinas.this,"Error al añadir Rutina a Mis Rutinas", Toast.LENGTH_SHORT).show();
+                    resetActivity();
                     //Eliminar la rutina de la base de datos ipsofacto
                 }
-                tvNameRoutine.setText("");
-                tvRoutineType.setText("");
-                col= getResources().getColor(R.color.black,null);
-                color= String.format("#%06X", (0xFFFFFF & col));
-                ivColor.setColorFilter(Color.parseColor(color),PorterDuff.Mode.SRC_IN);
-                exerciceListAdapter.deleteAll();
-                exerciceListAdapter.notifyDataSetChanged();
+
             }
         });
         //PopUp de añadir ejercicios
@@ -199,6 +203,18 @@ public class ActivityCrearRutinas extends AppCompatActivity implements SearchVie
         rvCrearRutinas.setLayoutManager(new LinearLayoutManager(this));
         rvCrearRutinas.setHasFixedSize(true);
         rvCrearRutinas.setAdapter(exerciceListAdapter);
+    }
+    public void resetActivity(){
+        tvNameRoutine.setText("");
+        tvRoutineType.setText("");
+        col= getResources().getColor(R.color.black,null);
+        color= String.format("#%06X", (0xFFFFFF & col));
+        ivColor.setColorFilter(Color.parseColor(color),PorterDuff.Mode.SRC_IN);
+        exerciceListAdapter.deleteAll();
+        exerciceListAdapter.notifyDataSetChanged();
+    }
+    public void asignarValores(){
+
     }
 
 /*
