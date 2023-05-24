@@ -15,6 +15,10 @@ import com.example.chymv2.sources.EjerciciosDBtemporal;
 import com.example.chymv2.sources.InitializeData;
 import com.example.chymv2.view.ActivityMain;
 import com.example.chymv2.view.ActivityMisRutinas;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,14 +31,14 @@ public class RoutineViewModel {
 
     private InitializeData data;
     private Context context;
-
+    private FirebaseAuth firebaseAuth;
     public RoutineViewModel(Context context, int vLista){
         mRoutines = new MutableLiveData<>();
         this.context = context;
         data = InitializeData.getInstance(context);
         actualizarLista(vLista);
         ExerciceElements = data.getAllListExercice();
-
+        firebaseAuth = FirebaseAuth.getInstance();
     }
 
     public LiveData<List<Rutina>> getRoutines() {
@@ -104,6 +108,7 @@ public class RoutineViewModel {
                 rutinas.add(i);
             }
         }
+
         return rutinas;
     }
     public String ListaEjerciciosToStringId(Rutina rutina){
@@ -119,8 +124,12 @@ public class RoutineViewModel {
         return ids;
     }
     public Rutina crearRutina(String color, String name,String routineType, String listEx, String idList){
-
-        return new Rutina(color,name,routineType,StringToExercices(listEx),idList);
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("mis rutinas").child(user.getUid());
+        String key = reference.push().getKey();
+        Rutina rutina = new Rutina(color,name,routineType,StringToExercices(listEx),idList);
+        reference.child(key).setValue(rutina);
+        return rutina;
     }
     public ArrayList<ListExercice> StringToExercices(String listEx){
         ArrayList<ListExercice> listExercices = new ArrayList<>();

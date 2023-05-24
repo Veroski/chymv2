@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,6 +41,17 @@ public class MaterialListAdapter extends RecyclerView.Adapter<MaterialListAdapte
     @Override
     public void onBindViewHolder(final MaterialListAdapter.ViewHolder holder, final int position){
         holder.bindData(mData.get(position));
+        CardMaterial card = mData.get(position);
+        CheckBox checkBox = holder.itemView.findViewById(R.id.materialCheckBox);
+        checkBox.setChecked(card.isStatus());
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // Actualiza el objeto correspondiente en la lista de datos
+                //TuObjeto objeto = listaObjetos.get(position);
+                //objeto.setSeleccionado(isChecked);
+            }
+        });
     }
 
     public void setItems(List<CardMaterial> items){ mData = items;}
@@ -48,28 +60,27 @@ public class MaterialListAdapter extends RecyclerView.Adapter<MaterialListAdapte
         void onItemClick(CardMaterial item);
     }
 
-
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView name;
-        CheckBox status;
+        CheckBox checkBox;
 
         ViewHolder(View itemView){
             super(itemView);
             name = itemView.findViewById(R.id.materialCardTxt);
-            status = itemView.findViewById(R.id.materialCheckBox);
+            checkBox = itemView.findViewById(R.id.materialCheckBox);
         }
 
         void bindData(final CardMaterial item){
             name.setText(item.getName());
-            status.setEnabled(item.isStatus());
+            checkBox.setEnabled(item.isStatus());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(status.isChecked()){
-                        status.setChecked(false);
+                    if(checkBox.isChecked()){
+                        checkBox.setChecked(false);
                     }
                     else{
-                        status.setChecked(true);
+                        checkBox.setChecked(true);
                     }
                     listener.onItemClick(item);
                 }

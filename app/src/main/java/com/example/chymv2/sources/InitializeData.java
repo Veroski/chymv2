@@ -7,6 +7,10 @@ import android.widget.Toast;
 
 import com.example.chymv2.model.ListExercice;
 import com.example.chymv2.model.Rutina;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +22,8 @@ public class InitializeData {
     private static InitializeData instance;
     private static DatabaseHelper dbInstance;
     private Context context;
-
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    private FirebaseUser user = firebaseAuth.getCurrentUser();
     public static synchronized InitializeData getInstance(Context context) {
         if (instance == null) {
             instance = new InitializeData(context.getApplicationContext());
@@ -83,7 +88,15 @@ public class InitializeData {
                 String listExercices = cursor.getString(4);
                 String idList = cursor.getString(5);
                 ArrayList<ListExercice> exercices = conversorStringToExercice(listExercices);
-                routines.add(new Rutina(color, routine,routineType, exercices,idList));
+                Rutina rutina = new Rutina(color, routine,routineType, exercices,idList);
+                routines.add(rutina);
+                /* En el caso de querer añadir mas rutinas recomendadas -> eliminar el path entero de las
+                rutinas recomendadas de la firebase, descomentar este codigo y volver a ejecutarlo (MODO ADMIN).*/
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("rutinas recomendadas");
+                String key = reference.push().getKey();
+                reference.child(key).setValue(rutina);
+                System.out.println(rutina.getNombre());
+
             }
         }
     }

@@ -33,16 +33,18 @@
         android:id="@+id/materialCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="6dp"
+        android:layout_marginRight="6dp"
         android:layout_marginBottom="24dp"
         android:scaleType="fitCenter"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="6dp"
+        android:textColorHighlight="#888888"
+        android:textColorLink="#8A8A8A"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:textStyle="bold" />
 
 </RelativeLayout>
 

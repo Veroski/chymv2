@@ -8,9 +8,7 @@ import java.util.Set;
 public class Rutina implements Serializable {
     String nombre;
     ArrayList<ListExercice> ejercicios;
-
     Set<String> materiales;
-
     Set<String> musculos;
     String descripcion;
     boolean subida;
