@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.chymv2.R;
+import com.example.chymv2.adapters.MisRutinasListAdapter;
 import com.example.chymv2.adapters.RoutineListAdapter;
 import com.example.chymv2.model.ListExercice;
 import com.example.chymv2.model.Rutina;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 
 public class ActivityMisRutinas extends AppCompatActivity implements SearchView.OnQueryTextListener{
     private RecyclerView recyclerView;
-    private RoutineListAdapter routineListAdapter;
+    private MisRutinasListAdapter misRutinasListAdapter;
     private RoutineViewModel routineViewModel;
     private Button returnMain_rutinasRecomendadas_btn;
     private FloatingActionButton fabMisRutinas;
@@ -81,14 +82,30 @@ public class ActivityMisRutinas extends AppCompatActivity implements SearchView.
             return false;
         }
     };
+
+    private MisRutinasListAdapter.OnItemClickListener listener = new MisRutinasListAdapter.OnItemClickListener() {
+        @Override
+        public void onItemClick(Rutina item) {
+            moveToRoutine(item);
+        }
+    };
+
+    private MisRutinasListAdapter.OnItemClickListener eliminar = new MisRutinasListAdapter.OnItemClickListener() {
+        @Override
+        public void onItemClick(Rutina item) {
+            Toast.makeText(ActivityMisRutinas.this,"POLLA ELIMINADA", Toast.LENGTH_LONG).show();
+        }
+    };
+    private MisRutinasListAdapter.OnItemClickListener subir = new MisRutinasListAdapter.OnItemClickListener() {
+        @Override
+        public void onItemClick(Rutina item) {
+            Toast.makeText(ActivityMisRutinas.this,"POLLA SUBIDA", Toast.LENGTH_LONG).show();
+        }
+    };
+
     private void initlistaRutinas() {
-        routineListAdapter = new RoutineListAdapter(routineViewModel.getRoutines().getValue(),this, new RoutineListAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Rutina item) {
-                moveToRoutine(item);
-            }
-        });
-        routineListAdapter.notifyDataSetChanged();
+        misRutinasListAdapter = new MisRutinasListAdapter(routineViewModel.getRoutines().getValue(),this, listener,eliminar,subir);
+        misRutinasListAdapter.notifyDataSetChanged();
         svSearch = findViewById(R.id.routineSearch);
 
         //Spinner
@@ -100,7 +117,7 @@ public class ActivityMisRutinas extends AppCompatActivity implements SearchView.
         recyclerView = findViewById(R.id.routineListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(routineListAdapter);
+        recyclerView.setAdapter(misRutinasListAdapter);
     }
     private void initListenerRoutines(){
         svSearch.setOnQueryTextListener(this);
@@ -112,8 +129,8 @@ public class ActivityMisRutinas extends AppCompatActivity implements SearchView.
 
     @Override
     public boolean onQueryTextChange(String s) {
-        routineListAdapter.filter(s);
-        routineListAdapter.notifyDataSetChanged();
+        misRutinasListAdapter.filter(s);
+        misRutinasListAdapter.notifyDataSetChanged();
         return false;
     }
     public void moveToRoutine(Rutina item){
@@ -143,9 +160,9 @@ public class ActivityMisRutinas extends AppCompatActivity implements SearchView.
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(getApplicationContext(),"Seleccionado: " + adapterView.getItemAtPosition(i).toString(),Toast.LENGTH_SHORT).show();
-                routineListAdapter.filterByType(adapterView.getItemAtPosition(i).toString());
+                misRutinasListAdapter.filterByType(adapterView.getItemAtPosition(i).toString());
                 svSearch.setQuery("",true);
-                routineListAdapter.notifyDataSetChanged();
+                misRutinasListAdapter.notifyDataSetChanged();
 
             }
 
