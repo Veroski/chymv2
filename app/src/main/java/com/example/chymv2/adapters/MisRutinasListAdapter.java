@@ -93,6 +93,11 @@ public class MisRutinasListAdapter extends RecyclerView.Adapter<MisRutinasListAd
 
         }
     }
+    public void eliminateItem(Rutina item){
+        if(data.contains(item)){
+            data.remove(item);
+        }
+    }
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iconImage, eliminate, upload;
         TextView nombreRutina;

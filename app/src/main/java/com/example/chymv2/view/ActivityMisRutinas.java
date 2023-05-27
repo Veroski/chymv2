@@ -28,6 +28,8 @@ import com.example.chymv2.viewmodel.RoutineViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
+import org.checkerframework.checker.units.qual.A;
+
 import java.util.ArrayList;
 
 public class ActivityMisRutinas extends AppCompatActivity implements SearchView.OnQueryTextListener{
@@ -38,6 +40,7 @@ public class ActivityMisRutinas extends AppCompatActivity implements SearchView.
     private FloatingActionButton fabMisRutinas;
     private Spinner spinner;
     private androidx.appcompat.widget.SearchView svSearch;
+    MisRutinasListAdapter.OnItemClickListener listener,subir,eliminar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +54,8 @@ public class ActivityMisRutinas extends AppCompatActivity implements SearchView.
 
         routineViewModel = new RoutineViewModel(this,2);
         initlistaRutinas();
+
+
         initListenerRoutines();
         setOnClickListeners();
         svSearch.clearFocus();
@@ -83,27 +88,10 @@ public class ActivityMisRutinas extends AppCompatActivity implements SearchView.
         }
     };
 
-    private MisRutinasListAdapter.OnItemClickListener listener = new MisRutinasListAdapter.OnItemClickListener() {
-        @Override
-        public void onItemClick(Rutina item) {
-            moveToRoutine(item);
-        }
-    };
 
-    private MisRutinasListAdapter.OnItemClickListener eliminar = new MisRutinasListAdapter.OnItemClickListener() {
-        @Override
-        public void onItemClick(Rutina item) {
-            Toast.makeText(ActivityMisRutinas.this,"POLLA ELIMINADA", Toast.LENGTH_LONG).show();
-        }
-    };
-    private MisRutinasListAdapter.OnItemClickListener subir = new MisRutinasListAdapter.OnItemClickListener() {
-        @Override
-        public void onItemClick(Rutina item) {
-            Toast.makeText(ActivityMisRutinas.this,"POLLA SUBIDA", Toast.LENGTH_LONG).show();
-        }
-    };
 
     private void initlistaRutinas() {
+        cardListeners();
         misRutinasListAdapter = new MisRutinasListAdapter(routineViewModel.getRoutines().getValue(),this, listener,eliminar,subir);
         misRutinasListAdapter.notifyDataSetChanged();
         svSearch = findViewById(R.id.routineSearch);
@@ -171,5 +159,29 @@ public class ActivityMisRutinas extends AppCompatActivity implements SearchView.
 
             }
         });
+    }
+    public void cardListeners(){
+        listener = new MisRutinasListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Rutina item) {
+                moveToRoutine(item);
+            }
+        };
+        eliminar = new MisRutinasListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Rutina item) {
+                misRutinasListAdapter.eliminateItem(item);
+                misRutinasListAdapter.notifyDataSetChanged();
+                InitializeData.getInstance(ActivityMisRutinas.this).eliminateRoutine(item);
+                String id = ""+item.getId();
+                InitializeData.getDbInstance(ActivityMisRutinas.this).eliminateRoutine(id);
+            }
+        };
+        subir = new MisRutinasListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Rutina item) {
+                Toast.makeText(ActivityMisRutinas.this,"SUBIR", Toast.LENGTH_LONG).show();
+            }
+        };
     }
 }

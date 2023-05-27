@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
-import com.example.chymv2.model.ListExercice;
-
 import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -71,6 +69,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long result = DB.insert("Routines", null,contentValues);
         contentValues.clear();
         return (result == -1);
+    }
+    public void eliminateRoutine(String id){
+        SQLiteDatabase DB = this.getWritableDatabase();
+        String table ="Routines";
+        String whereClause = "COLUMN_ID=?";
+        String[] whereArgs = {id};
+        DB.delete(table,whereClause,whereArgs);
     }
     public Cursor getDataExercices(){
         SQLiteDatabase DB = this.getReadableDatabase();

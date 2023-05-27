@@ -51,7 +51,11 @@ public class InitializeData {
         displayRoutinesData();
     }
 
-
+    public void eliminateRoutine(Rutina item){
+        if(routines.contains(item)){
+            routines.remove(item);
+        }
+    }
 
     private void displayExercicesData() {
         Cursor cursor = databaseHelper.getDataExercices();
@@ -81,7 +85,7 @@ public class InitializeData {
             Toast.makeText(context, "No Entry Exists", Toast.LENGTH_SHORT).show();
         } else {
             while (cursor.moveToNext()) {
-
+                String id = cursor.getString(0);
                 String color = cursor.getString(1);
                 String routine = cursor.getString(2);
                 String routineType = cursor.getString(3);
@@ -89,6 +93,7 @@ public class InitializeData {
                 String idList = cursor.getString(5);
                 ArrayList<ListExercice> exercices = conversorStringToExercice(listExercices);
                 Rutina rutina = new Rutina(color, routine,routineType, exercices,idList);
+                rutina.setId(Integer.parseInt(id));
                 routines.add(rutina);
                 /* En el caso de querer añadir mas rutinas recomendadas -> eliminar el path entero de las
                 rutinas recomendadas de la firebase, descomentar este codigo y volver a ejecutarlo (MODO ADMIN).*/
